@@ -8,8 +8,8 @@ namespace P04WeatherForecastAPI.Client.Models
 {
     internal class Metric
     {
-        public double Value { get; set; }
-        public string Unit { get; set; }
-        public int UnitType { get; set; }
+        public required double Value { get; set; }
+        public required string Unit { get; set; }
+        public required int UnitType { get; set; }
     }
 }

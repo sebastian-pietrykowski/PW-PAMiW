@@ -5,19 +5,206 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="300">
+        Title="MainWindow" Height="500" Width="750">
     <DockPanel>
-        <StackPanel Width="150" DockPanel.Dock="Left">
-            <Label Content="City:" ></Label>
-            <TextBox x:Name="txtCity"></TextBox>
-            <Button x:Name="btnSearch" Content="Search" Click="btnSearch_Click"></Button>
-            <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName" SelectionChanged="lbData_SelectionChanged"></ListBox>
-        </StackPanel>
-        <StackPanel>
-            <Label HorizontalAlignment="Center" Content="Temperature for city:"></Label>
-            <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="..."></Label>
-            <Label  HorizontalAlignment="Center" Content="is:"></Label>
-            <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content=".."></Label>
-        </StackPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical">
+                        <!-- city search and city info -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <!-- city search -->
+                            <StackPanel Width="150">
+                                <Label Content="City:" ></Label>
+                                <TextBox x:Name="txtCity"></TextBox>
+                                <Button x:Name="btnSearch" Content="Search" Click="btnSearch_Click"></Button>
+                                <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName" SelectionChanged="lbData_SelectionChanged"></ListBox>
+                            </StackPanel>
+                            <StackPanel Width="150">
+                            </StackPanel>
+                            <!-- city info -->
+                            <StackPanel>
+                                <Label HorizontalAlignment="Center" Content="City info:"></Label>
+
+                                <Label HorizontalAlignment="Left" Content="Name:"></Label>
+                                <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="..."></Label>
+
+                                <Label HorizontalAlignment="Left" Content="Time zone:"></Label>
+                                <Label x:Name="lblTimeZoneValue" HorizontalAlignment="Center" Content=".."></Label>
+
+                                <Label HorizontalAlignment="Left" Content="Administrative area:"></Label>
+                                <Label x:Name="lblAdministrativeAreaValue" HorizontalAlignment="Center" Content=".."></Label>
+
+                                <Label HorizontalAlignment="Left" Content="Neighbors:"></Label>
+                                <Label x:Name="lblNeighborsValue" HorizontalAlignment="Center" Content=".."></Label>
+
+                                <Label HorizontalAlignment="Left" Content="Geoposition:"></Label>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Label HorizontalAlignment="Left" Content="Latitude:"></Label>
+                                    <Label x:Name="lblGeoPositionLatitudeValue" HorizontalAlignment="Left" Content=".."></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Label HorizontalAlignment="Left" Content="Longitude:"></Label>
+                                    <Label x:Name="lblGeoPositionLongitudeValue" HorizontalAlignment="Left" Content=".."></Label>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <!-- weather -->
+                        <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                            <StackPanel HorizontalAlignment="Center">
+                                <Label HorizontalAlignment="Center" Content="Current temperature:"></Label>
+                                <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content=".."></Label>
+
+                                <!-- 5 days daily forecast --> 
+                                <Label HorizontalAlignment="Center" Content="Five days forecast:"></Label>
+                                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Header Row -->
+                                        <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+                                            <Label HorizontalAlignment="Center" Content="Day" />
+                                        </Border>
+                                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast1stDayDateValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast2ndDayDateValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="0" Grid.Column="3" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast3rdDayDateValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="0" Grid.Column="4" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast4thDayDateValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="0" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast5thDayDateValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+
+                                        <!-- Minimum Temperature Row -->
+                                        <Border Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+                                            <Label HorizontalAlignment="Center" Content="Minimum temp." />
+                                        </Border>
+                                        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast1stDayMinTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast2ndDayMinTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="1" Grid.Column="3" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast3rdDayMinTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="1" Grid.Column="4" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast4thDayMinTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="1" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast5thDayMinTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+
+                                        <!-- Maximum Temperature Row -->
+                                        <Border Grid.Row="2" Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+                                            <Label HorizontalAlignment="Center" Content="Maximum temp." />
+                                        </Border>
+                                        <Border Grid.Row="2" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast1stDayMaxTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="2" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast2ndDayMaxTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="2" Grid.Column="3" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast3rdDayMaxTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="2" Grid.Column="4" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast4thDayMaxTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="2" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl5DaysDailyForecast5thDayMaxTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <!-- 6 hours hourly forecast -->
+                                <Label HorizontalAlignment="Center" Content="Six hours forecast:"></Label>
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Header Row -->
+                                        <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+                                            <Label HorizontalAlignment="Center" Content="Hour" />
+                                        </Border>
+                                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast1stHourValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast2ndHourValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="0" Grid.Column="3" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast3rdHourValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="0" Grid.Column="4" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast4thHourValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="0" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast5thHourValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="0" Grid.Column="6" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast6thHourValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+
+                                        <!-- Temperature Row -->
+                                        <Border Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+                                            <Label HorizontalAlignment="Center" Content="Temp." />
+                                        </Border>
+                                        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast1stHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast2ndHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="1" Grid.Column="3" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast3rdHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="1" Grid.Column="4" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast4thHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="1" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast5thHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                        <Border Grid.Row="1" Grid.Column="6" BorderBrush="Black" BorderThickness="1">
+                                            <Label x:Name="lbl6HoursHourlyForecast6thHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                        </StackPanel>
+                    </StackPanel>  
+        </ScrollViewer>
+              
     </DockPanel>
 </Window>
