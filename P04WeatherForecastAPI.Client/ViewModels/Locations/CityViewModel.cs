@@ -1,4 +1,5 @@
-using P04WeatherForecastAPI.Client.Models;
+﻿using P04WeatherForecastAPI.Client.Models;
+
 namespace P04WeatherForecastAPI.Client.ViewModels
 {
     public class CityViewModel

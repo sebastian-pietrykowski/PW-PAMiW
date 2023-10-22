@@ -2,7 +2,7 @@
 {
     public class Temperature
     {
-        public required Metric Metric { get; set; }
-        public required Imperial Imperial { get; set; }
+        public Metric Metric { get; set; }
+        public Imperial Imperial { get; set; }
     }
 }

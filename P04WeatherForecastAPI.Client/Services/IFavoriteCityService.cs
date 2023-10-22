@@ -1,5 +1,9 @@
+﻿using P04WeatherForecastAPI.Client.Models;
+using System;
 using System.Collections.Generic;
-using P04WeatherForecastAPI.Client.Models;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace P04WeatherForecastAPI.Client.Services
 {
@@ -9,5 +13,7 @@ namespace P04WeatherForecastAPI.Client.Services
 
         public void AddFavoriteCity(FavoriteCity city);
         public void RemoveFavoriteCity(int id);
+
+
     }
 }

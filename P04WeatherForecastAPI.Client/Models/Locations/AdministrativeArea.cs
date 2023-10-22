@@ -2,7 +2,7 @@
 {
     public class AdministrativeArea
     {
-        public required string ID { get; set; }
-        public required string LocalizedName { get; set; }
+        public string ID { get; set; }
+        public string LocalizedName { get; set; }
     }
 }

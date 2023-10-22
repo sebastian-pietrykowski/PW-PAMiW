@@ -4,14 +4,14 @@ namespace P04WeatherForecastAPI.Client.Models
 {
     public class Weather
     {
-        public required int EpochTime { get; set; }
-        public required string WeatherText { get; set; }
-        public required int WeatherIcon { get; set; }
-        public required bool HasPrecipitation { get; set; }
-        public required object PrecipitationType { get; set; }
-        public required bool IsDayTime { get; set; }
-        public required Temperature Temperature { get; set; }
-        public required string MobileLink { get; set; }
-        public required string Link { get; set; }
+        public int EpochTime { get; set; }
+        public string WeatherText { get; set; }
+        public int WeatherIcon { get; set; }
+        public bool HasPrecipitation { get; set; }
+        public object PrecipitationType { get; set; }
+        public bool IsDayTime { get; set; }
+        public Temperature Temperature { get; set; }
+        public string MobileLink { get; set; }
+        public string Link { get; set; }
     }
 }

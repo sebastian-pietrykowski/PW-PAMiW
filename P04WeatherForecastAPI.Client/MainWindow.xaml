@@ -4,8 +4,58 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
+        xmlns:converters="clr-namespace:P04WeatherForecastAPI.Client.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="750">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVisConv" ></BooleanToVisibilityConverter>
+        <converters:TemperatureToDisplayConverter x:Key="tmpToDispConv"></converters:TemperatureToDisplayConverter>
+        <converters:NeighborsToDisplayConverter x:Key="neighborsToDispConv"></converters:NeighborsToDisplayConverter>
+        <converters:TimeZoneToDisplayConverter x:Key="timeZoneToDispConv"></converters:TimeZoneToDisplayConverter>
+        <converters:GeoPositionPropertyToDisplayConverter x:Key="geoPositionPropertyToDispConv"></converters:GeoPositionPropertyToDisplayConverter>
+        <converters:DateToDisplayConverter x:Key="dateToDispConv"></converters:DateToDisplayConverter>
+        <Style x:Key="mainButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="Foreground" Value="DarkBlue"/>
+        </Style>
+        <Style x:Key="mainLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="DarkRed"/>
+        </Style>
+    </Window.Resources>
+
+    <!-- <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Column="0" Grid.Row="0" Margin="10">
+            <Button DockPanel.Dock="Top" Content="Manage Favorite Cities" Command="{Binding OpenFavotireCitiesCommand}" Style="{StaticResource mainButtonStyle}" ></Button>
+            <Label DockPanel.Dock="Top" Content="City:" Style="{StaticResource mainLabelStyle}"></Label>
+            <TextBox DockPanel.Dock="Top" x:Name="txtCity"></TextBox>
+            <Button DockPanel.Dock="Top" x:Name="btnSearch" Content="Search" Command="{Binding LoadCitiesCommand}" CommandParameter="{Binding Text, ElementName=txtCity}" Style="{StaticResource mainButtonStyle}" ></Button>
+            <ListBox Height="200"   x:Name="lbData" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectedCity}" DisplayMemberPath="LocalizedName" Margin="0,10,0,0"></ListBox>
+        </DockPanel>
+        
+        <StackPanel Grid.Column="1" Grid.Row="0" Margin="10">
+            <Label HorizontalAlignment="Center" Content="Temperature for city:" Style="{StaticResource mainLabelStyle}"></Label>
+            <Label x:Name="lblCityName" Content="{Binding SelectedCity.LocalizedName}" Style="{StaticResource mainLabelStyle}"></Label>
+            <Label Content="is:" Style="{StaticResource mainLabelStyle}"></Label>
+            <Label x:Name="lblTemperatureValue" Content="{Binding WeatherView.CurrentTemperature, Converter={StaticResource tmpToDispConv}}" Style="{StaticResource mainLabelStyle}"></Label>
+            <Image Visibility="{Binding WeatherView.HasPrecipitation, Converter={StaticResource boolToVisConv}}" Height="100" Source="/Images/rain.jpg" />
+        </StackPanel>
+    </Grid> -->
+
+
     <DockPanel>
         <ScrollViewer HorizontalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical">
@@ -16,7 +66,7 @@
                                 <Label Content="City:" ></Label>
                                 <TextBox x:Name="txtCity"></TextBox>
                                 <Button x:Name="btnSearch" Content="Search" Command="{Binding LoadCitiesCommand}" CommandParameter="{Binding Text, ElementName=txtCity}"></Button>
-                                <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectedCity}"></ListBox>
+                                <ListBox x:Name="lbData" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectedCity}" DisplayMemberPath="LocalizedName" ></ListBox>
                             </StackPanel>
                             <StackPanel Width="150">
                             </StackPanel>
@@ -25,25 +75,25 @@
                                 <Label HorizontalAlignment="Center" Content="City info:"></Label>
 
                                 <Label HorizontalAlignment="Left" Content="Name:"></Label>
-                                <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="..."></Label>
+                                <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="{Binding SelectedCity.LocalizedName}"></Label>
 
                                 <Label HorizontalAlignment="Left" Content="Time zone:"></Label>
-                                <Label x:Name="lblTimeZoneValue" HorizontalAlignment="Center" Content=".."></Label>
+                                <Label x:Name="lblTimeZoneValue" HorizontalAlignment="Center" Content="{Binding TimeZoneView, Converter={StaticResource timeZoneToDispConv}}"></Label>
 
                                 <Label HorizontalAlignment="Left" Content="Administrative area:"></Label>
-                                <Label x:Name="lblAdministrativeAreaValue" HorizontalAlignment="Center" Content=".."></Label>
+                                <Label x:Name="lblAdministrativeAreaValue" HorizontalAlignment="Center" Content="{Binding AdministrativeAreaView.LocalizedName}"></Label>
 
                                 <Label HorizontalAlignment="Left" Content="Neighbors:"></Label>
-                                <Label x:Name="lblNeighborsValue" HorizontalAlignment="Center" Content=".."></Label>
+                                <Label x:Name="lblNeighborsValue" HorizontalAlignment="Center" Content="{Binding NeighborsView.Neighbors, Converter={StaticResource neighborsToDispConv}}"></Label>
 
                                 <Label HorizontalAlignment="Left" Content="Geoposition:"></Label>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Label HorizontalAlignment="Left" Content="Latitude:"></Label>
-                                    <Label x:Name="lblGeoPositionLatitudeValue" HorizontalAlignment="Left" Content=".."></Label>
+                                    <Label x:Name="lblGeoPositionLatitudeValue" HorizontalAlignment="Left" Content="{Binding GeoPositionView.Latitude, Converter={StaticResource geoPositionPropertyToDispConv}}"></Label>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Label HorizontalAlignment="Left" Content="Longitude:"></Label>
-                                    <Label x:Name="lblGeoPositionLongitudeValue" HorizontalAlignment="Left" Content=".."></Label>
+                                    <Label x:Name="lblGeoPositionLongitudeValue" HorizontalAlignment="Left" Content="{Binding GeoPositionView.Longitude, Converter={StaticResource geoPositionPropertyToDispConv}}"></Label>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
@@ -51,7 +101,7 @@
                         <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                             <StackPanel HorizontalAlignment="Center">
                                 <Label HorizontalAlignment="Center" Content="Current temperature:"></Label>
-                                <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content=".."></Label>
+                                <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content="{Binding WeatherView.CurrentTemperature, Converter={StaticResource tmpToDispConv}}"></Label>
 
                                 <!-- 5 days daily forecast --> 
                                 <Label HorizontalAlignment="Center" Content="Five days forecast:"></Label>
@@ -77,19 +127,19 @@
                                             <Label HorizontalAlignment="Center" Content="Day" />
                                         </Border>
                                         <Border Grid.Row="0" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast1stDayDateValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast1stDayDateValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[0].Date, Converter={StaticResource dateToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast2ndDayDateValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast2ndDayDateValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[1].Date, Converter={StaticResource dateToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="0" Grid.Column="3" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast3rdDayDateValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast3rdDayDateValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[2].Date, Converter={StaticResource dateToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="0" Grid.Column="4" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast4thDayDateValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast4thDayDateValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[3].Date, Converter={StaticResource dateToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="0" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast5thDayDateValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast5thDayDateValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[4].Date, Converter={StaticResource dateToDispConv}}" />
                                         </Border>
 
                                         <!-- Minimum Temperature Row -->
@@ -97,19 +147,19 @@
                                             <Label HorizontalAlignment="Center" Content="Minimum temp." />
                                         </Border>
                                         <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast1stDayMinTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast1stDayMinTempValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[0].Temperature.Minimum.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast2ndDayMinTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast2ndDayMinTempValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[1].Temperature.Minimum.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="1" Grid.Column="3" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast3rdDayMinTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast3rdDayMinTempValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[2].Temperature.Minimum.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="1" Grid.Column="4" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast4thDayMinTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast4thDayMinTempValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[3].Temperature.Minimum.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="1" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast5thDayMinTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast5thDayMinTempValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[4].Temperature.Minimum.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
 
                                         <!-- Maximum Temperature Row -->
@@ -117,19 +167,19 @@
                                             <Label HorizontalAlignment="Center" Content="Maximum temp." />
                                         </Border>
                                         <Border Grid.Row="2" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast1stDayMaxTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast1stDayMaxTempValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[0].Temperature.Maximum.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="2" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast2ndDayMaxTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast2ndDayMaxTempValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[1].Temperature.Maximum.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="2" Grid.Column="3" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast3rdDayMaxTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast3rdDayMaxTempValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[2].Temperature.Maximum.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="2" Grid.Column="4" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast4thDayMaxTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast4thDayMaxTempValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[3].Temperature.Maximum.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="2" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl5DaysDailyForecast5thDayMaxTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl5DaysDailyForecast5thDayMaxTempValue" HorizontalAlignment="Center" Content="{Binding ManyDaysForecastView.DailyForecasts[4].Temperature.Maximum.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                     </Grid>
                                 </Border>
@@ -157,22 +207,22 @@
                                             <Label HorizontalAlignment="Center" Content="Hour" />
                                         </Border>
                                         <Border Grid.Row="0" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast1stHourValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast1stHourValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[0].DateTime, Converter={StaticResource dateToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast2ndHourValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast2ndHourValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[1].DateTime, Converter={StaticResource dateToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="0" Grid.Column="3" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast3rdHourValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast3rdHourValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[2].DateTime, Converter={StaticResource dateToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="0" Grid.Column="4" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast4thHourValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast4thHourValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[3].DateTime, Converter={StaticResource dateToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="0" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast5thHourValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast5thHourValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[4].DateTime, Converter={StaticResource dateToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="0" Grid.Column="6" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast6thHourValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast6thHourValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[5].DateTime, Converter={StaticResource dateToDispConv}}" />
                                         </Border>
 
                                         <!-- Temperature Row -->
@@ -180,22 +230,22 @@
                                             <Label HorizontalAlignment="Center" Content="Temp." />
                                         </Border>
                                         <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast1stHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast1stHourTempValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[0].Temperature.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast2ndHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast2ndHourTempValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[1].Temperature.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="1" Grid.Column="3" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast3rdHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast3rdHourTempValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[2].Temperature.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="1" Grid.Column="4" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast4thHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast4thHourTempValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[3].Temperature.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="1" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast5thHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast5thHourTempValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[4].Temperature.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                         <Border Grid.Row="1" Grid.Column="6" BorderBrush="Black" BorderThickness="1">
-                                            <Label x:Name="lbl6HoursHourlyForecast6thHourTempValue" HorizontalAlignment="Center" Content="..." />
+                                            <Label x:Name="lbl6HoursHourlyForecast6thHourTempValue" HorizontalAlignment="Center" Content="{Binding ManyHoursForecastView.HourlyForecasts[5].Temperature.Value, Converter={StaticResource tmpToDispConv}}" />
                                         </Border>
                                     </Grid>
                                 </Border>

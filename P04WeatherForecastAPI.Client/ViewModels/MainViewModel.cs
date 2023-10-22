@@ -1,7 +1,8 @@
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using P04WeatherForecastAPI.Client.Commands;
+using P04WeatherForecastAPI.Client.DataSeeders;
 using P04WeatherForecastAPI.Client.Models;
 using P04WeatherForecastAPI.Client.Services;
 using System;
@@ -17,65 +18,59 @@ using System.Windows.Input;
 namespace P04WeatherForecastAPI.Client.ViewModels
 {
     // przekazywanie wartosci do innego formularza 
-    public partial class MainViewModelV4 : ObservableObject
+    public partial class MainViewModel : ObservableObject
     {
-        private CityViewModel? _selectedCity;
-        private Weather? _weather;
+        public ObservableCollection<CityViewModel> Cities { get; set; }
+
+        private CityViewModel _selectedCity;
+        
         private readonly IAccuWeatherService _accuWeatherService;
         private readonly FavoriteCitiesView _favoriteCitiesView;
         private readonly FavoriteCityViewModel _favoriteCityViewModel;
-        //public ICommand LoadCitiesCommand { get;  }
+
+        [ObservableProperty]
+        private WeatherViewModel weatherView;
+
+        [ObservableProperty]
+        private NeighborsViewModel neighborsView;
+
+        [ObservableProperty]
+        private GeoPositonViewModel geoPositionView;
+
+        [ObservableProperty]
+        private TimeZoneViewModel timeZoneView;
+
+        [ObservableProperty]
+        private AdministrativeAreaViewModel administrativeAreaView;
+
+        [ObservableProperty]
+        private ManyDaysForecastViewModel manyDaysForecastView;
+
+        [ObservableProperty]
+        private ManyHoursForecastViewModel manyHoursForecastView;
 
 
-        public MainViewModelV4(IAccuWeatherService accuWeatherService, FavoriteCityViewModel favoriteCityViewModel, FavoriteCitiesView favoriteCitiesView)
+        public MainViewModel(IAccuWeatherService accuWeatherService, FavoriteCityViewModel favoriteCityViewModel, FavoriteCitiesView favoriteCitiesView)
         {
             _favoriteCitiesView = favoriteCitiesView;
             _favoriteCityViewModel = favoriteCityViewModel;
-            // _serviceProvider= serviceProvider; 
-            //LoadCitiesCommand = new RelayCommand(x => LoadCities(x as string));
             _accuWeatherService = accuWeatherService;
             Cities = new ObservableCollection<CityViewModel>(); // podejście nr 2 
         }
 
-        //[ObservableProperty]
-        //private WeatherViewModel weatherView;
-        //public WeatherViewModel WeatherView { 
-        //    get { return weatherView; } 
-        //    set { 
-        //        weatherView = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-        [ObservableProperty]
-        private WeatherViewModel weatherView;
-
-
-        public CityViewModel? SelectedCity
+        public CityViewModel SelectedCity
         {
             get => _selectedCity;
             set
             {
                 _selectedCity = value;
                 OnPropertyChanged();
-                LoadWeather();
+                LoadContentForCity();
             }
         }
 
-         
-        private async void LoadWeather()
-        {
-            if(SelectedCity != null)
-            {
-                _weather = await _accuWeatherService.GetCurrentConditions(SelectedCity.Key); 
-                WeatherView = new WeatherViewModel(_weather);
-            }
-        } 
-
-        // podajście nr 2 do przechowywania kolekcji obiektów:
-        public ObservableCollection<CityViewModel> Cities { get; set; }
-
         [RelayCommand]
-        public async Task LoadCities(string locationName)
+        public async void LoadCities(string locationName)
         {
             // podejście nr 2:
             var cities = await _accuWeatherService.GetLocations(locationName);
@@ -90,6 +85,60 @@ namespace P04WeatherForecastAPI.Client.ViewModels
             //var favoriteCitiesView = new FavoriteCitiesView();
             // _favoriteCityViewModel.SelectedCity = new FavoriteCity() { Name = "Warsaw" };
             _favoriteCitiesView.Show();
+        }
+
+
+        private async void LoadContentForCity()
+        {
+            if(SelectedCity != null)
+            {
+                await Task.WhenAll(
+                        SetWeatherAndCityName(),
+                        SetNeighbors(),
+                        SetGeoPosition(),
+                        SetTimeZone(),
+                        SetAdministrativeArea(),
+                        SetFiveDaysDailyForecast(),
+                        SetSixHoursHourlyForecast()
+                    );
+            }
+        }
+
+        private async Task SetWeatherAndCityName() {
+            var weather = await _accuWeatherService.GetCurrentConditions(SelectedCity.Key); 
+            WeatherView = new WeatherViewModel(weather);
+        }
+
+         private async Task SetNeighbors() {
+            var neighbors = await _accuWeatherService.GetNeighbors(SelectedCity.Key);
+            var neighborNames = neighbors.Select(city => city.LocalizedName).ToArray();
+            var neighborsJoined =  string.Join("\n", neighborNames);
+            NeighborsView = new NeighborsViewModel(neighbors);
+        }
+
+        private async Task SetGeoPosition() {
+            var geoPosition = await _accuWeatherService.GetGeoPosition(SelectedCity.Key);
+            GeoPositionView = new GeoPositonViewModel(geoPosition);
+        }
+
+         private async Task SetTimeZone() {
+            var timeZone = await _accuWeatherService.GetTimeZone(SelectedCity.LocalizedName);
+            TimeZoneView = new TimeZoneViewModel(timeZone);
+        }
+
+        private async Task SetAdministrativeArea() {
+            var administrativeArea = await _accuWeatherService.GetAdministrativeArea(SelectedCity.LocalizedName);
+            AdministrativeAreaView = new AdministrativeAreaViewModel(administrativeArea);
+        }
+
+        private async Task SetFiveDaysDailyForecast() {
+            var fiveDaysDailyForecastCollection = await _accuWeatherService.GetFiveDaysDailyForecast(SelectedCity.Key);
+            ManyDaysForecastView = new ManyDaysForecastViewModel(fiveDaysDailyForecastCollection);
+        }
+
+        private async Task SetSixHoursHourlyForecast() {
+            HourlyForecast[] hourlyForecasts = await _accuWeatherService.GetSixHoursHourlyForecast(SelectedCity.Key);
+            ManyHoursForecastView = new ManyHoursForecastViewModel(hourlyForecasts);
         }
     }
 }

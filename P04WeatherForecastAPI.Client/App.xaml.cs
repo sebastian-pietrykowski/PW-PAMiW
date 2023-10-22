@@ -2,6 +2,11 @@
 using P04WeatherForecastAPI.Client.Services;
 using P04WeatherForecastAPI.Client.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace P04WeatherForecastAPI.Client
@@ -25,7 +30,7 @@ namespace P04WeatherForecastAPI.Client
         {
             services.AddSingleton<IAccuWeatherService, AccuWeatherService>();
             services.AddSingleton<IFavoriteCityService, FavoriteCityService>();
-            services.AddSingleton<MainViewModelV4>();
+            services.AddSingleton<MainViewModel>();
             services.AddSingleton<FavoriteCityViewModel>();
            // services.AddSingleton<BaseViewModel,MainViewModelV3>();
             services.AddTransient<MainWindow>();
@@ -35,7 +40,7 @@ namespace P04WeatherForecastAPI.Client
         private void OnStartup(object sender, StartupEventArgs e)
         {
             var mainWindow = _serviceProvider.GetService<MainWindow>();
-            mainWindow?.Show();
+            mainWindow.Show();
         }
 
     }

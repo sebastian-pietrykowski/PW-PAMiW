@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +9,10 @@ namespace P04WeatherForecastAPI.Client.Commands
 {
     internal class RelayCommand : ICommand
     {
-        private readonly Action<object?> _execute;
-        private readonly Predicate<object?>? _canExecute;
+        private readonly Action<object> _execute;
+        private readonly Predicate<object> _canExecute;
 
-        public RelayCommand(Action<object?> execute, Predicate<object?>? canExecute = null)
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;

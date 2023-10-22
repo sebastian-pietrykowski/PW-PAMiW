@@ -8,8 +8,8 @@ namespace P04WeatherForecastAPI.Client.Models
 {
     public class Imperial
     {
-        public required double Value { get; set; }
-        public required string Unit { get; set; }
-        public required int UnitType { get; set; }
+        public double Value { get; set; }
+        public string Unit { get; set; }
+        public int UnitType { get; set; }
     }
 }
