@@ -2,7 +2,7 @@
 
 namespace P04WeatherForecastAPI.Client.Models
 {
-    internal class Weather
+    public class Weather
     {
         public required int EpochTime { get; set; }
         public required string WeatherText { get; set; }

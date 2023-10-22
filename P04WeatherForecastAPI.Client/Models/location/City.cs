@@ -1,6 +1,6 @@
 ﻿namespace P04WeatherForecastAPI.Client.Models
 {
-    internal class City
+    public class City
     {
         public required int Version { get; set; }
         public required string Key { get; set; }

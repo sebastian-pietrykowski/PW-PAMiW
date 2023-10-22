@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace P04WeatherForecastAPI.Client.Services
 {
-    internal class AccuWeatherService
+    internal class AccuWeatherService : IAccuWeatherService
     {
         private const string base_url = "http://dataservice.accuweather.com";
         private const string autocomplete_endpoint = "locations/v1/cities/autocomplete?apikey={0}&q={1}&language={2}";

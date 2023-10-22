@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P04WeatherForecastAPI.Client.Models
 {
-    internal class Imperial
+    public class Metric
     {
         public required double Value { get; set; }
         public required string Unit { get; set; }
