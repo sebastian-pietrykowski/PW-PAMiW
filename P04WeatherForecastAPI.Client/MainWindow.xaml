@@ -15,8 +15,8 @@
                             <StackPanel Width="150">
                                 <Label Content="City:" ></Label>
                                 <TextBox x:Name="txtCity"></TextBox>
-                                <Button x:Name="btnSearch" Content="Search" Click="btnSearch_Click"></Button>
-                                <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName" SelectionChanged="lbData_SelectionChanged"></ListBox>
+                                <Button x:Name="btnSearch" Content="Search" Command="{Binding LoadCitiesCommand}" CommandParameter="{Binding Text, ElementName=txtCity}"></Button>
+                                <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectedCity}"></ListBox>
                             </StackPanel>
                             <StackPanel Width="150">
                             </StackPanel>
