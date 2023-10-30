@@ -1,0 +1,78 @@
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\appsetings.json
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\P04WeatherForecastAPI.Client.exe
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\P04WeatherForecastAPI.Client.deps.json
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\P04WeatherForecastAPI.Client.runtimeconfig.json
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\P04WeatherForecastAPI.Client.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\P04WeatherForecastAPI.Client.pdb
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\CommunityToolkit.Mvvm.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.UserSecrets.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.csproj.AssemblyReference.cache
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\FavoriteCitiesView.g.cs
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\MainWindow.g.cs
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\App.g.cs
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client_MarkupCompile.cache
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client_MarkupCompile.lref
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\FavoriteCitiesView.baml
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\MainWindow.baml
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.g.resources
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.AssemblyInfoInputs.cache
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.AssemblyInfo.cs
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.csproj.CoreCompileInputs.cache
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.csproj.CopyComplete
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\refint\P04WeatherForecastAPI.Client.dll
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.pdb
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.genruntimeconfig.cache
+C:\Users\seba6\Desktop\20Dzien12-master\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\ref\P04WeatherForecastAPI.Client.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\appsetings.json
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\P04WeatherForecastAPI.Client.exe
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\P04WeatherForecastAPI.Client.deps.json
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\P04WeatherForecastAPI.Client.runtimeconfig.json
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\P04WeatherForecastAPI.Client.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\P04WeatherForecastAPI.Client.pdb
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\CommunityToolkit.Mvvm.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.UserSecrets.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.csproj.AssemblyReference.cache
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\FavoriteCitiesView.g.cs
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\MainWindow.g.cs
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\App.g.cs
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client_MarkupCompile.cache
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client_MarkupCompile.lref
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\FavoriteCitiesView.baml
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\MainWindow.baml
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.g.resources
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.AssemblyInfoInputs.cache
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.AssemblyInfo.cs
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.csproj.CoreCompileInputs.cache
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.csproj.CopyComplete
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\refint\P04WeatherForecastAPI.Client.dll
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.pdb
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\P04WeatherForecastAPI.Client.genruntimeconfig.cache
+C:\Users\seba6\Desktop\Studia\5. semestr\Programowanie aplikacji mobilnych i webowych - laby\PW-PAMiW\P04WeatherForecastAPI.Client\obj\Debug\net7.0-windows\ref\P04WeatherForecastAPI.Client.dll
