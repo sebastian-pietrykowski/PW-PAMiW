@@ -1,5 +1,5 @@
 using Bogus;
-using P06Shop.Shared.Movies;
+using P06Shop.Shared.MovieCollection;
 
 namespace P07Shop.DataSeeder
 {

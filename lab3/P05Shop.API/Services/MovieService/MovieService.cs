@@ -1,6 +1,6 @@
 using P06Shop.Shared;
 using P06Shop.Shared.Services.MovieService;
-using P06Shop.Shared.Movies;
+using P06Shop.Shared.MovieCollection;
 using P07Shop.DataSeeder;
 using P05Shop.API.Exceptions;
 using Bogus;
@@ -81,7 +81,7 @@ namespace P05Shop.API.Services.MovieService
         {
             try
             {
-                await CheckIfMovieAlreadyExists(movie.Id);
+                CheckIfMovieAlreadyExists(movie.Id);
                 _movieRepository.Add(movie);
 
                 var response = new ServiceResponse<Movie>()
@@ -107,42 +107,6 @@ namespace P05Shop.API.Services.MovieService
                 return new ServiceResponse<Movie>()
                 {
                     Data = null,
-                    Message = "Problem with dataseeder library",
-                    Success = false
-                };
-            }
-        }
-
-        public async Task<ServiceResponse<bool>> DeleteMovieAsync(Movie movie)
-        {
-            try
-            {
-                await CheckIfMovieDoesNotExist(movie.Id);
-                _movieRepository = _movieRepository.Where(x => x.Id != movie.Id).ToList();
-
-                var response = new ServiceResponse<bool>()
-                {
-                    Data = true,
-                    Message = "Ok",
-                    Success = true
-                };
-
-                return response;
-            }
-            catch (MovieDoesNotExistException)
-            {
-                return new ServiceResponse<bool>()
-                {
-                    Data = false,
-                    Message = "Movie does not exists",
-                    Success = false
-                };
-            }
-            catch (Exception)
-            {
-                return new ServiceResponse<bool>()
-                {
-                    Data = false,
                     Message = "Problem with dataseeder library",
                     Success = false
                 };
@@ -186,6 +150,42 @@ namespace P05Shop.API.Services.MovieService
             }
         }
 
+        public async Task<ServiceResponse<bool>> DeleteMovieAsync(int id)
+        {
+            try
+            {
+                await CheckIfMovieDoesNotExist(id);
+                _movieRepository = _movieRepository.Where(x => x.Id != id).ToList();
+
+                var response = new ServiceResponse<bool>()
+                {
+                    Data = true,
+                    Message = "Ok",
+                    Success = true
+                };
+
+                return response;
+            }
+            catch (MovieDoesNotExistException)
+            {
+                return new ServiceResponse<bool>()
+                {
+                    Data = false,
+                    Message = "Movie does not exists",
+                    Success = false
+                };
+            }
+            catch (Exception)
+            {
+                return new ServiceResponse<bool>()
+                {
+                    Data = false,
+                    Message = "Problem with dataseeder library",
+                    Success = false
+                };
+            }
+        }
+
         private void InitializeData() {
             _movieRepository = MovieSeeder.GenerateMovieData();
         }
@@ -197,8 +197,8 @@ namespace P05Shop.API.Services.MovieService
             }
         }
 
-        private async Task CheckIfMovieAlreadyExists(int id) {
-            bool exists = await Task.FromResult(_movieRepository.Select(data => data.Id).Contains(id));
+        private void CheckIfMovieAlreadyExists(int id) {
+            bool exists = _movieRepository.Select(data => data.Id).Contains(id);
             if (exists) {
                 throw new MovieAlreadyExistsException();
             }
