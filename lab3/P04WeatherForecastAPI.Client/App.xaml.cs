@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using P04WeatherForecastAPI.Client.Configuration;
+using P04WeatherForecastAPI.Client.Services.MovieServices;
 using P04WeatherForecastAPI.Client.Services.ProductServices;
 using P04WeatherForecastAPI.Client.Services.WeatherServices;
 using P04WeatherForecastAPI.Client.ViewModels;
+using P06Shop.Shared.Services.MovieService;
 using P06Shop.Shared.Services.ProductService;
 using System;
 using System.Collections.Generic;
@@ -65,6 +67,7 @@ namespace P04WeatherForecastAPI.Client
             services.AddSingleton<IAccuWeatherService, AccuWeatherService>();
             services.AddSingleton<IFavoriteCityService, FavoriteCityService>();
             services.AddSingleton<IProductService, ProductService>();
+            services.AddSingleton<IMovieService, MovieService>();
         }
 
         private void ConfigureViewModels(IServiceCollection services)
@@ -74,6 +77,7 @@ namespace P04WeatherForecastAPI.Client
             services.AddSingleton<MainViewModelV4>();
             services.AddSingleton<FavoriteCityViewModel>();
             services.AddSingleton<ProductsViewModel>();
+            services.AddSingleton<MoviesViewModel>();
             // services.AddSingleton<BaseViewModel,MainViewModelV3>();
         }
 
@@ -83,16 +87,23 @@ namespace P04WeatherForecastAPI.Client
             services.AddTransient<MainWindow>();
             services.AddTransient<FavoriteCitiesView>();
             services.AddTransient<ShopProductsView>();
+            services.AddTransient<LibraryMoviesView>();
         }
 
         private void ConfigureHttpClients(IServiceCollection services, AppSettings appSettingsSection)
         {
-            var uriBuilder = new UriBuilder(appSettingsSection.BaseAPIUrl)
+            var uriProductBuilder = new UriBuilder(appSettingsSection.BaseAPIUrl)
             {
                 Path = appSettingsSection.BaseProductEndpoint.Base_url,
             };
+            var uriMovieBuilder = new UriBuilder(appSettingsSection.BaseAPIUrl)
+            {
+                Path = appSettingsSection.BaseMovieEndpoint.Base_url,
+            };
             //Microsoft.Extensions.Http
-            services.AddHttpClient<IProductService, ProductService>(client => client.BaseAddress = uriBuilder.Uri);
+            services.AddHttpClient<IProductService, ProductService>(client => client.BaseAddress = uriProductBuilder.Uri);
+            services.AddHttpClient<IMovieService, MovieService>(client => client.BaseAddress = uriMovieBuilder.Uri);
+
         }
 
         private void OnStartup(object sender, StartupEventArgs e)

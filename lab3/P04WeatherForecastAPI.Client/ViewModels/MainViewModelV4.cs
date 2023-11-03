@@ -2,18 +2,10 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using P04WeatherForecastAPI.Client.Commands;
-using P04WeatherForecastAPI.Client.DataSeeders;
 using P04WeatherForecastAPI.Client.Models;
 using P04WeatherForecastAPI.Client.Services.WeatherServices;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace P04WeatherForecastAPI.Client.ViewModels
 {
@@ -112,6 +104,16 @@ namespace P04WeatherForecastAPI.Client.ViewModels
 
             shopProductsView.Show();
             productsViewModel.GetProducts();
+        }
+
+        [RelayCommand]
+        public void OpenMoviesLibraryWindow()
+        {
+            LibraryMoviesView libraryMoviesView = _serviceProvider.GetService<LibraryMoviesView>();
+            MoviesViewModel moviesViewModel = _serviceProvider.GetService<MoviesViewModel>();
+
+            libraryMoviesView.Show();
+            moviesViewModel.GetMovies();
         }
     }
 }

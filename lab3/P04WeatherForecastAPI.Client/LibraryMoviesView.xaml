@@ -1,0 +1,34 @@
+<Window x:Class="P04WeatherForecastAPI.Client.LibraryMoviesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
+        mc:Ignorable="d"
+        Title="LibraryMoviesWindow" Height="450" Width="800">
+
+    <ListView ItemsSource="{Binding Movies}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <Border BorderBrush="Gray" BorderThickness="1">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <Label Content="Title:" />
+                            <Label Content="Genre:" />
+                            <Label Content="Length in minutes:" />
+                            <Label Content="Release date:" />
+                            <Label Content="Director:" />
+                        </StackPanel>
+                        <StackPanel>
+                            <Label Content="{Binding Title}" />
+                            <Label Content="{Binding Genre}" />
+                            <Label Content="{Binding LengthInMinutes}" />
+                            <Label Content="{Binding ReleaseDate}" />
+                            <Label Content="{Binding Director}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</Window>

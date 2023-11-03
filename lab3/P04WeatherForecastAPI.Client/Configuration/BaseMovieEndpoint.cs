@@ -1,8 +1,8 @@
 ﻿namespace P04WeatherForecastAPI.Client.Configuration
 {
-    internal class BaseProductEndpoint
+    internal class BaseMovieEndpoint
     {
         public string Base_url { get; set; }
-        public string GetAllProductsEndpoint {  get; set; }
+        public string GetAllMoviesEndpoint {  get; set; }
     }
 }
