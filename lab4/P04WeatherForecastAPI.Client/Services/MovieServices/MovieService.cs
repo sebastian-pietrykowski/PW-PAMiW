@@ -47,7 +47,7 @@ namespace P04WeatherForecastAPI.Client.Services.MovieServices
             string uri = _appSettings.BaseMovieEndpoint.Base_url;
             uri += string.Format(_appSettings.BaseMovieEndpoint.DeleteMovieEndpoint, id);
             uri = uri[4..] ;
-            System.Windows.MessageBox.Show("DeleteMovieAsync:" + uri);
+            
             var response = await _httpClient.DeleteAsync(uri);
             var json = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<ServiceResponse<bool>>(json);
@@ -59,7 +59,7 @@ namespace P04WeatherForecastAPI.Client.Services.MovieServices
         public async Task<ServiceResponse<Movie>> GetMovieByIdAsync(int id)
         {
             var url = _appSettings.BaseMovieEndpoint.GetMovieByIdEndpoint.Replace("{id}", id.ToString());
-            System.Windows.MessageBox.Show("GetMovieByIdAsync:" + url);
+            
             var response = await _httpClient.GetAsync(url);
             var result = await response.Content.ReadFromJsonAsync<ServiceResponse<Movie>>();
             return result;
@@ -68,7 +68,7 @@ namespace P04WeatherForecastAPI.Client.Services.MovieServices
         public async Task<ServiceResponse<List<Movie>>> GetMoviesAsync()
         {
             var url = _appSettings.BaseMovieEndpoint.GetAllMoviesEndpoint;
-            System.Windows.MessageBox.Show("GetMoviesAsync:" + url);
+            
             var response = await _httpClient.GetAsync(url);
             var result = await response.Content.ReadFromJsonAsync<ServiceResponse<List<Movie>>>();
             return result;
@@ -78,7 +78,7 @@ namespace P04WeatherForecastAPI.Client.Services.MovieServices
         public async Task<ServiceResponse<Movie>> UpdateMovieAsync(Movie movie)
         {
             var url = _appSettings.BaseMovieEndpoint.UpdateMovieEndpoint.Replace("{id}", movie.Id.ToString());
-            System.Windows.MessageBox.Show("UpdateMovieAsync:" + url);
+            
             var response = await _httpClient.PutAsJsonAsync(url, movie);
             var result = await response.Content.ReadFromJsonAsync<ServiceResponse<Movie>>();
             return result;

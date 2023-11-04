@@ -1,5 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using P05Shop.API.Models;
 using P05Shop.API.Services.MovieService;
+using P05Shop.API.Services.ProductService;
 using P06Shop.Shared.Services.MovieService;
+using P06Shop.Shared.Services.ProductService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +14,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Microsoft.EntityFrameworkCore.SqlServer
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddSingleton<IMovieService, MovieService>();
+builder.Services.AddScoped<IMovieService, MovieService>();
 
 // addScoped - obiekt jest tworzony za kazdym razem dla nowego zapytania http
 // jedno zaptranie tworzy jeden obiekt 

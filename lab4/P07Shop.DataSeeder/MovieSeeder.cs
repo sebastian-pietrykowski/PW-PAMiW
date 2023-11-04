@@ -8,7 +8,8 @@ namespace P07Shop.DataSeeder
         public static List<Movie> GenerateMovieData()
         {
             int productId = 1;
-            var movieFaker = new Faker<Movie>()
+            var movieFaker = new Faker<Movie>("pl")
+                .UseSeed(123456)
                 .RuleFor(x => x.Id, x => productId++)
                 .RuleFor(x => x.Title, x => x.Commerce.ProductName())
                 .RuleFor(x => x.Genre, x => x.Commerce.Categories(1)[0])
