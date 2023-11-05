@@ -17,6 +17,7 @@ builder.Services.AddSwaggerGen();
 //Microsoft.EntityFrameworkCore.SqlServer
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    
 
 builder.Services.AddScoped<IMovieService, MovieService>();
 

@@ -4,26 +4,29 @@ using P06Shop.Shared.MovieCollection;
 using P07Shop.DataSeeder;
 using P05Shop.API.Exceptions;
 using Bogus;
+using P05Shop.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace P05Shop.API.Services.MovieService
 {
     public class MovieService : IMovieService
     {
-        private List<Movie> _movieRepository { get; set; }
+         private readonly DataContext _dataContext;
 
-        public MovieService()
+        public MovieService(DataContext context)
         {
-            _movieRepository = new List<Movie>();
-            InitializeData();
+            _dataContext = context;
         }
 
         public async Task<ServiceResponse<List<Movie>>> GetMoviesAsync()
         {
+            var movies = await _dataContext.Movies.ToListAsync();
+
             try
             {
                 var response = new ServiceResponse<List<Movie>>()
                 {
-                    Data = _movieRepository,
+                    Data = movies,
                     Message = "Ok",
                     Success = true
                 };
@@ -46,7 +49,7 @@ namespace P05Shop.API.Services.MovieService
         {
             try
             {
-                var movie = _movieRepository.Where(x => x.Id == id).First();
+                var movie = _dataContext.Find<Movie>(id);
                 if (movie == null)
                 {
                     return new ServiceResponse<Movie>()
@@ -74,7 +77,6 @@ namespace P05Shop.API.Services.MovieService
                     Success = false
                 };
             }
-           
         }
 
         public async Task<ServiceResponse<Movie>> CreateMovieAsync(Movie movie)
@@ -82,16 +84,9 @@ namespace P05Shop.API.Services.MovieService
             try
             {
                 CheckIfMovieAlreadyExists(movie.Id);
-                _movieRepository.Add(movie);
-
-                var response = new ServiceResponse<Movie>()
-                {
-                    Data = movie,
-                    Message = "Ok",
-                    Success = true
-                };
-
-                return response;
+                _dataContext.Movies.Add(movie);
+                await _dataContext.SaveChangesAsync();
+                return new ServiceResponse<Movie>() { Data = movie, Success = true };
             }
             catch (MovieAlreadyExistsException)
             {
@@ -117,18 +112,19 @@ namespace P05Shop.API.Services.MovieService
         {
             try
             {
-                await CheckIfMovieDoesNotExist(movie.Id);
-                _movieRepository = _movieRepository.Where(x => x.Id != movie.Id).ToList();
-                _movieRepository.Add(movie);
+                CheckIfMovieDoesNotExist(movie.Id);
+                 var movieToEdit = new Movie() { Id = movie.Id };
+                _dataContext.Movies.Attach(movieToEdit);
 
-                var response = new ServiceResponse<Movie>()
-                {
-                    Data = movie,
-                    Message = "Ok",
-                    Success = true
-                };
+                movieToEdit.Title = movie.Title;
+                movieToEdit.Genre = movie.Genre;
+                movieToEdit.LengthInMinutes = movie.LengthInMinutes;
+                movieToEdit.ReleaseDate = movie.ReleaseDate;
+                movieToEdit.CountryOfOrigin = movie.CountryOfOrigin;
+                movieToEdit.Director = movie.Director;
 
-                return response;
+                await _dataContext.SaveChangesAsync();
+                return new ServiceResponse<Movie> { Data = movieToEdit, Success = true };
             }
             catch (MovieDoesNotExistException)
             {
@@ -154,17 +150,18 @@ namespace P05Shop.API.Services.MovieService
         {
             try
             {
-                await CheckIfMovieDoesNotExist(id);
-                _movieRepository = _movieRepository.Where(x => x.Id != id).ToList();
+                CheckIfMovieDoesNotExist(id);
 
-                var response = new ServiceResponse<bool>()
+                 var product = new Movie() { Id = id };
+                _dataContext.Movies.Attach(product);
+                _dataContext.Movies.Remove(product);
+                await _dataContext.SaveChangesAsync();
+
+                return new ServiceResponse<bool>()
                 {
                     Data = true,
-                    Message = "Ok",
                     Success = true
                 };
-
-                return response;
             }
             catch (MovieDoesNotExistException)
             {
@@ -186,19 +183,15 @@ namespace P05Shop.API.Services.MovieService
             }
         }
 
-        private void InitializeData() {
-            _movieRepository = MovieSeeder.GenerateMovieData();
-        }
-
-        private async Task CheckIfMovieDoesNotExist(int id) {
-            bool exists = await Task.FromResult(_movieRepository.Select(data => data.Id).Contains(id));
+        private void CheckIfMovieDoesNotExist(int id) {
+            bool exists = _dataContext.Find<Movie>(id) != null;
             if (!exists) {
                 throw new MovieDoesNotExistException();
             }
         }
 
         private void CheckIfMovieAlreadyExists(int id) {
-            bool exists = _movieRepository.Select(data => data.Id).Contains(id);
+            bool exists = _dataContext.Find<Movie>(id) != null;
             if (exists) {
                 throw new MovieAlreadyExistsException();
             }
