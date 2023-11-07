@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using P05Shop.API.Models;
 
@@ -11,9 +12,11 @@ using P05Shop.API.Models;
 namespace P05Shop.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231106121325_initial3")]
+    partial class initial3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +71,7 @@ namespace P05Shop.API.Migrations
                             Director = "Władysław Stępień",
                             Genre = "Tools",
                             LengthInMinutes = 211,
-                            ReleaseDate = new DateTime(2009, 4, 2, 22, 10, 8, 178, DateTimeKind.Local).AddTicks(2334),
+                            ReleaseDate = new DateTime(2009, 4, 2, 21, 33, 23, 379, DateTimeKind.Local).AddTicks(943),
                             Title = "Gorgeous Wooden Chair"
                         },
                         new
@@ -78,7 +81,7 @@ namespace P05Shop.API.Migrations
                             Director = "Jakub Nowaczyk",
                             Genre = "Industrial",
                             LengthInMinutes = 115,
-                            ReleaseDate = new DateTime(2009, 2, 23, 14, 2, 13, 500, DateTimeKind.Local).AddTicks(3852),
+                            ReleaseDate = new DateTime(2009, 2, 23, 13, 25, 28, 701, DateTimeKind.Local).AddTicks(2381),
                             Title = "Fantastic Concrete Chicken"
                         },
                         new
@@ -88,7 +91,7 @@ namespace P05Shop.API.Migrations
                             Director = "Regina Robak",
                             Genre = "Automotive",
                             LengthInMinutes = 156,
-                            ReleaseDate = new DateTime(1994, 3, 8, 9, 38, 6, 513, DateTimeKind.Local).AddTicks(3131),
+                            ReleaseDate = new DateTime(1994, 3, 8, 9, 1, 21, 714, DateTimeKind.Local).AddTicks(1636),
                             Title = "Incredible Wooden Towels"
                         },
                         new
@@ -98,7 +101,7 @@ namespace P05Shop.API.Migrations
                             Director = "Łazarz Pawlikowski",
                             Genre = "Industrial",
                             LengthInMinutes = 209,
-                            ReleaseDate = new DateTime(2000, 8, 22, 21, 41, 3, 769, DateTimeKind.Local).AddTicks(9397),
+                            ReleaseDate = new DateTime(2000, 8, 22, 21, 4, 18, 970, DateTimeKind.Local).AddTicks(7933),
                             Title = "Gorgeous Cotton Computer"
                         },
                         new
@@ -108,7 +111,7 @@ namespace P05Shop.API.Migrations
                             Director = "Wawrzyniec Szczepański",
                             Genre = "Industrial",
                             LengthInMinutes = 220,
-                            ReleaseDate = new DateTime(2002, 12, 18, 15, 27, 8, 356, DateTimeKind.Local).AddTicks(6656),
+                            ReleaseDate = new DateTime(2002, 12, 18, 14, 50, 23, 557, DateTimeKind.Local).AddTicks(5199),
                             Title = "Rustic Frozen Bacon"
                         },
                         new
@@ -118,7 +121,7 @@ namespace P05Shop.API.Migrations
                             Director = "Laura Cygan",
                             Genre = "Music",
                             LengthInMinutes = 102,
-                            ReleaseDate = new DateTime(2015, 10, 4, 2, 30, 10, 667, DateTimeKind.Local).AddTicks(8815),
+                            ReleaseDate = new DateTime(2015, 10, 4, 1, 53, 25, 868, DateTimeKind.Local).AddTicks(7336),
                             Title = "Fantastic Plastic Table"
                         },
                         new
@@ -128,7 +131,7 @@ namespace P05Shop.API.Migrations
                             Director = "Józef Broda",
                             Genre = "Grocery",
                             LengthInMinutes = 171,
-                            ReleaseDate = new DateTime(2004, 1, 5, 6, 45, 52, 634, DateTimeKind.Local).AddTicks(4285),
+                            ReleaseDate = new DateTime(2004, 1, 5, 6, 9, 7, 835, DateTimeKind.Local).AddTicks(2826),
                             Title = "Unbranded Steel Computer"
                         },
                         new
@@ -138,7 +141,7 @@ namespace P05Shop.API.Migrations
                             Director = "Marceli Żurek",
                             Genre = "Toys",
                             LengthInMinutes = 88,
-                            ReleaseDate = new DateTime(2021, 8, 27, 8, 23, 33, 492, DateTimeKind.Local).AddTicks(3914),
+                            ReleaseDate = new DateTime(2021, 8, 27, 7, 46, 48, 693, DateTimeKind.Local).AddTicks(2459),
                             Title = "Handmade Metal Chicken"
                         },
                         new
@@ -148,7 +151,7 @@ namespace P05Shop.API.Migrations
                             Director = "Cyrus Nowaczyk",
                             Genre = "Baby",
                             LengthInMinutes = 29,
-                            ReleaseDate = new DateTime(2000, 9, 5, 9, 20, 30, 694, DateTimeKind.Local).AddTicks(392),
+                            ReleaseDate = new DateTime(2000, 9, 5, 8, 43, 45, 894, DateTimeKind.Local).AddTicks(8931),
                             Title = "Incredible Fresh Bacon"
                         },
                         new
@@ -158,7 +161,7 @@ namespace P05Shop.API.Migrations
                             Director = "Rajnold Stefaniak",
                             Genre = "Sports",
                             LengthInMinutes = 180,
-                            ReleaseDate = new DateTime(1998, 2, 19, 23, 25, 23, 970, DateTimeKind.Local).AddTicks(849),
+                            ReleaseDate = new DateTime(1998, 2, 19, 22, 48, 39, 170, DateTimeKind.Local).AddTicks(9376),
                             Title = "Unbranded Fresh Table"
                         });
                 });

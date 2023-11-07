@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using P06Shop.Shared.MovieCollection;
-using P06Shop.Shared.Shop;
 using P07Shop.DataSeeder;
 
 namespace P05Shop.API.Models
