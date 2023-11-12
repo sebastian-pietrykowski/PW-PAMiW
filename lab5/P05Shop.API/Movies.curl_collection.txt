@@ -1,0 +1,91 @@
+getMovies
+$ curl -X GET "http://localhost:5093/api/Movie" -H "accept: application/json"
+{"data":[{"id":1,"title":"Handmade Rubber Shoes","genre":"Beauty","lengthInMinutes":184,"releaseDate":"2000-05-23T06:45:57.0112376+02:00","countryOfOrigin":"Lithuania","director":"Terrance Lang"},{"id":2,"title":"Handcrafted Soft Sausages","genre":"Computers","lengthInMinutes":189,"releaseDate":"2006-02-02T14:59:27.5481347+01:00","countryOfOrigin":"Paraguay","director":"Roosevelt Robel"},{"id":3,"title":"Fantastic Wooden Soap","genre":"Beauty","lengthInMinutes":144,"releaseDate":"2020-07-21T11:19:53.1942632+02:00","countryOfOrigin":"Germany","director":"Marc Mraz"},{"id":4,"title":"Ergonomic Frozen Computer","genre":"Beauty","lengthInMinutes":200,"releaseDate":"2009-10-09T16:58:58.0279671+02:00","countryOfOrigin":"Bahamas","director":"Terence Homenick"},{"id":5,"title":"Handcrafted Plastic Pizza","genre":"Industrial","lengthInMinutes":85,"releaseDate":"1997-01-01T17:42:15.5116073+01:00","countryOfOrigin":"Chad","director":"Rachel Hodkiewicz"},{"id":6,"title":"Handmade Rubber Towels","genre":"Grocery","lengthInMinutes":140,"releaseDate":"1996-02-23T18:54:56.4003909+01:00","countryOfOrigin":"Bangladesh","director":"Bryant Rosenbaum"},{"id":7,"title":"Tasty Granite Hat","genre":"Garden","lengthInMinutes":114,"releaseDate":"2008-03-11T11:42:23.348158+01:00","countryOfOrigin":"Virgin Islands, U.S.","director":"Darlene Leuschke"},{"id":8,"title":"Generic Cotton Chips","genre":"Outdoors","lengthInMinutes":55,"releaseDate":"2005-03-24T22:05:57.9801129+01:00","countryOfOrigin":"Anguilla","director":"Guy Deckow"},{"id":9,"title":"Sleek Wooden Table","genre":"Shoes","lengthInMinutes":126,"releaseDate":"2022-10-04T19:24:05.5960719+02:00","countryOfOrigin":"Haiti","director":"Darrell Douglas"},{"id":10,"title":"Handcrafted Frozen Salad","genre":"Industrial","lengthInMinutes":184,"releaseDate":"2004-08-03T20:11:30.6733978+02:00","countryOfOrigin":"French Polynesia","director":"Clayton Lockman"}],"success":true,"message":"Ok"}
+
+getExistingMovieById
+$ curl -X GET "http://localhost:5093/api/Movie/1" -H "accept: application/json" {"data":{"id":1,"title":"Handmade Rubber Shoes","genre":"Beauty","lengthInMinutes":184,"releaseDate":"2000-05-23T06:45:57.0112376+02:00","countryOfOrigin":"Lithuania","director":"Terrance Lang"},"success":true,"message":"Ok"}
+
+getNonExistingMovieById
+$ curl -X GET "http://localhost:5093/api/Movie/100" -H "accept: application/json"
+"Internal server error Problem with dataseeder library"
+
+
+createNonExistingMovie
+$ curl -X POST "http://localhost:5093/api/Movie" -H "accept: application/json" -H "Content-Type: application/json" -d '{
+    "id": 101,
+    "title": "The Lord of the Rings: The Return of the King",
+    "genre": "Adventure",
+    "lengthInMinutes": 201,
+    "releaseDate": "2003-12-21T23:00:00.0000000+00:00",
+    "countryOfOrigin": "USA",
+    "director": "Peter Jackson"
+}'
+{"data":{"id":101,"title":"The Lord of the Rings: The Return of the King","genre":"Adventure","lengthInMinutes":201,"releaseDate":"2003-12-22T00:00:00+01:00","countryOfOrigin":"USA","director":"Peter Jackson"},"success":true,"message":"Ok"}
+
+createExistingMovie
+$ curl -X POST "http://localhost:5093/api/Movie" -H "accept: application/json" -H "Content-Type: application/json" -d '{
+    "id": 101,
+    "title": "The Lord of the Rings: The Return of the King",
+    "genre": "Adventure",
+    "lengthInMinutes": 201,
+    "releaseDate": "2003-12-21T23:00:00.0000000+00:00",
+    "countryOfOrigin": "USA",
+    "director": "Peter Jackson"
+}'
+"Internal server error Movie already exists"
+
+createMovieWithoutTitle
+$ curl -X POST "http://localhost:5093/api/Movie" -H "accept: application/json" -H "Content-Type: application/json" -d '{
+    "id": 115,
+    "genre": "Adventure",
+    "lengthInMinutes": 201,
+    "releaseDate": "2003-12-21T23:00:00.0000000+00:00",
+    "countryOfOrigin": "USA",
+    "director": "Peter Jackson"
+}'
+{"type":"https://tools.ietf.org/html/rfc7231#section-6.5.1","title":"One or more validation errors occurred.","status":400,"traceId":"00-4becdf2e8f0297072d897517daf898be-ac40729e22243e96-00","errors":{"Title":["The Title field is required."]}}
+
+
+updateExistingMovie
+$ curl -X PUT "http://localhost:5093/api/Movie" -H "accept: application/json" -H "Content-Type: application/json" -d '{
+    "id": 101,
+    "title": "The Lord of the Rings: The Return of the King",
+    "genre": "Kids",
+    "lengthInMinutes": 201,
+    "releaseDate": "2003-12-21T23:00:00.0000000+00:00",
+    "countryOfOrigin": "USA",
+    "director": "Peter Jackson"
+}'
+{"data":{"id":101,"title":"The Lord of the Rings: The Return of the King","genre":"Kids","lengthInMinutes":201,"releaseDate":"2003-12-22T00:00:00+01:00","countryOfOrigin":"USA","director":"Peter Jackson"},"success":true,"message":"Ok"}
+
+updateNonExistingMovie
+$ curl -X PUT "http://localhost:5093/api/Movie" -H "accept: application/json" -H "Content-Type: application/json" -d '{
+    "id": 110,
+    "title": "The Lord of the Rings: Wrong title",
+    "genre": "Kids",
+    "lengthInMinutes": 201,
+    "releaseDate": "2003-12-21T23:00:00.0000000+00:00",
+    "countryOfOrigin": "USA",
+    "director": "Peter Jackson"
+}'
+"Internal server error Movie does not exists"
+
+updateMovieWithoutDirector
+$ curl -X PUT "http://localhost:5093/api/Movie" -H "accept: application/json" -H "Content-Type: application/json" -d '{
+    "id": 115,
+    "title": "The Lord of the Rings: The Return of the King",
+    "genre": "Adventure",
+    "lengthInMinutes": 201,
+    "releaseDate": "2003-12-21T23:00:00.0000000+00:00",
+    "countryOfOrigin": "USA"
+}'
+{"type":"https://tools.ietf.org/html/rfc7231#section-6.5.1","title":"One or more validation errors occurred.","status":400,"traceId":"00-2913a26a937cd22161f9cf914ecec41d-6e747eacf92479e0-00","errors":{"Director":["The Director field is required."]}}
+
+
+deleteExistingMovie
+$ curl -X DELETE "http://localhost:5093/api/Movie/101"
+{"data":true,"success":true,"message":"Ok"}
+
+deleteNonExistingMovie
+$ curl -X DELETE "http://localhost:5093/api/Movie/105"
+Internal server error Movie does not exists
