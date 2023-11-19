@@ -18,7 +18,7 @@ namespace P07Shop.DataSeeder
                 .RuleFor(x => x.CountryOfOrigin, x => x.Address.Country())
                 .RuleFor(x => x.Director, x => x.Person.FullName);
 
-            return movieFaker.Generate(10).ToList();
+            return movieFaker.Generate(35).ToList();
 
         }
     }

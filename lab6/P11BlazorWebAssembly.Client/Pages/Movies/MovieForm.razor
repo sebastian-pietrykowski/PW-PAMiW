@@ -1,0 +1,42 @@
+ @using P06Shop.Shared.MovieCollection
+
+<EditForm Model="movie" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <InputText id="title" @bind-Value="movie.Title" class="form-control"></InputText>
+    </div>
+    <div class="form-group">
+        <label for="lengthInMinutes">Length in minutes:</label>
+        <InputNumber id="lengthInMinutes" @bind-Value="movie.LengthInMinutes" class="form-control"></InputNumber>
+    </div>
+    <div class="form-group">
+        <label for="releaseDate">Release date:</label>
+        <InputDate id="ReleaseDate" @bind-Value="movie.ReleaseDate" class="form-control"></InputDate>
+    </div>
+    <div class="form-group">
+        <label for="countryOfOrigin">Country of origin:</label>
+        <InputText id="countryOfOrigin" @bind-Value="movie.CountryOfOrigin" class="form-control"></InputText>
+    </div>
+     <div class="form-group">
+        <label for="director">Director:</label>
+        <InputText id="director" @bind-Value="movie.Director" class="form-control"></InputText>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <InputTextArea id="description" @bind-Value="movie.Description" class="form-control"></InputTextArea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</EditForm>
+
+
+@code {
+
+    [Parameter]
+    public Movie movie { get; set; }
+
+    [Parameter]
+    public EventCallback OnValidSubmit { get; set; }
+
+}

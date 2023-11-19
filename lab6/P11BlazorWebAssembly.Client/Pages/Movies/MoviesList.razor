@@ -1,16 +1,19 @@
-﻿@page "/products/productsList"
+@page "/movies/moviesList"
 
-@inject IProductService ProductService
+@using P06Shop.Shared.Services.MovieService
+@using P06Shop.Shared.MovieCollection
+
+@inject IMovieService MovieService
 @inject NavigationManager NavigationManager
 
-<h3>Full list of products</h3>
+<h3>Full list of movies</h3>
 
 
 <p>
-    <a href="products/createproduct">Create new product</a>
+    <a href="movies/createmovie">Create new movie</a>
 </p>
 
-@if (products == null)
+@if (movies == null)
 {
     <p><em>@message</em></p>
 }
@@ -29,23 +32,25 @@ else
             <tr>
                 <th>Id</th>
                 <th>Title</th>
-                <th>Barcode</th>
-                <th>Price</th>
+                <th>Length In Minutes</th>
                 <th>Release Date</th>
+                <th>Country Of Origin</th>
+                <th>Director</th>
                 <th>Options</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var product in products)
+            @foreach (var movie in movies)
             {
                 <tr>
-                    <td>@product.Id</td>
-                    <td>@product.Title</td>
-                    <td>@product.Barcode</td>
-                    <td>@product.Price</td>
-                    <td>@product.ReleaseDate.ToShortDateString()</td>
+                    <td>@movie.Id</td>
+                    <td>@movie.Title</td>
+                    <td>@movie.LengthInMinutes</td>
+                    <td>@movie.ReleaseDate.ToShortDateString()</td>
+                    <td>@movie.CountryOfOrigin</td>
+                    <td>@movie.Director</td>
                     <td>
-                        <button class="btn btn-primary" @onclick="()=> GoToEdit(product.Id)">Edit</button>
+                        <button class="btn btn-primary" @onclick="()=> GoToEdit(movie.Id)">Edit</button>
                     </td>
                 </tr>
             }
@@ -60,8 +65,8 @@ else
 
 
 @code {
-    private List<Product> products;
-    private string message = "Loading products...";
+    private List<Movie> movies;
+    private string message = "Loading movies...";
 
     private int currentPage = 1;
     private const int pageSize = 10;
@@ -70,15 +75,15 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await  LoadProducts();
+        await  LoadMovies();
     }
 
-    private async Task LoadProducts()
+    private async Task LoadMovies()
     {
-        var response = await ProductService.SearchProductsAsync(searchTerm, currentPage, pageSize);
+        var response = await MovieService.SearchMoviesAsync(searchTerm, currentPage, pageSize);
         if (response.Success)
         {
-            products = response.Data;
+            movies = response.Data;
             //.Skip(pageSize * (currentPage - 1))
             //.Take(pageSize)
             //.ToList();
@@ -92,7 +97,7 @@ else
 
     void GoToEdit(int id)
     {
-        NavigationManager.NavigateTo($"/products/editproduct/{id}");
+        NavigationManager.NavigateTo($"/movies/editmovie/{id}");
     }
 
     private async Task PreviousPage()
@@ -100,18 +105,18 @@ else
         if (currentPage > 1)
         {
             currentPage--;
-            await LoadProducts();
+            await LoadMovies();
         }
     }
     private async Task NextPage()
     {
         currentPage++;
-        await LoadProducts();
+        await LoadMovies();
     }
 
     private async Task Search()
     {
         currentPage = 1;
-        await LoadProducts();
+        await LoadMovies();
     }
 }

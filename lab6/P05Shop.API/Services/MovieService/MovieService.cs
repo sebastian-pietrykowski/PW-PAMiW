@@ -46,18 +46,20 @@ namespace P05Shop.API.Services.MovieService
 
         public async Task<ServiceResponse<List<Movie>>> SearchMoviesAsync(string text, int page, int pageSize)
         {
+            
             IQueryable<Movie> query = _dataContext.Movies;
-
-            if (!string.IsNullOrEmpty(text))
-                query = query.Where(x => x.Title.Contains(text) || x.Description.Contains(text));
-
-            var movies = await query
-                .Skip(pageSize * (page - 1))
-                .Take(pageSize)
-                .ToListAsync();
 
             try
             {
+                if (!string.IsNullOrEmpty(text))
+                    query = query.Where(x => x.Title.Contains(text) || x.Description.Contains(text));
+
+                var movies = await query
+                    .Skip(pageSize * (page - 1))
+                    .Take(pageSize)
+                    .ToListAsync();
+                Console.WriteLine(movies);
+            
                 var response = new ServiceResponse<List<Movie>>()
                 {
                     Data = movies,
