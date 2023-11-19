@@ -1,0 +1,46 @@
+stworzenie nowego serwisu API, który będzie obsługiwał dane innych typów niż produkty. Student powinien samodzielnie wymyślić, jakie dane będzie zarządzać (np. książki, filmy, zadania, zamówienia itp.). 
+
+Wymagania:
+CRUD Operations: Serwis musi oferować podstawowe operacje CRUD (Create, Read, Update, Delete).
+
+Data Model: Zaprojektowanie modelu danych, które będą zarządzane.
+
+API Endpoints: Określenie i implementacja endpointów API do zarządzania danymi.
+
+Service Layer: Stworzenie warstwy serwisowej, która będzie zarządzać logiką biznesową.
+
+Validation: Implementacja walidacji danych przychodzących z żądań.
+
+Response Format: Użycie ogólnego formatu odpowiedzi, np. podobnego do ServiceResponse, który już znacie.
+
+Error Handling: Zaimplementowanie podstawowego mechanizmu obsługi błędów.
+
+Testowanie API:
+Należy przetestować serwis używając narzędzi curl i Postman. Testy powinny obejmować przypadki brzegowe i błędne.
+
+Przykład dla curl:
+curl -X GET "http://localhost:5000/api/TwojeDane" -H "accept: application/json"
+
+Przykład dla Postman:
+Ustawić metodę na GET, URL na http://localhost:5000/api/TwojeDane i dodać nagłówek accept: application/json.
+
+
+Rozbudowa Aplikacji Klienckiej:
+
+Aplikacja kliencka powinna być zaktualizowana, aby mogła pobierać i wyświetlać dane z nowego serwisu.
+Wprowadzenie paginacji na frontendzie, aby użytkownik mógł przeglądać zasoby w czytelny sposób.
+Konfiguracja Endpointów:
+
+Adresy endpointów powinny być przeniesione do pliku konfiguracyjnego, na przykład appsettings.json, zamiast bycia na sztywno zapisane w kodzie.
+
+Przykład dla appsettings.json:
+
+
+{
+  "ApiSettings": {
+    "BaseUrl": "http://localhost:5000/api/",
+    "ResourceEndpoint": "TwojeDane"
+  }
+}
+
+W aplikacji należy później zmapować te ustawienia i wstrzyknąć je do serwisu, który będzie komunikował się z API.

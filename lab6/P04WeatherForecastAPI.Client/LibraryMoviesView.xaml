@@ -1,0 +1,121 @@
+<Window x:Class="P04WeatherForecastAPI.Client.LibraryMoviesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
+        mc:Ignorable="d"
+        Title="LibraryMoviesWindow" Height="450" Width="800">
+
+    <!-- <ListView ItemsSource="{Binding Products}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <StackPanel>
+                    <Label Content="{Binding Title}"></Label>
+                    <Label Content="{Binding Description}"></Label>
+                </StackPanel>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView> -->
+
+     <StackPanel>
+        <Button Grid.Row="3" 
+        Command="{Binding NewCommand}" 
+          Content="New Movie" >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="SkyBlue" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="SteelBlue" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Cursor" Value="Hand" />
+                    <Setter Property="Padding" Value="10,5" />
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </Button.Style>
+        </Button>
+        <ListView Height="300" ItemsSource="{Binding Movies}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Padding="10" Margin="5">
+                        <Grid Width="700">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <!--Pierwszy wiersz-->
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Label Content="{Binding Id}" FontWeight="Bold" Margin="0 0 10 0"></Label>
+                                <Label Content="{Binding Title}" FontSize="16" FontWeight="Bold" Foreground="Navy"></Label>
+                            </StackPanel>
+                            <!--Drugi wiersz-->
+                            <TextBlock Grid.Row="1" Text="{Binding Genre}" TextWrapping="Wrap" FontStyle="Italic" Foreground="DarkGray"></TextBlock>
+                            <!--Trzeci wiersz-->
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <TextBlock Foreground="DarkGreen" Margin="0 0 10 0">
+                            <Run Text="LengthInMinutes: "></Run>
+                            <Run Text="{Binding LengthInMinutes}"></Run>
+                                </TextBlock>
+                                <TextBlock Foreground="DarkOrange" Margin="0 0 10 0">
+                            <Run Text="Release Date: "></Run>
+                            <Run Text="{Binding ReleaseDate, StringFormat='dd MM yyyy'}"></Run>
+                                </TextBlock>
+                                <TextBlock Foreground="DarkRed" Margin="0 0 10 0">
+                            <Run Text="CountryOfOrigin: "></Run>
+                            <Run Text="{Binding CountryOfOrigin}"></Run>
+                                </TextBlock>
+                                <TextBlock Foreground="DarkRed" Margin="0 0 10 0">
+                            <Run Text="Director: "></Run>
+                            <Run Text="{Binding Director}"></Run>
+                                </TextBlock>
+                            </StackPanel>
+                            <Button Grid.Row="3" 
+        Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=ListView}}" 
+        CommandParameter="{Binding}"  Content="Edit" >
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="border" BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="SkyBlue" />
+                                                <Setter Property="Foreground" Value="White" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="SteelBlue" />
+                                        <Setter Property="Foreground" Value="White" />
+                                        <Setter Property="Cursor" Value="Hand" />
+                                        <Setter Property="Padding" Value="10,5" />
+                                        <Setter Property="FontSize" Value="14" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+                    </Border>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+</Window>
