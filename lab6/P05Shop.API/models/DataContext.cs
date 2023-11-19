@@ -13,6 +13,10 @@ namespace P05Shop.API.Models
         }
 
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Genre> Genres{ get; set; }
+        public DbSet<Actor> Actors{ get; set; }
+        public DbSet<MovieActors> MovieActors{ get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,10 +25,6 @@ namespace P05Shop.API.Models
                 .Property(m => m.Title)
                 .IsRequired()
                 .HasMaxLength(100);
-
-            modelBuilder.Entity<Movie>()
-                .Property(m => m.Genre)
-                .HasMaxLength(50);
 
             modelBuilder.Entity<Movie>()
                 .Property(m => m.LengthInMinutes)
@@ -41,6 +41,31 @@ namespace P05Shop.API.Models
             modelBuilder.Entity<Movie>()
                 .Property(m => m.Director)
                 .HasMaxLength(100);
+            
+            modelBuilder.Entity<MovieActors>()
+                .HasKey(ma => new { ma.MovieId, ma.ActorId }); // Ustawienie klucza głównego tabeli pośredniczej
+
+            modelBuilder.Entity<MovieActors>()
+                .HasOne(ma => ma.Movie)
+                .WithMany(m => m.MovieActors)
+                .HasForeignKey(ma => ma.MovieId); // Klucz obcy dla Movie w tabeli pośredniczej
+
+            modelBuilder.Entity<MovieActors>()
+                .HasOne(ma => ma.Actor)
+                .WithMany(a => a.MovieActors)
+                .HasForeignKey(ma => ma.ActorId); // Klucz obcy dla Actor w tabeli pośredniczej
+            
+            modelBuilder.Entity<Movie>()
+            .HasOne(m => m.Review)
+            .WithOne(r => r.Movie)
+            .HasForeignKey<Review>(m => m.MovieId);
+
+            modelBuilder.Entity<Genre>()
+                .HasMany(g => g.Movies)
+                .WithOne(m => m.Genre);
+
+            modelBuilder.Entity<Review>()
+                .HasKey(r =>  r.MovieId);
 
             modelBuilder.Entity<Movie>().HasData(MovieSeeder.GenerateMovieData());
         }

@@ -13,5 +13,6 @@ namespace P06Shop.Shared.Services.MovieService
         Task<ServiceResponse<Movie>> UpdateMovieAsync(Movie movie);
 
         Task<ServiceResponse<bool>> DeleteMovieAsync(int id);
+        Task<ServiceResponse<List<Movie>>> SearchMoviesAsync(string text, int page, int pageSize);
     }
 }

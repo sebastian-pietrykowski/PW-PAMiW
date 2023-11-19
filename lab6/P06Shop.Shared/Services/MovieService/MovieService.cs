@@ -24,7 +24,6 @@ namespace P06Shop.Shared.Services.MovieService
         private readonly HttpClient _httpClient;
         private readonly AppSettings _appSettings;
 
-        private readonly string _baseUrl = "http://localhost:5093/api/Movie/";
         public MovieService(HttpClient httpClient, IOptions<AppSettings> appSettings)
         {
             _httpClient = httpClient;
@@ -33,7 +32,7 @@ namespace P06Shop.Shared.Services.MovieService
 
         public async Task<ServiceResponse<Movie>> CreateMovieAsync(Movie movie)
         {
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl, movie);
+            var response = await _httpClient.PostAsJsonAsync(_appSettings.BaseMovieEndpoint.GetAllMoviesEndpoint, movie);
             var result = await response.Content.ReadFromJsonAsync<ServiceResponse<Movie>>();
             return result;
         }
@@ -42,7 +41,7 @@ namespace P06Shop.Shared.Services.MovieService
         {
             // jesli uzyjemy / na poczatku to wtedy sciezka trakktowana jest od root czyli pomija czesc środkową adresu 
             // zazwyczaj unikamy stosowania / na poczatku 
-            var response = await _httpClient.DeleteAsync($"{_baseUrl}{id}");
+            var response = await _httpClient.DeleteAsync($"{id}");
             var result = await response.Content.ReadFromJsonAsync<ServiceResponse<bool>>();
             return result;
         }
@@ -66,7 +65,7 @@ namespace P06Shop.Shared.Services.MovieService
         // alternatywny sposób pobierania danych 
         public async Task<ServiceResponse<List<Movie>>> GetMoviesAsync()
         {
-            var response = await _httpClient.GetAsync(_baseUrl);
+            var response = await _httpClient.GetAsync(_appSettings.BaseMovieEndpoint.GetAllMoviesEndpoint);
             if (!response.IsSuccessStatusCode)
                 return new ServiceResponse<List<Movie>>
                 {
@@ -85,7 +84,7 @@ namespace P06Shop.Shared.Services.MovieService
 
         public async Task<ServiceResponse<Movie>> GetMovieByIdAsync(int id)
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}{id}");
+            var response = await _httpClient.GetAsync(id.ToString());
             if (!response.IsSuccessStatusCode)
                 return new ServiceResponse<Movie>
                 {
@@ -115,9 +114,51 @@ namespace P06Shop.Shared.Services.MovieService
         // wersja 2 
         public async Task<ServiceResponse<Movie>> UpdateMovieAsync(Movie movie)
         {
-            var response = await _httpClient.PutAsJsonAsync(_baseUrl, movie);
+            var response = await _httpClient.PutAsJsonAsync(_appSettings.BaseMovieEndpoint.GetAllMoviesEndpoint, movie);
             var result = await response.Content.ReadFromJsonAsync<ServiceResponse<Movie>>();
             return result;
+        }
+
+        public async Task<ServiceResponse<List<Movie>>> SearchMoviesAsync(string text, int page, int pageSize)
+        {
+
+            try
+            {
+                string searchUrl = string.IsNullOrWhiteSpace(text) ? "" : $"/{text}";
+                var response = await _httpClient.GetAsync(_appSettings.BaseMovieEndpoint.SearchMoviesEndpoint + searchUrl + $"/{page}/{pageSize}");
+                if (!response.IsSuccessStatusCode)
+                    return new ServiceResponse<List<Movie>>
+                    {
+                        Success = false,
+                        Message = "HTTP request failed"
+                    };
+
+                var json = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<ServiceResponse<List<Movie>>>(json)
+                    ?? new ServiceResponse<List<Movie>> { Success = false, Message = "Deserialization failed" };
+
+                result.Success = result.Success && result.Data != null;
+
+                return result;
+            }
+            catch (JsonException)
+            {
+                return new ServiceResponse<List<Movie>>
+                {
+                    Success = false,
+                    Message = "Cannot deserialize data"
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                return new ServiceResponse<List<Movie>>
+                {
+                    Success = false,
+                    Message = "Network error"
+                };
+            }
         }
     }
 }

@@ -29,7 +29,11 @@ builder.Services.AddScoped<IMovieService, P05Shop.API.Services.MovieService.Movi
 
  //addsingleton - nowa instancja klasy tworzona jest tylko 1 na caly cykl trwania naszej aplikacji 
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyCorsePolicy", builder =>
+    builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+});
 
 
 var app = builder.Build();
@@ -42,6 +46,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("MyCorsePolicy");
 
 app.UseAuthorization();
 

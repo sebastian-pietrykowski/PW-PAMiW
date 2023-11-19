@@ -42,7 +42,40 @@ namespace P05Shop.API.Services.MovieService
                     Success = false
                 };
             }
-           
+        }
+
+        public async Task<ServiceResponse<List<Movie>>> SearchMoviesAsync(string text, int page, int pageSize)
+        {
+            IQueryable<Movie> query = _dataContext.Movies;
+
+            if (!string.IsNullOrEmpty(text))
+                query = query.Where(x => x.Title.Contains(text) || x.Description.Contains(text));
+
+            var movies = await query
+                .Skip(pageSize * (page - 1))
+                .Take(pageSize)
+                .ToListAsync();
+
+            try
+            {
+                var response = new ServiceResponse<List<Movie>>()
+                {
+                    Data = movies,
+                    Message = "Ok",
+                    Success = true
+                };
+
+                return response;
+            }
+            catch (Exception)
+            {
+                return new ServiceResponse<List<Movie>>()
+                {
+                    Data = null,
+                    Message = "Problem with database",
+                    Success = false
+                };
+            }
         }
 
         public async Task<ServiceResponse<Movie>> GetMovieByIdAsync(int id)
@@ -117,8 +150,8 @@ namespace P05Shop.API.Services.MovieService
                 var movieToEdit = await _dataContext.Movies.FindAsync(movie.Id);
                 if (movieToEdit != null)
                 {
-                     movieToEdit.Title = movie.Title;
-                    movieToEdit.Genre = movie.Genre;
+                    movieToEdit.Title = movie.Title;
+                    movieToEdit.Description = movie.Description;
                     movieToEdit.LengthInMinutes = movie.LengthInMinutes;
                     movieToEdit.ReleaseDate = movie.ReleaseDate;
                     movieToEdit.CountryOfOrigin = movie.CountryOfOrigin;
@@ -145,7 +178,7 @@ namespace P05Shop.API.Services.MovieService
                     Success = false
                 };
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new ServiceResponse<Movie>()
                 {

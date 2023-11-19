@@ -10,5 +10,6 @@ namespace P06Shop.Shared.Configuration
     {
         public string Base_url { get; set; }
         public string GetAllMoviesEndpoint { get; set; }
+        public string SearchMoviesEndpoint { get; set; }
     }
 }
