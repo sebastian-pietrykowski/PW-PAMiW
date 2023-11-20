@@ -20,46 +20,53 @@
 
 else
 {
-    <div>
-        <InputText @bind-Value=searchTerm></InputText>
-        <button class="btn btn-primary" @onclick=Search>Search</button>
+    <div class="list-container">
+        <div>
+            <InputText @bind-Value=searchTerm></InputText>
+            <button class="btn btn-primary" @onclick=Search>Search</button>
+        </div>
+        
+        <div class="responsive-wrapper">
+<div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Length</th>
+                        <th>Release Date</th>
+                        <th>Country of origin</th>
+                        <th>Director</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var movie in movies)
+                    {
+                        <tr>
+                            <td>@movie.Id</td>
+                            <td>@movie.Title</td>
+                            <td>@movie.LengthInMinutes min</td>
+                            <td>@movie.ReleaseDate.ToShortDateString()</td>
+                            <td>@movie.CountryOfOrigin</td>
+                            <td>@movie.Director</td>
+                            <td>
+                                <button class="btn btn-primary" @onclick="()=> GoToEdit(movie.Id)">Edit</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        </div>
+        
+
+        <div class="buttons-container">
+            <button class="btn btn-primary" disabled="@(currentPage==1)" @onclick="PreviousPage">Previous</button>
+            <span>@currentPage</span>
+            <button class="btn btn-primary" @onclick="NextPage">Next</button>
+        </div>
     </div>
-    
-
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Length In Minutes</th>
-                <th>Release Date</th>
-                <th>Country Of Origin</th>
-                <th>Director</th>
-                <th>Options</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var movie in movies)
-            {
-                <tr>
-                    <td>@movie.Id</td>
-                    <td>@movie.Title</td>
-                    <td>@movie.LengthInMinutes</td>
-                    <td>@movie.ReleaseDate.ToShortDateString()</td>
-                    <td>@movie.CountryOfOrigin</td>
-                    <td>@movie.Director</td>
-                    <td>
-                        <button class="btn btn-primary" @onclick="()=> GoToEdit(movie.Id)">Edit</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <button class="btn btn-primary" disabled="@(currentPage==1)" @onclick="PreviousPage">Previous</button>
-    <span>@currentPage</span>
-    <button class="btn btn-primary" @onclick="NextPage">Next</button>
 }
 
 
@@ -84,9 +91,6 @@ else
         if (response.Success)
         {
             movies = response.Data;
-            //.Skip(pageSize * (currentPage - 1))
-            //.Take(pageSize)
-            //.ToList();
         }
         else
         {

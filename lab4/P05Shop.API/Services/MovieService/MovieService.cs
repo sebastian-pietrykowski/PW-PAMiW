@@ -172,8 +172,9 @@ namespace P05Shop.API.Services.MovieService
                     Success = false
                 };
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return new ServiceResponse<bool>()
                 {
                     Data = false,

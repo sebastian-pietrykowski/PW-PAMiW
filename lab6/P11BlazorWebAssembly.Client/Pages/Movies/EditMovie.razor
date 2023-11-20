@@ -14,8 +14,13 @@
 }
 else
 {
-    <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit"></MovieForm>
-    <button class="btn btn-danger" @onclick=HandleDelete>Delete</button>
+    <div class="content-container">
+        <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit"></MovieForm>
+        <div class="buttons-container">
+            <button class="btn btn-danger" @onclick=HandleDelete>Delete</button>
+            <button class="btn btn-primary" @onclick=HandleGoBack>Go back</button>
+        </div>
+    </div>
 }
 
 
@@ -52,5 +57,10 @@ else
             NavigationManager.NavigateTo("/movies/moviesList");
         else
             message = response.Message;
+    }
+
+    async Task HandleGoBack()
+    {
+        NavigationManager.NavigateTo("/movies/moviesList");
     }
 }
