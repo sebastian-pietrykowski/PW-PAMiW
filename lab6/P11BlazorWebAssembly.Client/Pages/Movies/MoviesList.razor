@@ -27,37 +27,37 @@ else
         </div>
         
         <div class="responsive-wrapper">
-<div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Length</th>
-                        <th>Release Date</th>
-                        <th>Country of origin</th>
-                        <th>Director</th>
-                        <th>Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var movie in movies)
-                    {
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>@movie.Id</td>
-                            <td>@movie.Title</td>
-                            <td>@movie.LengthInMinutes min</td>
-                            <td>@movie.ReleaseDate.ToShortDateString()</td>
-                            <td>@movie.CountryOfOrigin</td>
-                            <td>@movie.Director</td>
-                            <td>
-                                <button class="btn btn-primary" @onclick="()=> GoToEdit(movie.Id)">Edit</button>
-                            </td>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Length</th>
+                            <th>Release Date</th>
+                            <th>Country of origin</th>
+                            <th>Director</th>
+                            <th>Options</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        @foreach (var movie in movies)
+                        {
+                            <tr>
+                                <td>@movie.Id</td>
+                                <td>@movie.Title</td>
+                                <td>@movie.LengthInMinutes min</td>
+                                <td>@movie.ReleaseDate.ToShortDateString()</td>
+                                <td>@movie.CountryOfOrigin</td>
+                                <td>@movie.Director</td>
+                                <td>
+                                    <button class="btn btn-primary" @onclick="()=> GoToEdit(movie.Id)">Edit</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
         
 
