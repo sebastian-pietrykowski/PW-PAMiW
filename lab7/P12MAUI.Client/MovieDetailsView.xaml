@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="P12MAUI.Client.MovieDetailsView"
+             Title="{Binding Movie.Title}">
+    <VerticalStackLayout>
+        <Grid BindingContext="{Binding Movie}"  Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Title:" Grid.Row="0" Grid.Column="0"/>
+            <Entry Text="{Binding Title}" Grid.Row="0" Grid.Column="1"/>
+
+            <Label Text="Description:" Grid.Row="1" Grid.Column="0"/>
+
+
+            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Description}" />
+
+
+            <Label Text="Length in minutes:" Grid.Row="2" Grid.Column="0"/>
+            <Entry Text="{Binding LengthInMinutes}" Grid.Row="2" Grid.Column="1"/>
+
+            <Label Text="Release Date:" Grid.Row="3" Grid.Column="0"/>
+            <Entry Text="{Binding ReleaseDate}" Grid.Row="3" Grid.Column="1"/>
+
+            <Label Text="Country of origin:" Grid.Row="4" Grid.Column="0"/>
+            <Entry Text="{Binding CountryOfOrigin}" Grid.Row="4" Grid.Column="1"/>
+
+            <Label Text="Director:" Grid.Row="5" Grid.Column="0"/>
+            <Entry Text="{Binding Director}" Grid.Row="5" Grid.Column="1"/>
+        </Grid>
+        <HorizontalStackLayout >
+            <Button   
+        Command="{Binding SaveCommand}" 
+           Text="Save" >
+
+            </Button>
+            <Button  
+        Command="{Binding DeleteCommand}" 
+           Text="Delete" >
+
+            </Button>
+
+            <Button  
+        Command="{Binding GetLocationCommand}" 
+           Text="GetLocation" >
+
+            </Button>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
