@@ -27,13 +27,13 @@
                 </Button.Style>
             </Button>
 
-            <CollectionView  ItemsSource="{Binding Movies}">
+            <CollectionView  ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MoviesViewModel}}, Path=Movies}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BackgroundColor="Lavender" Padding="10" Margin="5">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MoviesViewModel}}, Path=ShowDetailsCommand }"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MoviesViewModel}}, Path=ShowMovieDetailsCommand }"
                                 CommandParameter="{Binding .}" ></TapGestureRecognizer>
                             </Frame.GestureRecognizers>
                             <Grid>
@@ -75,7 +75,8 @@
 
 
                                 <Button Grid.Row="6" 
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MoviesViewModel}}, Path=ShowDetailsCommand }" 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MoviesViewModel}},
+                                Path=ShowMovieDetailsCommand }" 
                                 CommandParameter="{Binding .}"  Text="Edit" >
 
                                     <Button.Style>

@@ -65,8 +65,8 @@ namespace P06Shop.Shared.Services.MovieService
         // alternatywny sposób pobierania danych 
         public async Task<ServiceResponse<List<Movie>>> GetMoviesAsync()
         {
-            // string url = _appSettings.BaseMovieEndpoint.GetAllMoviesEndpoint;
-            string url = "http://localhost:5093/api/Movie";
+            string url = _appSettings.BaseMovieEndpoint.GetAllMoviesEndpoint;
+            // string url = "http://localhost:5093/api/Movie";
             var response = await _httpClient.GetAsync(url);
             if (!response.IsSuccessStatusCode)
                 return new ServiceResponse<List<Movie>>
