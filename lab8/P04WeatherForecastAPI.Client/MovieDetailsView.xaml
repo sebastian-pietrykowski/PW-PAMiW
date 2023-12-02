@@ -1,0 +1,107 @@
+<Window x:Class="P04WeatherForecastAPI.Client.MovieDetailsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
+        mc:Ignorable="d"
+        Title="MovieDetailsView" Height="250" Width="300" Closing="Window_Closing">
+    <StackPanel>
+        <Grid DataContext="{Binding SelectedMovie}"  Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Title:" Grid.Row="0" Grid.Column="0"/>
+            <TextBox Text="{Binding Title}" Grid.Row="0" Grid.Column="1"/>
+
+            <TextBlock Text="Genre:" Grid.Row="1" Grid.Column="0"/>
+            <TextBox Text="{Binding Genre}" Grid.Row="1" Grid.Column="1"/>
+
+            <TextBlock Text="LengthInMinutes:" Grid.Row="2" Grid.Column="0"/>
+            <TextBox Text="{Binding LengthInMinutes}" Grid.Row="2" Grid.Column="1"/>
+
+            <TextBlock Text="Release Date:" Grid.Row="3" Grid.Column="0"/>
+            <TextBox Text="{Binding ReleaseDate}" Grid.Row="3" Grid.Column="1"/>
+
+            <TextBlock Text="Country of origin:" Grid.Row="4" Grid.Column="0"/>
+            <TextBox Text="{Binding CountryOfOrigin}" Grid.Row="4" Grid.Column="1"/>
+
+            <TextBlock Text="Director:" Grid.Row="5" Grid.Column="0"/>
+            <TextBox Text="{Binding Director}" Grid.Row="5" Grid.Column="1"/>
+        </Grid>
+        <StackPanel >
+            <Button  Margin="0 10 0 10"
+        Command="{Binding SaveCommand}" 
+           Content="Save" >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="SkyBlue" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="SteelBlue" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter Property="Padding" Value="10,5" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button  
+        Command="{Binding DeleteCommand}" 
+           Content="Delete" >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="SkyBlue" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="SteelBlue" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter Property="Padding" Value="10,5" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+   
+
+   
+    
+
+    
+</Window>

@@ -1,0 +1,21 @@
+﻿ 
+
+ 1) dodalismy projekt w maui  
+ 2) Przerobilismy kontrolki na mauiowe
+ 3) dodalismy obsluge bazy danych poprzez API (wykorzystalismy gotowe api )
+ 4) zmienilismy sposób wstrzykiwania appsettingsow 
+  - ta zmiana spowodowała, że musieliśmy zmienić sposób w jaki wstrzykujemy appsettingsy w pozostałych projektach 
+5) Skopiowalismy ViewModel z apliacji WPF do aplikacji MAUI
+
+6) Zmienilismy sposób nawigacji w aplikacji MAUI
+ - w aplikacji WPF nawigacja była zrobiona na zasadzie, że każdy widok miał wspólny viewmodel i po kliknięciu w przycisk zmieniał się widok
+ - unas nawigacja jest zrobiona na zasadzie, że każdy widok ma swój viewmodel i po kliknięciu w przycisk zmienia się widok i viewmodel
+ - w aplikacji MAUI nie ma takiej możliwości, żeby jeden viewmodel był wspólny dla wielu widoków
+ - trzeba zarejestrowac ścieżki nawigacji w pliku AppShell.xaml.cs
+
+
+ 7) Dodaliśmy obsługę CRUDa dla bazy danych
+8) przekazaliśmy jako parametr referencje viewModelu ProductsViewModel do innego viewModelu ProductDetailsViewModel
+ - to nam pozwoliło na kontrolowanie jego viewmodelu z innego viewmodelu
+
+9) wstrzykneliśmy serwisy do obsługi połączenia internetowego, geolokalizacji oraz obsługi map. 

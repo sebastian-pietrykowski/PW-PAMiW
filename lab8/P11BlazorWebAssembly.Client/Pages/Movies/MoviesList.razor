@@ -1,0 +1,126 @@
+@page "/movies/moviesList"
+
+@using P06Shop.Shared.Services.MovieService
+@using P06Shop.Shared.MovieCollection
+
+@inject IMovieService MovieService
+@inject NavigationManager NavigationManager
+
+<h3>Full list of movies</h3>
+
+
+<p>
+    <a href="movies/createmovie">Create new movie</a>
+</p>
+
+@if (movies == null)
+{
+    <p><em>@message</em></p>
+}
+
+else
+{
+    <div class="list-container">
+        <div>
+            <InputText @bind-Value=searchTerm></InputText>
+            <button class="btn btn-primary" @onclick=Search>Search</button>
+        </div>
+        
+        <div class="responsive-wrapper">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Length</th>
+                            <th>Release Date</th>
+                            <th>Country of origin</th>
+                            <th>Director</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var movie in movies)
+                        {
+                            <tr>
+                                <td>@movie.Id</td>
+                                <td>@movie.Title</td>
+                                <td>@movie.LengthInMinutes min</td>
+                                <td>@movie.ReleaseDate.ToShortDateString()</td>
+                                <td>@movie.CountryOfOrigin</td>
+                                <td>@movie.Director</td>
+                                <td>
+                                    <button class="btn btn-primary" @onclick="()=> GoToEdit(movie.Id)">Edit</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+
+        <div class="buttons-container">
+            <button class="btn btn-primary" disabled="@(currentPage==1)" @onclick="PreviousPage">Previous</button>
+            <span>@currentPage</span>
+            <button class="btn btn-primary" @onclick="NextPage">Next</button>
+        </div>
+    </div>
+}
+
+
+
+@code {
+    private List<Movie> movies;
+    private string message = "Loading movies...";
+
+    private int currentPage = 1;
+    private const int pageSize = 10;
+
+    private string searchTerm = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await  LoadMovies();
+    }
+
+    private async Task LoadMovies()
+    {
+        var response = await MovieService.SearchMoviesAsync(searchTerm, currentPage, pageSize);
+        if (response.Success)
+        {
+            movies = response.Data;
+        }
+        else
+        {
+            message = response.Message;
+        }
+    }
+
+
+    void GoToEdit(int id)
+    {
+        NavigationManager.NavigateTo($"/movies/editmovie/{id}");
+    }
+
+    private async Task PreviousPage()
+    {
+        if (currentPage > 1)
+        {
+            currentPage--;
+            await LoadMovies();
+        }
+    }
+    private async Task NextPage()
+    {
+        currentPage++;
+        await LoadMovies();
+    }
+
+    private async Task Search()
+    {
+        currentPage = 1;
+        await LoadMovies();
+    }
+}

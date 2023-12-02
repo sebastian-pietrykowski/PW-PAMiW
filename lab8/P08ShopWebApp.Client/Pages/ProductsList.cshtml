@@ -1,0 +1,22 @@
+﻿@page
+@model P08ShopWebApp.Client.Pages.ProductsListModel
+@{
+}
+
+
+
+<p>Number of products: @Model.Products.Count()</p>
+
+<table>
+
+    @foreach (var item in Model.Products)
+    {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Description</td>
+            <td>@Html.DisplayFor(x=>item.Price)</td>
+        </tr>
+        
+    }
+
+</table>
