@@ -38,7 +38,7 @@ namespace P05Shop.API.Controllers
         {
             _logger.Log(LogLevel.Information, "Invoked GetMovies Method in controller");
 
-            var result = await _movieService.SearchMoviesAsync(text,page,pageSize);
+            var result = await _movieService.SearchMoviesAsync(text, page, pageSize);
 
             if (result.Success)
                 return Ok(result);

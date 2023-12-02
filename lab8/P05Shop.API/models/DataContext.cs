@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using P06Shop.Shared.Auth;
 using P06Shop.Shared.MovieCollection;
 using P07Shop.DataSeeder;
 
@@ -17,6 +18,8 @@ namespace P05Shop.API.Models
         public DbSet<Actor> Actors{ get; set; }
         public DbSet<MovieActors> MovieActors{ get; set; }
         public DbSet<Review> Reviews { get; set; }
+
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
