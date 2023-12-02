@@ -1,5 +1,7 @@
  @using P06Shop.Shared.MovieCollection
 
+ @attribute [Authorize]
+
 <EditForm Model="movie" OnValidSubmit="OnValidSubmit">
     <DataAnnotationsValidator />
 

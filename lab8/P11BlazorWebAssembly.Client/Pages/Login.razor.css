@@ -1,0 +1,15 @@
+.login-content-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.login-label {
+    margin-bottom: 0 !important
+}
+
+.login-button {
+    width: 100px;
+}
