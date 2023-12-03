@@ -46,23 +46,6 @@ namespace P06Shop.Shared.Services.MovieService
             return result;
         }
 
-   
-
-
-        //// skopiowane z postmana 
-        //public async Task<ServiceResponse<List<Product>>> GetProductsAsync()
-        //{
-        //    //var client = new HttpClient();   
-        //    var request = new HttpRequestMessage(HttpMethod.Get, _appSettings.BaseProductEndpoint.GetAllProductsEndpoint);
-        //    var response = await _httpClient.SendAsync(request);
-        //    response.EnsureSuccessStatusCode();        
-        //    var json = await response.Content.ReadAsStringAsync();
-        //    var result = JsonConvert.DeserializeObject<ServiceResponse<List<Product>>>(json);
-        //    return result;
-        //}
-
-
-        // alternatywny sposób pobierania danych 
         public async Task<ServiceResponse<List<Movie>>> GetMoviesAsync()
         {
             string url = _appSettings.BaseMovieEndpoint.GetAllMoviesEndpoint;
@@ -103,17 +86,6 @@ namespace P06Shop.Shared.Services.MovieService
             return result;
         }
 
-
-        // wersja 1 
-        //public async Task<ServiceResponse<Product>> UpdateProductAsync(Product product)
-        //{
-        //    var response = await _httpClient.PutAsJsonAsync(_appSettings.BaseProductEndpoint.GetAllProductsEndpoint, product);
-        //    var json = await response.Content.ReadAsStringAsync();
-        //    var result = JsonConvert.DeserializeObject<ServiceResponse<Product>>(json);
-        //    return result;
-        //}
-
-        // wersja 2 
         public async Task<ServiceResponse<Movie>> UpdateMovieAsync(Movie movie)
         {
             var response = await _httpClient.PutAsJsonAsync(_appSettings.BaseMovieEndpoint.GetAllMoviesEndpoint, movie);

@@ -97,16 +97,6 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         }
 
         [RelayCommand]
-        public void OpenShopWindow()
-        {
-            ShopProductsView shopProductsView = _serviceProvider.GetService<ShopProductsView>();
-            ProductsViewModel productsViewModel = _serviceProvider.GetService<ProductsViewModel>();
-
-            shopProductsView.Show();
-            productsViewModel.GetProducts();
-        }
-
-        [RelayCommand]
         public void OpenMoviesLibraryWindow()
         {
             try
