@@ -11,5 +11,11 @@ namespace P04WeatherForecastAPI.Client.Services.WeatherServices
     {
         Task<City[]> GetLocations(string locationName);
         Task<Weather> GetCurrentConditions(string cityKey);
+        Task<City[]> GetNeighbors(string cityKey);
+        Task<GeoPosition?> GetGeoPosition(string locationName);
+        Task<TimeZoneModel?> GetTimeZone(string locationName);
+        Task<AdministrativeArea?> GetAdministrativeArea(string locationName);
+        Task<ManyDaysForecast?> GetFiveDaysDailyForecast(string locationName);
+        Task<HourlyForecast[]> GetSixHoursHourlyForecast(string locationName);
     }
 }

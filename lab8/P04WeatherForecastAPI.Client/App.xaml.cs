@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using P04WeatherForecastAPI.Client.Configuration;
 using P04WeatherForecastAPI.Client.MessageBox;
 using P04WeatherForecastAPI.Client.ViewModels;
+using P04WeatherForecastAPI.Client.Services;
 using P04WeatherForecastAPI.Client.Services.WeatherServices;
 using P06Shop.Shared.MessageBox;
 using P06Shop.Shared.Services.MovieService;
@@ -76,6 +77,7 @@ namespace P04WeatherForecastAPI.Client
             services.AddSingleton<MainViewModelV4>();
             services.AddSingleton<FavoriteCityViewModel>();
             services.AddSingleton<MoviesViewModel>();
+            services.AddSingleton<WeatherViewModel>();
 
             // services.AddSingleton<BaseViewModel,MainViewModelV3>();
         }
@@ -87,6 +89,7 @@ namespace P04WeatherForecastAPI.Client
             services.AddTransient<FavoriteCitiesView>();
             services.AddTransient<LibraryMoviesView>();
             services.AddTransient<MovieDetailsView>();
+            services.AddTransient<WeatherView>();
         }
 
         private void ConfigureHttpClients(IServiceCollection services, AppSettings appSettingsSection)

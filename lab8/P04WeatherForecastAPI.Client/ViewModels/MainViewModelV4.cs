@@ -41,17 +41,8 @@ namespace P04WeatherForecastAPI.Client.ViewModels
 
         }
 
-        //[ObservableProperty]
-        //private WeatherViewModel weatherView;
-        //public WeatherViewModel WeatherView { 
-        //    get { return weatherView; } 
-        //    set { 
-        //        weatherView = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
         [ObservableProperty]
-        private WeatherViewModel weatherView;
+        private CurrentWeatherViewModel currentWeatherView;
 
 
         public CityViewModel SelectedCity
@@ -70,8 +61,8 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         {
             if(SelectedCity != null)
             {
-                _weather = await _accuWeatherService.GetCurrentConditions(SelectedCity.Key); 
-                WeatherView = new WeatherViewModel(_weather);
+                _weather = await _accuWeatherService.GetCurrentConditions(SelectedCity.Key);
+                CurrentWeatherView = new CurrentWeatherViewModel(_weather);
             }
         } 
 
@@ -94,6 +85,23 @@ namespace P04WeatherForecastAPI.Client.ViewModels
             //var favoriteCitiesView = new FavoriteCitiesView();
             _favoriteCityViewModel.SelectedCity = new FavoriteCity() { Name = "Warsaw" };
             _favoriteCitiesView.Show();
+        }
+
+        [RelayCommand]
+        public void OpenWeatherWindow()
+        {
+            try
+            {
+                WeatherView weatherView = _serviceProvider.GetService<WeatherView>();
+                WeatherViewModel weatherViewModel = _serviceProvider.GetService<WeatherViewModel>();
+
+                weatherView.Show();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or show a message to the user
+                System.Windows.MessageBox.Show("An error occurred: " + ex.Message);
+            }
         }
 
         [RelayCommand]
