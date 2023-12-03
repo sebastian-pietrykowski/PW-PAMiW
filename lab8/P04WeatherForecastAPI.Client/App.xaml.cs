@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using P04WeatherForecastAPI.Client.Configuration;
 using P04WeatherForecastAPI.Client.MessageBox;
 using P04WeatherForecastAPI.Client.ViewModels;
 using P04WeatherForecastAPI.Client.Services.WeatherServices;
+using P04WeatherForecastAPI.Client.Services.SpeechService;
+using P06Shop.Shared.Configuration;
 using P06Shop.Shared.MessageBox;
+using P06Shop.Shared.Services.AuthService;
 using P06Shop.Shared.Services.MovieService;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Extensions.Options;
 
 namespace P04WeatherForecastAPI.Client
 {
@@ -44,7 +47,7 @@ namespace P04WeatherForecastAPI.Client
         private void ConfigureServices(IServiceCollection services)
         {
             var appSettingsSection = ConfigureAppSettings(services);
-            ConfigureAppServices(services);
+            ConfigureAppServices(services, appSettingsSection);
             ConfigureViewModels(services);
             ConfigureViews(services);
             ConfigureHttpClients(services, appSettingsSection);
@@ -52,21 +55,22 @@ namespace P04WeatherForecastAPI.Client
 
         private AppSettings ConfigureAppSettings(IServiceCollection services)
         {
-            // pobranie appsettings z konfiguracji i zmapowanie na klase AppSettings 
-            //Microsoft.Extensions.Options.ConfigurationExtensions
             var appSettings = _configuration.GetSection(nameof(AppSettings));
             var appSettingsSection = appSettings.Get<AppSettings>();
-            services.Configure<AppSettings>(appSettings);
+            // services.Configure<AppSettings>(appSettings);
+            services.AddSingleton(appSettingsSection);
+
             return appSettingsSection;
         }
 
-        private void ConfigureAppServices(IServiceCollection services)
+        private void ConfigureAppServices(IServiceCollection services, AppSettings appSettings)
         {
             // konfiguracja serwisów 
             services.AddSingleton<IAccuWeatherService, AccuWeatherService>();
             services.AddSingleton<IFavoriteCityService, FavoriteCityService>();
             services.AddSingleton<IMovieService, MovieService>();
             services.AddSingleton<IMessageDialogService, WpfMesageDialogService>();
+            services.AddSingleton<ISpeechService>(_ => new SpeechService(appSettings.SpeechSettings));
         }
 
         private void ConfigureViewModels(IServiceCollection services)
@@ -76,6 +80,8 @@ namespace P04WeatherForecastAPI.Client
             services.AddSingleton<MainViewModelV4>();
             services.AddSingleton<FavoriteCityViewModel>();
             services.AddSingleton<MoviesViewModel>();
+            services.AddSingleton<LoginViewModel>();
+            services.AddTransient<LoginView>();
 
             // services.AddSingleton<BaseViewModel,MainViewModelV3>();
         }
@@ -91,11 +97,16 @@ namespace P04WeatherForecastAPI.Client
 
         private void ConfigureHttpClients(IServiceCollection services, AppSettings appSettingsSection)
         {
+            var uriBuilderAuth = new UriBuilder(appSettingsSection.BaseAPIUrl) {};
+            services.AddHttpClient<IAuthService, AuthService>(client => client.BaseAddress = uriBuilderAuth.Uri);
+
             var uriMovieBuilder = new UriBuilder(appSettingsSection.BaseAPIUrl)
             {
                 Path = appSettingsSection.BaseMovieEndpoint.Base_url,
             };
             services.AddHttpClient<IMovieService, MovieService>(client => client.BaseAddress = uriMovieBuilder.Uri);
+
+            services.AddSingleton<IOptions<AppSettings>>(new OptionsWrapper<AppSettings>(appSettingsSection));
 
         }
 

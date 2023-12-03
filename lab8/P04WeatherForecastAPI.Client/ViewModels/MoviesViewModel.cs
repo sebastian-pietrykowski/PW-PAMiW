@@ -31,6 +31,7 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         {
             Movies.Clear();
             var moviesResult = await _movieService.GetMoviesAsync();
+            
             if (moviesResult.Success)
             {
                 foreach (var m in moviesResult.Data)

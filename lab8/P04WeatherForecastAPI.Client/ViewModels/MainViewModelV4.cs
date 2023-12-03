@@ -99,18 +99,31 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         [RelayCommand]
         public void OpenMoviesLibraryWindow()
         {
-            try
-            {
-                LibraryMoviesView libraryMoviesView = _serviceProvider.GetService<LibraryMoviesView>();
-                MoviesViewModel moviesViewModel = _serviceProvider.GetService<MoviesViewModel>();
+            if (!string.IsNullOrEmpty(LoginViewModel.Token)) {
+                try
+                {
+                    LibraryMoviesView libraryMoviesView = _serviceProvider.GetService<LibraryMoviesView>();
+                    MoviesViewModel moviesViewModel = _serviceProvider.GetService<MoviesViewModel>();
 
-                libraryMoviesView.Show();
-            }
-            catch (Exception ex)
-            {
-                // Log the exception or show a message to the user
-                System.Windows.MessageBox.Show("An error occurred: " + ex.Message);
-            }
+                    libraryMoviesView.Show();
+                    moviesViewModel.GetMovies();
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception or show a message to the user
+                    System.Windows.MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }            
+        }
+
+        [RelayCommand]
+        public void OpenLoginWindow()
+        {
+            LoginView loginView = _serviceProvider.GetService<LoginView>();
+            LoginViewModel loginViewModel = _serviceProvider.GetService<LoginViewModel>();
+
+            loginView.Show();
+             
         }
     }
 }
