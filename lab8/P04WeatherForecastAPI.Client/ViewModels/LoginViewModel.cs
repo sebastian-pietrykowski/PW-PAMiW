@@ -45,7 +45,7 @@ namespace P04WeatherForecastAPI.Client.ViewModels
 
         public async Task Logout()
         {
-            Token = response.Data;
+            Token = null;
             
         }
 

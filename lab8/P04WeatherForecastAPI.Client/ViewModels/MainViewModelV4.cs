@@ -113,6 +113,10 @@ namespace P04WeatherForecastAPI.Client.ViewModels
                     // Log the exception or show a message to the user
                     System.Windows.MessageBox.Show("An error occurred: " + ex.Message);
                 }
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("You need to login first");
             }            
         }
 
@@ -124,6 +128,14 @@ namespace P04WeatherForecastAPI.Client.ViewModels
 
             loginView.Show();
              
+        }
+
+        [RelayCommand]
+        public void Logout()
+        {
+            LoginViewModel loginViewModel = _serviceProvider.GetService<LoginViewModel>();
+            loginViewModel.Logout();
+            System.Windows.MessageBox.Show("Logged out");
         }
     }
 }
