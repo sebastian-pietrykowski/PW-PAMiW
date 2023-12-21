@@ -1,0 +1,35 @@
+@page "/movies/createmovie"
+
+@using P06Shop.Shared.Services.MovieService
+@using P06Shop.Shared.MovieCollection
+
+@attribute [Authorize]
+@inject IMovieService MovieService
+@inject NavigationManager NavigationManager
+
+<h3>Create Movie</h3>
+
+@if (message != null)
+{
+    <p><em>@message</em></p>
+}
+else
+{
+    <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit"></MovieForm>
+}
+
+@code {
+    private Movie movie = new Movie();
+    private string? message = null;
+
+    async Task HandleValidSubmit()
+    {
+        var response = await MovieService.CreateMovieAsync(movie);
+        if (response.Success)
+            NavigationManager.NavigateTo("/movies/moviesList");
+        else
+            message = response.Message;
+    }
+
+
+}

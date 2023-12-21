@@ -1,0 +1,54 @@
+@page "/Login"
+@using Blazored.LocalStorage;
+@using Microsoft.AspNetCore.Components.Authorization;
+@using P06Shop.Shared.Auth;
+@using P06Shop.Shared.Services.AuthService;
+
+@inject IAuthService AuthService
+@inject ILocalStorageService LocalStorageService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+<h3>Login</h3>
+
+
+<EditForm Model="userLoginDTO" OnValidSubmit="HandleLogin">
+    <div class="login-content-container">
+        <div>
+            <p class="login-label">Email:</p>
+            <InputText @bind-Value="userLoginDTO.Email" id="email"></InputText>
+        </div>
+        <div>
+            <p class="login-label">Password:</p>
+            <InputText @bind-Value="userLoginDTO.Password" id="password"></InputText>
+        </div>
+        <button class="login-button" type="submit">Login In</button>
+    </div>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <p>@message</p>
+}
+
+@code {
+
+    private UserLoginDTO userLoginDTO = new UserLoginDTO();
+    private string message = string.Empty;
+
+    private async Task HandleLogin()
+    {
+        var result = await  AuthService.Login(userLoginDTO);
+        if (result.Success)
+        {
+            await LocalStorageService.SetItemAsync("authToken", result.Data);
+            await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            message = result.Message;
+        }
+    }
+
+}

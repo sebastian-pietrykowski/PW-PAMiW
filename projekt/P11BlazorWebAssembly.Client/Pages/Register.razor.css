@@ -1,0 +1,15 @@
+.register-content-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.register-label {
+    margin-bottom: 0 !important
+}
+
+.register-button {
+    width: 100px;
+}

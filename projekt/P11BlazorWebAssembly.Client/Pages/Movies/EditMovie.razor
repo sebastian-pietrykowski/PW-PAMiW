@@ -1,0 +1,67 @@
+@page "/movies/editmovie/{Id:int}"
+
+@using P06Shop.Shared.Services.MovieService
+@using P06Shop.Shared.MovieCollection
+
+@attribute [Authorize]
+@inject IMovieService MovieService
+@inject NavigationManager NavigationManager
+
+<h3>Edit Movie</h3>
+
+@if (movie == null)
+{
+    <p><em>@message</em></p>
+}
+else
+{
+    <div class="content-container">
+        <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit"></MovieForm>
+        <div class="buttons-container">
+            <button class="btn btn-danger" @onclick=HandleDelete>Delete</button>
+            <button class="btn btn-primary" @onclick=HandleGoBack>Go back</button>
+        </div>
+    </div>
+}
+
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Movie movie;
+    private string message = "Loading movie...";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await MovieService.GetMovieByIdAsync(Id);
+        if (response.Success)
+            movie = response.Data;
+        else
+            message = response.Message;
+    }
+
+    async Task HandleValidSubmit()
+    {
+        var response = await MovieService.UpdateMovieAsync(movie);
+        if (response.Success)
+            NavigationManager.NavigateTo("/movies/moviesList");
+        else
+            message = response.Message;
+    }
+
+    async Task HandleDelete()
+    {
+        var response = await MovieService.DeleteMovieAsync(Id);
+        if (response.Success)
+            NavigationManager.NavigateTo("/movies/moviesList");
+        else
+            message = response.Message;
+    }
+
+    async Task HandleGoBack()
+    {
+        NavigationManager.NavigateTo("/movies/moviesList");
+    }
+}

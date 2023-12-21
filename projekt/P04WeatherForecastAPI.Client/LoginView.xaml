@@ -1,0 +1,36 @@
+<Window x:Class="P04WeatherForecastAPI.Client.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="LoginView" Height="150" Width="200">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Email:" Grid.Row="0" Grid.Column="0" />
+        <TextBox x:Name="EmailTextBox" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding UserLoginDTO.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Content="Password:" Grid.Row="1" Grid.Column="0" />
+        <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" Margin="5" PasswordChar="*" />
+
+        <Button   Click="Login_Button_Click" Content="Login" Grid.Row="2" Grid.Column="1" Margin="5"   >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseEnter">
+                    <i:InvokeCommandAction Command="{Binding MouseEnterCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+    </Grid>
+</Window>

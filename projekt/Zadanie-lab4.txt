@@ -1,0 +1,40 @@
+Celem tego zadania jest rozbudowa istniejącej aplikacji,
+ aby umożliwiała zarządzanie danymi w sposób bardziej zaawansowany. 
+ Zakładamy, że poprzednia wersja aplikacji już została stworzona i teraz będziemy ją rozbudowywać.
+
+Wprowadzone Zmiany
+Dodanie bazy danych do API (Code First)
+Migracje i aktualizacja bazy danych
+Użycie Fluent API do konfiguracji schematu tabel
+Dodanie danych testowych
+Stałe ziarno do generatora produktów
+Implementacja serwisu CRUD w API
+Stworzenie endpointów w kontrolerze zgodnie z REST
+Obsługa błędów i zwracanie ServiceResponse
+W kliencie (aplikacja kliencka) stworzenie serwisu CRUD komunikującego się z API
+Użycie narzędzia Fiddler do analizy ruchu sieciowego
+Dodanie widoków do wyświetlania produktów i operacji CRUD
+Rozbudowanie ViewModelu
+Zadania do Wykonania
+1) Rozbudowa Bazy Danych
+Zaktualizujcie schemat bazy danych, dodając nowe encje i relacje między nimi.
+Użyjcie Fluent API do konfiguracji schematu tabel.
+2) Migracje i Aktualizacja Bazy Danych
+Stworzenie i aplikowanie migracji na bazie danych.
+Sprawdzenie, czy schemat bazy jest zgodny z założeniami.
+3) Dane Testowe
+Dodanie danych testowych dla nowych encji.
+Zastosowanie stałego ziarna do generatora produktów, aby wyniki były powtarzalne.
+4) Serwis CRUD w API
+Rozszerzenie istniejącego serwisu CRUD, aby obsługiwał nowe encje i relacje między nimi.
+5) Endpointy w Kontrolerze
+Dodanie nowych endpointów zgodnie z architekturą REST.
+Wprowadzenie obsługi błędów przy pomocy try-catch i zwracanie własnych komunikatów w ServiceResponse.
+6) Klient - Serwis CRUD
+Rozszerzenie serwisu CRUD w kliencie, aby obsługiwał nowe funkcje API.
+Testowanie komunikacji z API.
+7) Analiza Ruchu Sieciowego
+Użycie Fiddlera do śledzenia ruchu sieciowego i analizy rzeczywistych zapytań i odpowiedzi.
+8) Widoki i ViewModel
+Dodanie nowych widoków w XAML.
+Rozbudowa ViewModelu, aby obsługiwał nowe funkcjonalności, np. dodawanie, edycję, usuwanie dla nowych encji.

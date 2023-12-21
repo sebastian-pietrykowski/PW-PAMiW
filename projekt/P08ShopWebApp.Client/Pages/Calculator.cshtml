@@ -1,0 +1,20 @@
+﻿@page
+@model P08ShopWebApp.Client.Pages.CalculatorModel
+
+
+
+
+<form method="post">@* method="get"*@
+
+    <label for="Number1">Number 1:</label>
+    <input id="Number1" value="@Model.Number1" name="Number1" />
+    <br />
+    <label for="Number2">Number 2:</label>
+    <input id="Number2" value="@Model.Number2" name="Number2" />
+
+    <br />
+    <input type="submit" value="Calculate sum" />
+
+    <p>Result: @Model.Result</p>
+
+</form>
