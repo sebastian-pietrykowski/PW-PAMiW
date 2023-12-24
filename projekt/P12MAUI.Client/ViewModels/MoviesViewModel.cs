@@ -44,19 +44,20 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         {
             Console.WriteLine("GetMovies 1");
 
+            // Movies.Clear();
+            // Movies.Add(new Movie() { Title = "Movie 1", Description = "Description 1", LengthInMinutes = 121, ReleaseDate = DateTime.Now, CountryOfOrigin = "Poland", Director = "Director 1" });
+            // Movies.Add(new Movie() { Title = "Movie 2", Description = "Description 2", LengthInMinutes = 122, ReleaseDate = DateTime.Now, CountryOfOrigin = "Poland", Director = "Director 2" });
+            // Movies.Add(new Movie() { Title = "Movie 3", Description = "Description 3", LengthInMinutes = 123, ReleaseDate = DateTime.Now, CountryOfOrigin = "Poland", Director = "Director 3" });
+
+            // if (_connectivity.NetworkAccess != NetworkAccess.Internet)
+            // {
+            //     _messageDialogService.ShowMessage("Internet not available!");
+            //     return;
+            // }
+
             Movies.Clear();
-            Movies.Add(new Movie() { Title = "Movie 1", Description = "Description 1", LengthInMinutes = 121, ReleaseDate = DateTime.Now, CountryOfOrigin = "Poland", Director = "Director 1" });
-            Movies.Add(new Movie() { Title = "Movie 2", Description = "Description 2", LengthInMinutes = 122, ReleaseDate = DateTime.Now, CountryOfOrigin = "Poland", Director = "Director 2" });
-            Movies.Add(new Movie() { Title = "Movie 3", Description = "Description 3", LengthInMinutes = 123, ReleaseDate = DateTime.Now, CountryOfOrigin = "Poland", Director = "Director 3" });
-
-            if (_connectivity.NetworkAccess != NetworkAccess.Internet)
-            {
-                _messageDialogService.ShowMessage("Internet not available!");
-                return;
-            }
-            Console.WriteLine("GetMovies 2");
-
             var moviesResult = await _movieService.GetMoviesAsync();
+            
             if (moviesResult.Success)
             {
                 foreach (var m in moviesResult.Data)
@@ -64,10 +65,21 @@ namespace P04WeatherForecastAPI.Client.ViewModels
                     Movies.Add(m);
                 }
             }
-            else
-            {
-                _messageDialogService.ShowMessage(moviesResult.Message);
-            }
+
+            Console.WriteLine("GetMovies 2");
+
+            // var moviesResult = await _movieService.GetMoviesAsync();
+            // if (moviesResult.Success)
+            // {
+            //     foreach (var m in moviesResult.Data)
+            //     {
+            //         Movies.Add(m);
+            //     }
+            // }
+            // else
+            // {
+            //     _messageDialogService.ShowMessage(moviesResult.Message);
+            // }
         }
 
         [RelayCommand]

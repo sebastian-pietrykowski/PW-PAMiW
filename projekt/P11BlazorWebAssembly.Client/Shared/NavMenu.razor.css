@@ -1,14 +1,54 @@
-.navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.1);
+.navbar-title {
+    display: flex;
+    width: 146px;
+    align-items: center;
+    gap: 9px;
+    width: fit-content;
+}
+
+.navbar-logo {
+    width: 40px;
+    height: 40px;
+    background-color: var(--purple, #702DFF);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-image: url("/icons/logo.svg");
+}
+
+.navbar-toggler-my-icon {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(90deg, #702DFF -3.24%, #7550FB 29.22%, #4A3AFF 74%, #4A3AFF 101.79%);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-image: url("/icons/navbar-toggle-icon.svg");
 }
 
 .top-row {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    /* background-color: rgba(0,0,0,0.4); */
 }
 
 .navbar-brand {
-    font-size: 1.1rem;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+
+    background: linear-gradient(90deg, #702DFF -3.24%, #7550FB 29.22%, #4A3AFF 74%, #4A3AFF 101.79%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .oi {
