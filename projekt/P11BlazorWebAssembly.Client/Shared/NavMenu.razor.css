@@ -58,42 +58,36 @@
     top: -2px;
 }
 
-.nav-item {
-    font-size: 0.9rem;
-    padding-bottom: 0.5rem;
+.nav-item ::deep .nav-link {
+    padding: 0;
+    padding: 8px 0;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
 }
 
-    .nav-item:first-of-type {
-        padding-top: 1rem;
-    }
+.nav-item ::deep a {
+    color: var(--purple, #702DFF);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 
-    .nav-item:last-of-type {
-        padding-bottom: 1rem;
-    }
-
-    .nav-item ::deep a {
-        color: var(--purple, #702DFF);
-        font-family: Inter;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        line-height: 3rem;
-    }
+    border-radius: 4px;
+    height: 3rem;
+}
 
 .nav-item ::deep a.active {
     background-color: rgba(255,255,255,0.25);
-    color: white;
+    color: var(--color-gray-90, #3F3F3F);
 }
 
 .nav-item ::deep a:hover {
     background-color: rgba(255,255,255,0.1);
-    color: white;
+    color: #C893FD;
 }
 
 @media (min-width: 641px) {
@@ -121,4 +115,66 @@
     font-weight: 600;
     line-height: normal;
     text-transform: uppercase;
+}
+
+
+.nav-list-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-list-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding: 32px;
+}
+
+.nav-list-icon {
+    width: 16px;
+    height: 16px;
+    background-color: var(--purple, #702DFF);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+a.active .nav-list-icon {
+    background-color: var(--color-gray-90, #3F3F3F);
+}
+
+.nav-list-icon:hover {
+    background-color: #C893FD;
+}
+
+.nav-list-login-icon {
+
+    mask-image: url("/icons/login.svg");
+}
+
+.nav-list-register-icon {
+    mask-image: url("/icons/register.svg");
+}
+
+.nav-list-logout-icon {
+    mask-image: url("/icons/logout.svg");
+}
+
+.nav-list-movie-icon {
+    mask-image: url("/icons/movie.svg");
+}
+
+.nav-list-username {
+    font-size: 12px;
+    padding-left: 10px;
 }

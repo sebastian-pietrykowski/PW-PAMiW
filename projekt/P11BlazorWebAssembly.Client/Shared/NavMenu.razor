@@ -1,4 +1,12 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using Blazored.LocalStorage;
+@using System.Security.Claims;
+@inherits LayoutComponentBase
+
+@inject ILocalStorageService LocalStorageService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <div class="navbar-title">
             <div class="navbar-logo"></div>
@@ -12,41 +20,56 @@
 
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="flex-column">
-        <div class="nav-item px-3">
-            <div class="nav-link">
-                <span class="oi oi-overview">Overview</span>
+        <div class="nav-list-content">
+            <div class="nav-item">
+                <div class="nav-link">
+                    <span class="oi oi-overview">Overview</span>
+                </div>
+            </div>
+            <div class="nav-list-options">
+                <div class="nav-item">
+                    <NavLink class="nav-link" href="movies/moviesList">
+                        <span class="nav-list-icon nav-list-movie-icon" aria-hidden="true"></span> Movies
+                    </NavLink>
+                </div>
+                <AuthorizeView>
+                    <Authorized>
+                        <div class="nav-item">
+                            <NavLink class="nav-link" href="/login" @onclick="Logout">
+                                <span class="nav-list-icon nav-list-logout-icon" aria-hidden="true"></span> Logout
+                            </NavLink>
+                        </div>
+                        @* <div>
+                            @context.User.Identity.Name | 
+                            @context.User.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault().Value
+                            @context.User.Claims.Where(c => c.Type == "DateCreated").FirstOrDefault().Value
+                        </div> *@
+                        <div>
+                            <div>Logged as:</div>
+                            <div class="nav-list-username">
+                                @context.User.Identity.Name
+                                <br>
+                                @context.User.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault().Value
+                            </div>
+                        </div>
+                    </Authorized>
+                    <NotAuthorized>
+                        <div class="nav-item">
+                            <NavLink class="nav-link" href="/login">
+                                <span class="nav-list-icon nav-list-login-icon" aria-hidden="true"></span> Login
+                            </NavLink>
+                        </div>
+                        <div class="nav-item">
+                            <NavLink class="nav-link" href="/register">
+                                <span class="nav-list-icon nav-list-register-icon" aria-hidden="true"></span> Register
+                            </NavLink>
+                        </div>
+                    </NotAuthorized>
+                </AuthorizeView>
             </div>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="calculator">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Calculator
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="newCalculator">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> New Calculator
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="newCalculatorValidation">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> New Calc Val
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="movies/moviesList">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Movies
-            </NavLink>
-        </div>
+
+        
     </nav>
 </div>
 
@@ -58,5 +81,12 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private async Task Logout()
+    {
+        await LocalStorageService.RemoveItemAsync("authToken");
+        await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        NavigationManager.NavigateTo("/login");
     }
 }
