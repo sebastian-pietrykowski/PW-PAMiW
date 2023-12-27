@@ -8,32 +8,38 @@
 @inject ILocalStorageService LocalStorageService
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
-<h3>Login</h3>
 
-
-<EditForm Model="userLoginDTO" OnValidSubmit="HandleLogin">
-    <div class="login-content-container">
-        <div>
-            <p class="login-label">Email:</p>
-            <InputText @bind-Value="userLoginDTO.Email" id="email"></InputText>
+<div class="login-page">
+    <h1 class="login-header">Login</h1>
+    <EditForm Model="userLoginDTO" OnValidSubmit="HandleLogin" class="form">
+        <div class="login-content-container">
+            <div>
+                <p class="login-label">Email:</p>
+                <InputText type="email" @bind-Value="userLoginDTO.Email" id="email" class="input"></InputText>
+            </div>
+            <div>
+                <p class="login-label">Password:</p>
+                <InputText type="password" @bind-Value="userLoginDTO.Password" id="password" class="input"></InputText>
+            </div>
+            <button class="login-button" type="submit">Login</button>
+            @if(!isLoginSuccess) {
+                <p class="login-message">Incorrect data</p>
+            }
         </div>
-        <div>
-            <p class="login-label">Password:</p>
-            <InputText @bind-Value="userLoginDTO.Password" id="password"></InputText>
-        </div>
-        <button class="login-button" type="submit">Login In</button>
-    </div>
-</EditForm>
+    </EditForm>
 
-@if (!string.IsNullOrEmpty(message))
-{
-    <p>@message</p>
-}
+    @* @if (!string.IsNullOrEmpty(message))
+    {
+        <p>@message</p>
+    } *@
+</div>
+
 
 @code {
 
     private UserLoginDTO userLoginDTO = new UserLoginDTO();
-    private string message = string.Empty;
+    @* private string message = string.Empty; *@
+    private bool isLoginSuccess = true;
 
     private async Task HandleLogin()
     {
@@ -47,7 +53,8 @@
         }
         else
         {
-            message = result.Message;
+            isLoginSuccess = false;
+            @* message = result.Message; *@
         }
     }
 
