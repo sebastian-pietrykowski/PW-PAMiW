@@ -72,7 +72,13 @@
     }
 
     .nav-item ::deep a {
-        color: #d7d7d7;
+        color: var(--purple, #702DFF);
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+
         border-radius: 4px;
         height: 3rem;
         display: flex;
@@ -105,4 +111,14 @@
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
     }
+}
+
+.oi-overview {
+    color: var(--color-gray-90, #3F3F3F);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
 }
