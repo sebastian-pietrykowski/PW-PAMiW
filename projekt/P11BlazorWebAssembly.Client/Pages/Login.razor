@@ -15,11 +15,11 @@
         <DataAnnotationsValidator />
         <div class="app-content-container">
             <div>
-                <p class="app-label">Email:</p>
+                <label for="email" class="app-label">Email:</label>
                 <InputText type="email" @bind-Value="userLoginDTO.Email" id="email" class="input"></InputText>
             </div>
             <div>
-                <p class="app-label">Password:</p>
+                <label for="password" class="app-label">Password:</label>
                 <InputText type="password" @bind-Value="userLoginDTO.Password" id="password" class="input"></InputText>
             </div>
             <ValidationSummary class="login-validation-summary" />

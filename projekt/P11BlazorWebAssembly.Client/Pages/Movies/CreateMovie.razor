@@ -7,19 +7,22 @@
 @inject IMovieService MovieService
 @inject NavigationManager NavigationManager
 
-<h3>Create Movie</h3>
+<div class="app-page">
+    <h1 class="app-header">Create Movie</h1>
 
-@if (message != null)
-{
-    <p><em>@message</em></p>
-}
-else
-{
-    <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit"></MovieForm>
-}
+    @if (message != null)
+    {
+        <p><em>@message</em></p>
+    }
+    else
+    {
+        <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit" submitButtonText="Create"></MovieForm>
+    }    
+</div>
+
 
 @code {
-    private Movie movie = new Movie();
+    private MovieDto movie = new MovieDto();
     private string? message = null;
 
     async Task HandleValidSubmit()

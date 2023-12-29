@@ -7,30 +7,32 @@
 @inject IMovieService MovieService
 @inject NavigationManager NavigationManager
 
-<h3>Edit Movie</h3>
-
-@if (movie == null)
-{
-    <p><em>@message</em></p>
-}
-else
-{
-    <div class="content-container">
-        <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit"></MovieForm>
-        <div class="buttons-container">
-            <button class="btn btn-danger" @onclick=HandleDelete>Delete</button>
-            <button class="btn btn-primary" @onclick=HandleGoBack>Go back</button>
+<div class="app-page">
+    <h1 class="app-header">Edit Movie</h1>
+    @if (movie == null)
+    {
+        <p><em>@message</em></p>
+    }
+    else
+    {
+        <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit"  submitButtonText="Update"></MovieForm>
+        <div class="app-content-container">
+            <div class="app-buttons-container">
+                <div class="app-align-center-stretch">
+                    <button class="app-warn-button" @onclick=HandleDelete>Delete</button>
+                    <button class="app-secondary-button" @onclick=HandleGoBack>Go back</button>
+                </div>
+            </div>
         </div>
-    </div>
-}
-
+    }
+</div>
 
 
 @code {
     [Parameter]
     public int Id { get; set; }
 
-    private Movie movie;
+    private MovieDto movie;
     private string message = "Loading movie...";
 
     protected override async Task OnInitializedAsync()

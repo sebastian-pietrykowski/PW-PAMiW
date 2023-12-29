@@ -1,4 +1,4 @@
-::deep form {
+::deep .form {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -16,7 +16,7 @@
     border: 1px solid var(--color-gray-50, #B1B1B1);
 }
 
-::deep .login-validation-summary {
+::deep .register-validation-summary {
     list-style: none;
     padding: 0;
 }

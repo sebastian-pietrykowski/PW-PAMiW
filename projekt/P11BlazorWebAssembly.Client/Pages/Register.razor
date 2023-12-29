@@ -8,27 +8,26 @@
 <div class="app-page">
     <h1 class="app-header">Register</h1>
 
-
     <EditForm Model="userRegisterDTO" OnValidSubmit="HandleRegistration" class="form">
         <DataAnnotationsValidator />
         <div class="app-content-container">
             <div>
-                <p class="app-label">Email:</p>
+                <label for="email" class="app-label">Email:</label>
                 <InputText type="email" @bind-Value="userRegisterDTO.Email" id="email" class="input"></InputText>
             </div>
             <div>
-                <p class="app-label">Username:</p>
+                <label for="username" class="app-label">Username:</label>
                 <InputText type="text" @bind-Value="userRegisterDTO.Username" id="username" class="input"></InputText>
             </div>
             <div>
-                <p class="app-label">Password:</p>
+                <label for="password" class="app-label">Password:</label>
                 <InputText type="password" @bind-Value="userRegisterDTO.Password" id="password" class="input"></InputText>
             </div>
             <div>
-                <p class="app-label">Confirm Password:</p>
+                <label for="confirmPassword" class="app-label">Confirm Password:</label>
                 <InputText type="password" @bind-Value="userRegisterDTO.ConfirmPassword" id="confirmPassword" class="input"></InputText>
             </div>
-            <ValidationSummary class="login-validation-summary" />
+            <ValidationSummary class="register-validation-summary" />
             <div></div>
             <button class="app-primary-button" type="submit" disabled="@(!context.Validate())">Register</button>
             @if(!isRegisterSuccess) {

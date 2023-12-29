@@ -11,7 +11,7 @@
     <h1 class="app-header">Full list of movies</h1>
     <div class="app-align-left app-full-content-container">
         <div class="app-button-container">
-            <a href="movies/create" class="app-secondary-button">Create new movie</a>
+            <a href="movies/create" class="app-secondary-button">Create a new movie</a>
         </div>
     </div>
     
@@ -64,9 +64,8 @@
                     </table>
                 </div>
             </div>
-            
 
-            <div class="app-align-center buttons-container">
+            <div class="app-align-center app-buttons-container">
                 <div class="app-button-container">
                     <button class="app-primary-button" disabled="@(currentPage==1)" @onclick="PreviousPage">Previous</button>
                 </div>
@@ -80,10 +79,8 @@
 </div>
 
 
-
-
 @code {
-    private List<Movie> movies;
+    private List<MovieDto> movies;
     private string message = "Loading movies...";
 
     private int currentPage = 1;
@@ -91,46 +88,36 @@
 
     private string searchTerm = "";
 
-    protected override async Task OnInitializedAsync()
-    {
+    protected override async Task OnInitializedAsync() {
         await  LoadMovies();
     }
 
-    private async Task LoadMovies()
-    {
+    private async Task LoadMovies() {
         var response = await MovieService.SearchMoviesAsync(searchTerm, currentPage, pageSize);
-        if (response.Success)
-        {
+        if (response.Success) {
             movies = response.Data;
-        }
-        else
-        {
+        } else {
             message = response.Message;
         }
     }
 
-
-    void GoToEdit(int id)
-    {
+    void GoToEdit(int id) {
         NavigationManager.NavigateTo($"/movies/edit/{id}");
     }
 
-    private async Task PreviousPage()
-    {
-        if (currentPage > 1)
-        {
+    private async Task PreviousPage() {
+        if (currentPage > 1) {
             currentPage--;
             await LoadMovies();
         }
     }
-    private async Task NextPage()
-    {
+
+    private async Task NextPage() {
         currentPage++;
         await LoadMovies();
     }
 
-    private async Task Search()
-    {
+    private async Task Search() {
         currentPage = 1;
         await LoadMovies();
     }

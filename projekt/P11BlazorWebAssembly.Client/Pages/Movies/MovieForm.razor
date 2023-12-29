@@ -2,47 +2,54 @@
 
  @attribute [Authorize]
 
-<EditForm Model="movie" OnValidSubmit="OnValidSubmit">
-    <DataAnnotationsValidator />
+<div class="form-container">
+    <EditForm Model="movie" OnValidSubmit="OnValidSubmit" class="form">
+        <DataAnnotationsValidator />
+        <div class="app-content-container">
+            <div>
+                <label for="title" class="app-label">Title:</label>
+                <InputText id="title" @bind-Value="movie.Title" class="input"></InputText>
+            </div>
+            <div>
+                <label for="lengthInMinutes" class="app-label">Length in minutes:</label>
+                <InputNumber id="lengthInMinutes" @bind-Value="movie.LengthInMinutes" class="input"></InputNumber>
+            </div>
+            <div>
+                <label for="releaseDate" class="app-label">Release date:</label>
+                <InputDate id="ReleaseDate" @bind-Value="movie.ReleaseDate" class="input"></InputDate>
+            </div>
+            <div>
+                <label for="countryOfOrigin" class="app-label">Country of origin:</label>
+                <InputText id="countryOfOrigin" @bind-Value="movie.CountryOfOrigin" class="input"></InputText>
+            </div>
+            <div>
+                <label for="director" class="app-label">Director's full name:</label>
+                <InputText id="director" @bind-Value="movie.Director" class="input"></InputText>
+            </div>
+            <div>
+                <label for="description" class="app-label">Description:</label>
+                <InputTextArea id="description" @bind-Value="movie.Description" class="input text-area-input" rows=></InputTextArea>
+            </div>
+            <ValidationSummary class="movie-form-validation-summary" />
+            <div></div>
+                <div class="button-container">
+                    <button type="submit" class="app-primary-button">@submitButtonText</button>
+                </div>
+        </div>
+    </EditForm>
+</div>
 
-    <div class="form-container">
-        <div class="form-group">
-            <label for="title">Title:</label>
-            <InputText id="title" @bind-Value="movie.Title" class="form-control"></InputText>
-        </div>
-        <div class="form-group">
-            <label for="lengthInMinutes">Length in minutes:</label>
-            <InputNumber id="lengthInMinutes" @bind-Value="movie.LengthInMinutes" class="form-control"></InputNumber>
-        </div>
-        <div class="form-group">
-            <label for="releaseDate">Release date:</label>
-            <InputDate id="ReleaseDate" @bind-Value="movie.ReleaseDate" class="form-control"></InputDate>
-        </div>
-        <div class="form-group">
-            <label for="countryOfOrigin">Country of origin:</label>
-            <InputText id="countryOfOrigin" @bind-Value="movie.CountryOfOrigin" class="form-control"></InputText>
-        </div>
-        <div class="form-group">
-            <label for="director">Director:</label>
-            <InputText id="director" @bind-Value="movie.Director" class="form-control"></InputText>
-        </div>
-        <div class="form-group">
-            <label for="description">Description:</label>
-            <InputTextArea id="description" @bind-Value="movie.Description" class="form-control"></InputTextArea>
-        </div>
-        <div class="buttons-container">
-            <button type="submit" class="btn btn-primary">Update</button>
-        </div>
-    </div>
-</EditForm>
 
 
 @code {
 
     [Parameter]
-    public Movie movie { get; set; }
+    public MovieDto movie { get; set; }
 
     [Parameter]
     public EventCallback OnValidSubmit { get; set; }
+
+    [Parameter]
+    public string submitButtonText { get; set; }
 
 }
