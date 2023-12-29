@@ -5,39 +5,46 @@
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
 
-<h3>Register</h3>
+<div class="app-page">
+    <h1 class="app-header">Register</h1>
 
 
-<EditForm Model="userRegisterDTO" OnValidSubmit="HandleRegistration">
-    <div class="register-content-container">
-        <div class="blue">
-            <p class="register-label">Email:</p>
-            <InputText @bind-Value="userRegisterDTO.Email" id="email"></InputText>
-        </div>
-        <div>
-            <p class="register-label">User name:</p>
-            <InputText @bind-Value="userRegisterDTO.Username" id="username"></InputText>
-        </div>
-        <div>
-            <p class="register-label">Password:</p>
-            <InputText @bind-Value="userRegisterDTO.Password" id="password"></InputText>
-        </div>
-        <div>
-            <p class="register-label">Confirm Password:</p>
-            <InputText @bind-Value="userRegisterDTO.ConfirmPassword" id="confirmPassword"></InputText>
+    <EditForm Model="userRegisterDTO" OnValidSubmit="HandleRegistration" class="form">
+        <DataAnnotationsValidator />
+        <div class="app-content-container">
+            <div>
+                <p class="app-label">Email:</p>
+                <InputText type="email" @bind-Value="userRegisterDTO.Email" id="email" class="input"></InputText>
+            </div>
+            <div>
+                <p class="app-label">Username:</p>
+                <InputText type="text" @bind-Value="userRegisterDTO.Username" id="username" class="input"></InputText>
+            </div>
+            <div>
+                <p class="app-label">Password:</p>
+                <InputText type="password" @bind-Value="userRegisterDTO.Password" id="password" class="input"></InputText>
+            </div>
+            <div>
+                <p class="app-label">Confirm Password:</p>
+                <InputText type="password" @bind-Value="userRegisterDTO.ConfirmPassword" id="confirmPassword" class="input"></InputText>
+            </div>
+            <ValidationSummary class="login-validation-summary" />
+            <button class="app-button" type="submit" disabled="@(!context.Validate())">Register</button>
+            @if(!isRegisterSuccess) {
+                <p class="app-error-message">Incorrect data</p>
+            }
         </div>
         
-        <button class="register-button" type="submit">Register</button>
-    </div>
-    
-</EditForm>
+    </EditForm>
 
-<p>@message</p>
+    @* <p>@message</p> *@
+</div>
 
 
 @code {
     UserRegisterDTO userRegisterDTO = new UserRegisterDTO();
-    string message = string.Empty;
+    @* string message = string.Empty; *@
+    private bool isRegisterSuccess = true;
 
     async Task HandleRegistration()
     {
@@ -48,7 +55,8 @@
         }
         else
         {
-            message  = result.Message;
+            @* message  = result.Message; *@
+            isRegisterSuccess = false;
         }
     }
 

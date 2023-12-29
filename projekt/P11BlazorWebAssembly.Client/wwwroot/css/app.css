@@ -36,11 +36,11 @@ a, .btn-link {
 }
 
 .invalid {
-    outline: 1px solid red;
+    outline: 1px solid #F13E3E;;
 }
 
 .validation-message {
-    color: red;
+    color: #F13E3E;
 }
 
 #blazor-error-ui {
@@ -101,6 +101,112 @@ a, .btn-link {
     inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
 }
 
-    .loading-progress-text:after {
-        content: var(--blazor-load-percentage-text, "Loading");
+.loading-progress-text:after {
+    content: var(--blazor-load-percentage-text, "Loading");
+}
+
+/* ----------------------------------------- */
+.app-simple-page {
+    width: fit-content;
+    color: var(--color-gray-90, #3F3F3F);
+    padding: 20px 24px;
+    border-radius: 12px 12px 0px 0px;
+    background: var(--color-gray-10, #FFF);
+    box-shadow: 0px 14px 42px 0px rgba(8, 15, 52, 0.06);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 100vh;
+}
+
+.app-header {
+    margin: 0;
+    color: var(--color-gray-90, #3F3F3F);
+}
+
+.app-content-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 1rem;
+    width: max(40%, 400px);
+    padding: 20px 24px;
+    border-radius: 12px 12px 0px 0px;
+    background: var(--color-gray-10, #FFF);
+    box-shadow: 0px 14px 42px 0px rgba(8, 15, 52, 0.06);
+}
+
+@media (max-width: 640px) {
+    .app-page {
+        justify-content: flex-start;
     }
+    .app-content-container {
+        width: 100%;
+    }
+}
+
+.app-label {
+    margin-bottom: 3px !important;
+    color: var(--color-gray-80, #5F5F5F);
+}
+
+.app-content-container ::deep .input {
+    display: flex;
+    width: 100%;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--color-gray-50, #B1B1B1);
+}
+
+.app-error-message {
+    width: 100%;
+    text-align: left;
+    color: #F13E3E;
+    margin: 0;
+}
+
+.app-button {
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 40px;
+    background: rgba(112, 45, 255, 0.20);
+    border: none;
+
+    color: var(--purple, #702DFF);
+    text-align: right;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.app-button:hover {
+    background: #E0C6FD;
+}
+
+.app-button:active {
+    border: 1px solid var(--color-gray-50, #B1B1B1);
+}
+
+.app-button:disabled {
+    color: var(--color-gray-100, #202020);
+    background: rgba(147, 163, 169, 0.33);
+}

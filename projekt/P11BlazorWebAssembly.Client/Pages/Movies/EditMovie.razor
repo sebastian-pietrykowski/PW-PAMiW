@@ -1,4 +1,4 @@
-@page "/movies/editmovie/{Id:int}"
+@page "/movies/edit/{Id:int}"
 
 @using P06Shop.Shared.Services.MovieService
 @using P06Shop.Shared.MovieCollection
@@ -46,7 +46,7 @@ else
     {
         var response = await MovieService.UpdateMovieAsync(movie);
         if (response.Success)
-            NavigationManager.NavigateTo("/movies/moviesList");
+            NavigationManager.NavigateTo("/movies");
         else
             message = response.Message;
     }
@@ -55,13 +55,13 @@ else
     {
         var response = await MovieService.DeleteMovieAsync(Id);
         if (response.Success)
-            NavigationManager.NavigateTo("/movies/moviesList");
+            NavigationManager.NavigateTo("/movies");
         else
             message = response.Message;
     }
 
     async Task HandleGoBack()
     {
-        NavigationManager.NavigateTo("/movies/moviesList");
+        NavigationManager.NavigateTo("/movies");
     }
 }

@@ -1,4 +1,4 @@
-@page "/movies/createmovie"
+@page "/movies/create"
 
 @using P06Shop.Shared.Services.MovieService
 @using P06Shop.Shared.MovieCollection
@@ -26,7 +26,7 @@ else
     {
         var response = await MovieService.CreateMovieAsync(movie);
         if (response.Success)
-            NavigationManager.NavigateTo("/movies/moviesList");
+            NavigationManager.NavigateTo("/movies");
         else
             message = response.Message;
     }

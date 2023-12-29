@@ -28,7 +28,7 @@
             </div>
             <div class="nav-list-options">
                 <div class="nav-item">
-                    <NavLink class="nav-link" href="movies/moviesList">
+                    <NavLink class="nav-link" href="movies">
                         <span class="nav-list-icon nav-list-movie-icon" aria-hidden="true"></span> Movies
                     </NavLink>
                 </div>
@@ -44,7 +44,7 @@
                             @context.User.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault().Value
                             @context.User.Claims.Where(c => c.Type == "DateCreated").FirstOrDefault().Value
                         </div> *@
-                        <div>
+                        <div class="nav-list-user-info">
                             <div>Logged as:</div>
                             <div class="nav-list-username">
                                 @context.User.Identity.Name

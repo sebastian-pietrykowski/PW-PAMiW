@@ -9,21 +9,23 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 
-<div class="login-page">
-    <h1 class="login-header">Login</h1>
+<div class="app-page">
+    <h1 class="app-header">Login</h1>
     <EditForm Model="userLoginDTO" OnValidSubmit="HandleLogin" class="form">
-        <div class="login-content-container">
+        <DataAnnotationsValidator />
+        <div class="app-content-container">
             <div>
-                <p class="login-label">Email:</p>
+                <p class="app-label">Email:</p>
                 <InputText type="email" @bind-Value="userLoginDTO.Email" id="email" class="input"></InputText>
             </div>
             <div>
-                <p class="login-label">Password:</p>
+                <p class="app-label">Password:</p>
                 <InputText type="password" @bind-Value="userLoginDTO.Password" id="password" class="input"></InputText>
             </div>
-            <button class="login-button" type="submit">Login</button>
+            <ValidationSummary class="login-validation-summary" />
+            <button class="app-button" type="submit" disabled="@(!context.Validate())">Login</button>
             @if(!isLoginSuccess) {
-                <p class="login-message">Incorrect data</p>
+                <p class="app-error-message">Incorrect data</p>
             }
         </div>
     </EditForm>
@@ -57,5 +59,4 @@
             @* message = result.Message; *@
         }
     }
-
 }
