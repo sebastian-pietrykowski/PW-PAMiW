@@ -1,9 +1,27 @@
-.list-container {
+::deep form {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 17px;
+}
+
+.app-full-content-container ::deep .input {
+    display: flex;
+    width: 100%;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--color-gray-50, #B1B1B1);
 }
 
 .responsive-wrapper {
@@ -15,15 +33,37 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 1rem;
+    gap: 1.5rem;
     align-items: center;
 }
 
 table {
-    background: linear-gradient(135deg, #f0f0f0, #d4c3dd);
-    border: 1px solid #b69bc5;
+    /* border: 1px solid transparent; */
 }
 
 table thead th {
     vertical-align: middle;
+    text-align: left;
+
+    color: var(--color-gray-90, #3F3F3F);
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+
+}
+
+table tbody td {
+    vertical-align: middle;
+    text-align: left;
+
+    color: var(--color-gray-100, #202020);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
 }

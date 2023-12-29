@@ -107,7 +107,7 @@
     }
 }
 
-.oi-overview {
+.nav-item-header {
     color: var(--color-gray-90, #3F3F3F);
     font-family: Inter;
     font-size: 16px;
@@ -142,11 +142,17 @@
 .nav-list-user-info {
     line-height: 24px;
     margin-top: auto;
+    padding-top: 12px;
 }
 
 .nav-list-username {
     font-size: 12px;
+    padding-top: 5px;
     padding-left: 10px;
+}
+
+.nav-list-username > * {
+    margin: 0;
 }
 
 .nav-list-icon {

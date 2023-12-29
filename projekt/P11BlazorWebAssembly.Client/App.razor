@@ -3,21 +3,22 @@
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" >
                 <NotAuthorized>
+                    <PageTitle>Page not allowed</PageTitle>
                     <div class="app-simple-page">
-                        <h3>Whoops! You're not allowed to see this page.</h3>
-                        <h5>Please <a href="login">login</a> or <a href="register">register</a> for a new account.</h5>
+                        <h2 class="app-header">Whoops! You're not allowed to see this page.</h2>
+                        <p>Please <a href="login">login</a> or <a href="register">register</a> for a new account.</p>
                     </div>
                 </NotAuthorized>
             </AuthorizeRouteView>
             <FocusOnNavigate RouteData="@routeData" Selector="h1" />
         </Found>
         <NotFound>
-            <div class="app-simple-page">
-                <PageTitle>Not found</PageTitle>
-                <LayoutView Layout="@typeof(MainLayout)">
-                    <p role="alert">Sorry, there's nothing at this address.</p>
-                </LayoutView>
-            </div>
+            <PageTitle>Not found</PageTitle>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <div class="app-simple-page">
+                <p role="alert">Sorry, there's nothing at this address.</p>
+                </div>
+            </LayoutView>
         </NotFound>
     </Router>
 </CascadingAuthenticationState>

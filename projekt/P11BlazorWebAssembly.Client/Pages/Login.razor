@@ -23,7 +23,8 @@
                 <InputText type="password" @bind-Value="userLoginDTO.Password" id="password" class="input"></InputText>
             </div>
             <ValidationSummary class="login-validation-summary" />
-            <button class="app-button" type="submit" disabled="@(!context.Validate())">Login</button>
+            <div></div>
+            <button class="app-primary-button" type="submit" disabled="@(!context.Validate())">Login</button>
             @if(!isLoginSuccess) {
                 <p class="app-error-message">Incorrect data</p>
             }

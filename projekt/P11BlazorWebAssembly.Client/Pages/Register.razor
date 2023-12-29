@@ -29,7 +29,8 @@
                 <InputText type="password" @bind-Value="userRegisterDTO.ConfirmPassword" id="confirmPassword" class="input"></InputText>
             </div>
             <ValidationSummary class="login-validation-summary" />
-            <button class="app-button" type="submit" disabled="@(!context.Validate())">Register</button>
+            <div></div>
+            <button class="app-primary-button" type="submit" disabled="@(!context.Validate())">Register</button>
             @if(!isRegisterSuccess) {
                 <p class="app-error-message">Incorrect data</p>
             }

@@ -7,68 +7,78 @@
 @inject IMovieService MovieService
 @inject NavigationManager NavigationManager
 
-<h3>Full list of movies</h3>
-
-
-<p>
-    <a href="movies/create">Create new movie</a>
-</p>
-
-@if (movies == null)
-{
-    <p><em>@message</em></p>
-}
-
-else
-{
-    <div class="list-container">
-        <div>
-            <InputText @bind-Value=searchTerm></InputText>
-            <button class="btn btn-primary" @onclick=Search>Search</button>
-        </div>
-        
-        <div class="responsive-wrapper">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Title</th>
-                            <th>Length</th>
-                            <th>Release Date</th>
-                            <th>Country of origin</th>
-                            <th>Director</th>
-                            <th>Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var movie in movies)
-                        {
-                            <tr>
-                                <td>@movie.Id</td>
-                                <td>@movie.Title</td>
-                                <td>@movie.LengthInMinutes min</td>
-                                <td>@movie.ReleaseDate.ToShortDateString()</td>
-                                <td>@movie.CountryOfOrigin</td>
-                                <td>@movie.Director</td>
-                                <td>
-                                    <button class="btn btn-primary" @onclick="()=> GoToEdit(movie.Id)">Edit</button>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-
-        <div class="buttons-container">
-            <button class="btn btn-primary" disabled="@(currentPage==1)" @onclick="PreviousPage">Previous</button>
-            <span>@currentPage</span>
-            <button class="btn btn-primary" @onclick="NextPage">Next</button>
+<div class="app-page">
+    <h1 class="app-header">Full list of movies</h1>
+    <div class="app-align-left app-full-content-container">
+        <div class="app-button-container">
+            <a href="movies/create" class="app-secondary-button">Create new movie</a>
         </div>
     </div>
-}
+    
+    @if (movies == null)
+    {
+        <p><em>@message</em></p>
+    }
+
+    else
+    {
+        <div class="app-full-content-container">
+            <div class="search-container">
+                <InputText @bind-Value=searchTerm class="input"></InputText>
+                <div class="app-button-container">
+                    <button class="app-primary-button" @onclick=Search>Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="app-full-content-container">
+            <div class="responsive-wrapper">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Length</th>
+                                <th>Release Date</th>
+                                <th>Country of origin</th>
+                                <th>Director</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var movie in movies)
+                            {
+                                <tr>
+                                    <td>@movie.Title</td>
+                                    <td>@movie.LengthInMinutes min</td>
+                                    <td>@movie.ReleaseDate.ToShortDateString()</td>
+                                    <td>@movie.CountryOfOrigin</td>
+                                    <td>@movie.Director</td>
+                                    <td>
+                                        <div class="app-button-container">
+                                            <button class="app-secondary-button" @onclick="()=> GoToEdit(movie.Id)">Edit</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+
+            <div class="app-align-center buttons-container">
+                <div class="app-button-container">
+                    <button class="app-primary-button" disabled="@(currentPage==1)" @onclick="PreviousPage">Previous</button>
+                </div>
+                <span>@currentPage</span>
+                <div class="app-button-container">
+                    <button class="app-primary-button" @onclick="NextPage">Next</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
 
 
 
