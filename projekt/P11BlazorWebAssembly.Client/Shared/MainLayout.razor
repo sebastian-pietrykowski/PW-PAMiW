@@ -9,13 +9,13 @@
 @inject ThemeService ThemeService;
 @using System.ComponentModel;
 
-<div class="page">
-    <div class="sidebar @ThemeService.CssClass">
+<div class="page @ThemeService.CssClass">
+    <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
-        <article class="content px-4 @ThemeService.CssClass">
+        <article class="content px-4">
             @Body
         </article>
     </main>

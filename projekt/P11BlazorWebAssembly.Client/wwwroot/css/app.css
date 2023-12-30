@@ -14,6 +14,10 @@ h1:focus {
     outline: none;
 }
 
+p {
+    color: var(--text-color);
+}
+
 a, .btn-link {
     color: #0071c1;
 }
@@ -114,30 +118,91 @@ a, .btn-link {
 :root {
     --background-color: #ffffff;
     --text-color: var(--color-gray-100, #202020);
+
+    --accent-color: var(--purple, #702DFF);
+    --accent-color-hover: #C893FD;
+    --accent-gradient: linear-gradient(90deg, #702DFF -3.24%, #7550FB 29.22%, #4A3AFF 74%, #4A3AFF 101.79%);
+
     --sidebar-background-color: var(--color-gray-10, #FFF);
+    --sidebar-shadow: 0px 14px 42px 0px rgba(8, 15, 52, 0.06);
+    --sidebar-item-header-color: var(--color-gray-90, #3F3F3F);
+    --sidebar-active-item-color: var(--color-gray-90, #3F3F3F);
+    --sidebar-active-item-background-color: rgba(255,255,255,0.25);
+
     --card-background-color: var(--color-gray-10, #FFF);
+    --card-shadow: 0 14px 42px 0 rgba(8, 15, 52, 0.06);
+
+    --header-color: var(--color-gray-90, #3F3F3F);
+    --label-color: var(--color-gray-80, #5F5F5F);
 
     --theme-switch-background-color: #E9EAF0;
-    --theme-switch-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    --theme-switch-circle-background-color: #24272C;
-    --theme-switch-circle-shadow: 7.1px 7.1px 14.2px 0px rgba(0, 0, 0, 0.25), 0px 2.84px 2.84px 0px rgba(0, 0, 0, 0.25);
+    --theme-switch-shadow: 0 4px 8px rgba(0, 0, 0, 0.159);
+    --theme-switch-circle-background-color: var(--color-gray-90, #3F3F3F);
+    --theme-switch-circle-shadow: var(--theme-switch-shadow);
     --theme-switch-icon-color: #E9EAF0;
     --theme-switch-icon: url("/icons/sun.svg");
+
+    --input-background-color: white;
+    --input-text-color: var(--text-color);
+    --input-border-color: var(--color-gray-50, #B1B1B1);
+
+    --primary-button-background-color: rgba(112, 45, 255, 0.20);
+    --primary-button-text-color: var(--purple, #702DFF);
+    --primary-button-text-color-hover: var(--primary-button-text-color);
+    --primary-button-border: 1px solid transparent;
+
+    --secondary-button-background-color: rgba(51, 102, 204, 0.20);
+    --secondary-button-text-color: #36C;
+    --secondary-button-border: var(--primary-button-border);
+
+    --warn-button-background-color: rgb(255, 197, 197);
+    --warn-button-text-color: var(--color-gray-80, #5F5F5F);
+    --warn-button-border: var(--primary-button-border);
 }
   
-  /* Tryb ciemny */
   .dark-mode {
     --background-color: #232323;;
-    --text-color: #ffffff;
-    --sidebar-background-color: #383838;
-    --card-background-color: #383838;
+    --text-color: #d9d9d9;
+
+    --accent-color: var(--purple, #9b6efe);
+    --accent-color-hover: #ce9ffd; /* #C893FD */
+    --accent-gradient: linear-gradient(90deg, #9b6efe -3.24%, #8e6dfb 29.22%, #846efb 74%, #7a6efc 101.79%);
+    
+    --sidebar-background-color: #353535;
+    --sidebar-shadow: 0px 14px 42px 0px rgba(161, 161, 161, 0.06);
+    --sidebar-item-header-color: #aeaeae;
+    --sidebar-active-item-color: #cecece;
+    --sidebar-active-item-background-color: rgba(189, 189, 189, 0.25);
+
+    --card-background-color: #353535;
+    --card-shadow: 0px 14px 42px 0px rgba(161, 161, 161, 0.06);
+
+    --header-color: #d9d9d9;
+    --label-color: rgb(217, 217, 217);
 
     --theme-switch-background-color: #24272C;
-    --theme-switch-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    --theme-switch-circle-background-color: #E9EAF0;
-    --theme-switch-circle-shadow: 8.05px 8.05px 16.1px 0px rgba(36, 39, 44, 0.70), -8.05px -8.05px 16.1px 0px rgba(233, 234, 240, 0.70);
+    --theme-switch-shadow: 0 4px 8px rgba(177, 176, 176, 0.159);
+    --theme-switch-circle-background-color: #d9d9d9;
+    --theme-switch-circle-shadow: 0 4px 8px rgba(157, 157, 157, 0.159);
     --theme-switch-icon-color: #24272C;
     --theme-switch-icon: url("/icons/moon.svg");
+
+    --input-background-color: rgb(34, 34, 34);
+    --input-text-color: #d9d9d9;
+    --input-border-color: var(--color-gray-50, #B1B1B1);
+
+    --primary-button-background-color: rgba(164, 123, 254, 0.25);
+    --primary-button-text-color: #cdbaf7;
+    --primary-button-text-color-hover: #702DFF;
+    --primary-button-border: 1px solid #787878;
+
+    --secondary-button-background-color: rgba(51, 102, 204, 0.4);
+    --secondary-button-text-color: rgb(179, 196, 229);
+    --secondary-button-border: var(--primary-button-border);
+
+    --warn-button-background-color: rgb(251, 160, 160);
+    --warn-button-text-color: #434343;
+    --warn-button-border: var(--primary-button-border);
   }
 
 
@@ -148,7 +213,7 @@ a, .btn-link {
     color: var(--text-color);
     padding: 20px 24px;
     border-radius: 12px;
-    box-shadow: 0px 14px 42px 0px rgba(8, 15, 52, 0.06);
+    box-shadow: var(--card-shadow);
 
     display: flex;
     flex-direction: column;
@@ -167,7 +232,7 @@ a, .btn-link {
 
 .app-header {
     margin: 0;
-    color: var(--color-gray-90, #3F3F3F);
+    color: var(--header-color);
 }
 
 .app-align-left {
@@ -201,7 +266,7 @@ a, .btn-link {
     padding: 20px 24px;
     border-radius: 12px;
     background: var(--card-background-color);
-    box-shadow: 0px 14px 42px 0px rgba(8, 15, 52, 0.06);
+    box-shadow: var(--card-shadow);
 }
 
 .app-full-content-container {
@@ -212,8 +277,8 @@ a, .btn-link {
     width: 100%;
     padding: 20px 24px;
     border-radius: 12px;
-    background: var(--color-gray-10, #FFF);
-    box-shadow: 0px 14px 42px 0px rgba(8, 15, 52, 0.06);
+    background: var(--card-background-color);
+    box-shadow: var(--card-shadow);
 }
 
 @media (max-width: 640px) {
@@ -227,7 +292,7 @@ a, .btn-link {
 
 .app-label {
     margin-bottom: 3px !important;
-    color: var(--color-gray-80, #5F5F5F);
+    color: var(--label-color);
 }
 
 .app-content-container ::deep .input, .app-full-content-container ::deep .input {
@@ -238,7 +303,9 @@ a, .btn-link {
     align-items: center;
     gap: 10px;
     border-radius: 12px;
-    border: 1px solid var(--color-gray-50, #B1B1B1);
+    border: 1px solid var(--input-border-color);
+    background-color: var(--input-background-color);
+    color: var(--input-text-color);
 }
 
 .app-error-message {
@@ -271,10 +338,10 @@ a, .btn-link {
     align-items: center;
     gap: 12px;
     border-radius: 40px;
-    background: rgba(112, 45, 255, 0.20);
-    border: none;
+    background: var(--primary-button-background-color);
+    border: var(--primary-button-border);
 
-    color: var(--purple, #702DFF);
+    color: var(--primary-button-text-color);
     text-align: right;
     font-family: Inter;
     font-size: 16px;
@@ -287,6 +354,7 @@ a, .btn-link {
 
 .app-primary-button:hover {
     background: #E0C6FD;
+    color: var(--primary-button-text-color-hover);
 }
 
 .app-primary-button:active {
@@ -306,10 +374,10 @@ a, .btn-link {
     align-items: center;
     gap: 12px;
     border-radius: 40px;
-    background: rgba(51, 102, 204, 0.20);
-    border: none;
+    background: var(--secondary-button-background-color);
+    border: var(--secondary-button-border);
 
-    color: #36C;
+    color: var(--secondary-button-text-color);
     text-align: right;
     font-family: Inter;
     font-size: 16px;
@@ -341,10 +409,10 @@ a, .btn-link {
     align-items: center;
     gap: 12px;
     border-radius: 40px;
-    background: rgb(255, 197, 197);
-    border: none;
+    background: var(--warn-button-background-color);
+    border: var(--warn-button-border);
 
-    color: var(--color-gray-80, #5F5F5F);
+    color: var(--warn-button-text-color);
     text-align: right;
     font-family: Inter;
     font-size: 16px;
