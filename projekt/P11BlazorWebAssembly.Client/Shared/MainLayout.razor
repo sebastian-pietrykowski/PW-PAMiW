@@ -5,14 +5,40 @@
 @inject ILocalStorageService LocalStorageService
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
+
+@inject ThemeService ThemeService;
+@using System.ComponentModel;
+
 <div class="page">
-    <div class="sidebar">
+    <div class="sidebar @ThemeService.CssClass">
         <NavMenu />
     </div>
 
     <main>
-        <article class="content px-4">
+        <article class="content px-4 @ThemeService.CssClass">
             @Body
         </article>
     </main>
 </div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        ThemeService.PropertyChanged += ThemeChanged;
+    }
+
+    private void ThemeChanged(object sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(ThemeService.CssClass))
+        {
+            StateHasChanged(); // Re-render the component when theme changes
+            Console.WriteLine("Theme changed");
+        }
+    }
+
+    // Dispose method to unsubscribe from events when the component is disposed
+    public void Dispose()
+    {
+        ThemeService.PropertyChanged -= ThemeChanged;
+    }
+}

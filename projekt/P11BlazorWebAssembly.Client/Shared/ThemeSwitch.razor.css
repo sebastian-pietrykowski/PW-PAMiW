@@ -1,0 +1,46 @@
+.theme-switch {
+    width: 83.333px;
+    height: 40px;
+    flex-shrink: 0;
+
+    border-radius: 16.1px;
+    background: var(--theme-switch-background-color);
+    box-shadow: var(--theme-switch-shadow);
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.theme-switch-dark {
+    justify-content: flex-end;
+}
+
+.theme-switch-circle {
+    width: 29.167px;
+    height: 29.167px;
+    flex-shrink: 0;
+    border-radius: 42.6px;
+    background: var(--theme-switch-circle-background-color);
+    box-shadow: var(--theme-switch-circle-shadow);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.theme-switch-icon {
+    width: 16.667px;
+    height: 16.667px;
+    flex-shrink: 0;
+
+    background-color: var(--theme-switch-icon-color);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-image: var(--theme-switch-icon);
+}

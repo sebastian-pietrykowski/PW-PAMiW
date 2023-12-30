@@ -40,6 +40,7 @@ builder.Services.AddBlazoredLocalStorage();
 // autorization
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+builder.Services.AddSingleton<ThemeService, ThemeService>();
 //builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();

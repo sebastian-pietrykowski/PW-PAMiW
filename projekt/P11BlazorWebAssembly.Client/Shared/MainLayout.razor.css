@@ -9,7 +9,7 @@ main {
 }
 
 .sidebar {
-    background: var(--color-gray-10, #FFF);
+    background: var(--sidebar-background-color);
     box-shadow: 0px 14px 42px 0px rgba(8, 15, 52, 0.06);
 }
 

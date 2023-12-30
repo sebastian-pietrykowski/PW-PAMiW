@@ -1,0 +1,15 @@
+@inject ThemeService ThemeService;
+@inject NavigationManager NavigationManager
+
+<button class="theme-switch @(ThemeService.IsDarkMode ? "theme-switch-dark" : "")" @onclick=switchTheme>
+    <div class="theme-switch-circle">
+        <div class="theme-switch-icon"></div>
+    </div>
+</button>
+
+@code {
+    private async Task switchTheme() {
+        ThemeService.SwitchTheme();
+        @* NavigationManager.NavigateTo(NavigationManager.Uri, true); *@
+    }
+}
