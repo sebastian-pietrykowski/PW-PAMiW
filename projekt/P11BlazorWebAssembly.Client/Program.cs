@@ -9,6 +9,8 @@ using P06Shop.Shared.Services.AuthService;
 using P06Shop.Shared.Services.MovieService;
 using P11BlazorWebAssembly.Client;
 using P11BlazorWebAssembly.Client.Services.CustomAuthStateProvider;
+using System.Globalization;
+using Microsoft.JSInterop;
 
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -41,7 +43,28 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 builder.Services.AddSingleton<ThemeService, ThemeService>();
+
 //builder.Services.AddScoped<IAuthService, AuthService>();
 
-var app = builder.Build();
-await app.RunAsync();
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+var host = builder.Build();
+
+CultureInfo culture;
+var js = host.Services.GetRequiredService<IJSRuntime>();
+var result = await js.InvokeAsync<string>("blazorCulture.get");
+
+if (result != null)
+{
+    culture = new CultureInfo(result);
+}
+else
+{
+    culture = new CultureInfo("en-US");
+    await js.InvokeVoidAsync("blazorCulture.set", "en-US");
+}
+
+CultureInfo.DefaultThreadCurrentCulture = culture;
+CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+await host.RunAsync();

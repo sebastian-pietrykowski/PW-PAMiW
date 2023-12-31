@@ -7,6 +7,13 @@
 @inject IMovieService MovieService
 @inject NavigationManager NavigationManager
 
+@using System.Globalization
+@inject IStringLocalizer<CreateMovie> Loc
+
+<p>
+    @Loc["Greeting"]
+</p>
+
 <div class="app-page">
     <h1 class="app-header">Create Movie</h1>
 

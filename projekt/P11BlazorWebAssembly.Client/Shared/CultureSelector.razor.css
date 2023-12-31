@@ -1,0 +1,19 @@
+.flag-icon {
+    width: 16px;
+    height: 16px;
+    background-color: var(--accent-color);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.english-flag {
+    background-image: url("/icons/english-flag.svg");
+}
+
+.polish-flag {
+    background-image: url("/icons/polish-flag.svg");
+}
