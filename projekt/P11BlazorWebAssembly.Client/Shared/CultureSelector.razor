@@ -7,14 +7,14 @@
     <label>
         Select your locale:
         <select @bind="Culture" class="form-select">
-            @* @foreach (var language in supportedLanguages)
+            @foreach (var language in supportedLanguages)
             {
                 <option value="@language.CultureInfo">@language.Language</option>
-            } *@
-            @foreach (var culture in supportedCultures)
+            }
+            @* @foreach (var culture in supportedCultures)
             {
                 <option value="@culture">@culture.DisplayName</option>
-            }
+            } *@
         </select>
 
     </label>
@@ -36,7 +36,6 @@
     {
         new CultureInfo("en-US"),
         new CultureInfo("pl-PL"),
-        new CultureInfo("es-CL"),
     };
 
     private CultureInfo Culture

@@ -1,33 +1,35 @@
- @using P06Shop.Shared.MovieCollection
+@using P06Shop.Shared.MovieCollection
 
- @attribute [Authorize]
+@attribute [Authorize]
+
+@inject IStringLocalizer<Strings> Loc
 
 <div class="form-container">
     <EditForm Model="movie" OnValidSubmit="OnValidSubmit" class="form">
         <DataAnnotationsValidator />
         <div class="app-content-container">
             <div>
-                <label for="title" class="app-label">Title:</label>
+                <label for="title" class="app-label">@Loc["title"]:</label>
                 <InputText id="title" @bind-Value="movie.Title" class="input"></InputText>
             </div>
             <div>
-                <label for="lengthInMinutes" class="app-label">Length in minutes:</label>
+                <label for="lengthInMinutes" class="app-label">@Loc["length-in-minutes"]:</label>
                 <InputNumber id="lengthInMinutes" @bind-Value="movie.LengthInMinutes" class="input"></InputNumber>
             </div>
             <div>
-                <label for="releaseDate" class="app-label">Release date:</label>
+                <label for="releaseDate" class="app-label">@Loc["release-date"]:</label>
                 <InputDate id="ReleaseDate" @bind-Value="movie.ReleaseDate" class="input"></InputDate>
             </div>
             <div>
-                <label for="countryOfOrigin" class="app-label">Country of origin:</label>
+                <label for="countryOfOrigin" class="app-label">@Loc["country-of-origin"]:</label>
                 <InputText id="countryOfOrigin" @bind-Value="movie.CountryOfOrigin" class="input"></InputText>
             </div>
             <div>
-                <label for="director" class="app-label">Director's full name:</label>
+                <label for="director" class="app-label">@Loc["director"]:</label>
                 <InputText id="director" @bind-Value="movie.Director" class="input"></InputText>
             </div>
             <div>
-                <label for="description" class="app-label">Description:</label>
+                <label for="description" class="app-label">@Loc["description"]:</label>
                 <InputTextArea id="description" @bind-Value="movie.Description" class="input text-area-input" rows=></InputTextArea>
             </div>
             <ValidationSummary class="movie-form-validation-summary" />

@@ -7,20 +7,25 @@
 @inject IMovieService MovieService
 @inject NavigationManager NavigationManager
 
+@inject IStringLocalizer<Strings> Loc
+
 <div class="app-page">
-    <h1 class="app-header">Edit Movie</h1>
+    <h1 class="app-header">@Loc["edit-movie"]</h1>
     @if (movie == null)
     {
+        <div class="spinner-border text-secondary" role="status">
+            <span class="sr-only"></span>
+        </div>
         <p><em>@message</em></p>
     }
     else
     {
-        <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit"  submitButtonText="Update"></MovieForm>
+        <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit"  submitButtonText=@Loc["update"]></MovieForm>
         <div class="app-content-container">
             <div class="app-buttons-container">
                 <div class="app-align-center-stretch">
-                    <button class="app-warn-button" @onclick=HandleDelete>Delete</button>
-                    <button class="app-secondary-button" @onclick=HandleGoBack>Go back</button>
+                    <button class="app-warn-button" @onclick=HandleDelete>@Loc["delete"]</button>
+                    <button class="app-secondary-button" @onclick=HandleGoBack>@Loc["go-back"]</button>
                 </div>
             </div>
         </div>
@@ -33,10 +38,12 @@
     public int Id { get; set; }
 
     private MovieDto movie;
-    private string message = "Loading movie...";
+    private string message;
 
     protected override async Task OnInitializedAsync()
     {
+        message = Loc["loading-movie"];
+
         var response = await MovieService.GetMovieByIdAsync(Id);
         if (response.Success)
             movie = response.Data;

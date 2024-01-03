@@ -1,3 +1,8 @@
+::deep .form-select {
+    background-color: var(--input-background-color) !important;
+    color: var(--input-text-color) !important;
+}
+
 .flag-icon {
     width: 16px;
     height: 16px;

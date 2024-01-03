@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<!-- 
 		Microsoft ResX Schema
@@ -98,7 +98,100 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-	<data name="Greeting" xml:space="preserve">
-    <value>Hola amigos</value>
-  </data>
+
+	<data name="welcome" xml:space="preserve">
+    	<value>Witaj w Movie Library</value>
+	</data>
+	<data name="home-page" xml:space="preserve">
+    	<value>Strona domowa</value>
+	</data>
+	
+
+	<data name="create" xml:space="preserve">
+    	<value>Utwórz</value>
+	</data>
+	<data name="update" xml:space="preserve">
+    	<value>Zaktualizuj</value>
+	</data>
+	<data name="delete" xml:space="preserve">
+    	<value>Usuń</value>
+	</data>
+	<data name="go-back" xml:space="preserve">
+    	<value>Wróć</value>
+	</data>
+	<data name="options" xml:space="preserve">
+    	<value>Opcje</value>
+	</data>
+	<data name="edit" xml:space="preserve">
+    	<value>Edytuj</value>
+	</data>
+	<data name="previous" xml:space="preserve">
+    	<value>Poprzedni</value>
+	</data>
+	<data name="next" xml:space="preserve">
+    	<value>Następny</value>
+	</data>
+	<data name="search" xml:space="preserve">
+    	<value>Szukaj</value>
+	</data>
+
+	<data name="loading-movie" xml:space="preserve">
+    	<value>Ładowanie filmu</value>
+	</data>
+	<data name="movie-list" xml:space="preserve">
+    	<value>Pełna lista filmów</value>
+	</data>
+	<data name="create-movie" xml:space="preserve">
+    	<value>Utwórz film</value>
+	</data>
+	<data name="create-new-movie" xml:space="preserve">
+    	<value>Utwórz nowy film</value>
+	</data>
+	<data name="edit-movie" xml:space="preserve">
+    	<value>Edytuj film</value>
+	</data>
+	<data name="check-out" xml:space="preserve">
+    	<value>Wypróbuj</value>
+	</data>
+	<data name="movies" xml:space="preserve">
+    	<value>Filmy</value>
+	</data>
+	<data name="page-list-of-movies" xml:space="preserve">
+    	<value>stronę, aby zobaczyć listę filmów.</value>
+	</data>
+
+	<data name="title" xml:space="preserve">
+    	<value>Tytuł</value>
+	</data>
+	<data name="length-in-minutes" xml:space="preserve">
+    	<value>Długość w min</value>
+	</data>
+	<data name="release-date" xml:space="preserve">
+    	<value>Data wydania</value>
+	</data>
+	<data name="country-of-origin" xml:space="preserve">
+    	<value>Kraj pochodzenia</value>
+	</data>
+	<data name="director" xml:space="preserve">
+    	<value>Reżyser</value>
+	</data>
+	<data name="description" xml:space="preserve">
+    	<value>Opis</value>
+	</data>
+
+	<data name="login-header" xml:space="preserve">
+    	<value>Logowanie</value>
+	</data>
+	<data name="email" xml:space="preserve">
+    	<value>Email</value>
+	</data>
+	<data name="password" xml:space="preserve">
+    	<value>Hasło</value>
+	</data>
+	<data name="login-action" xml:space="preserve">
+    	<value>Zaloguj się</value>
+	</data>
+	<data name="incorrect-data" xml:space="preserve">
+    	<value>Nieprawidłowe dane</value>
+	</data>
 </root>

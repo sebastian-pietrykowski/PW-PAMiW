@@ -32,44 +32,66 @@
                         <span class="nav-list-icon nav-list-movie-icon" aria-hidden="true"></span> Movies
                     </NavLink>
                 </div>
-                <CultureSelector />
                 <AuthorizeView>
                     <Authorized>
-                        <div class="nav-item">
-                            <NavLink class="nav-link" href="/login" @onclick="Logout">
-                                <span class="nav-list-icon nav-list-logout-icon" aria-hidden="true"></span> Logout
-                            </NavLink>
-                        </div>
-                        <div></div>
-                        <div></div>
-                        <ThemeSwitch />
+                        
                         @* <div>
                             @context.User.Identity.Name | 
                             @context.User.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault().Value
                             @context.User.Claims.Where(c => c.Type == "DateCreated").FirstOrDefault().Value
                         </div> *@
-                        <div class="nav-list-user-info">
-                            <div class="nav-item-header">Logged as:</div>
-                            <div class="nav-item nav-list-username">
-                                <p>@context.User.Identity.Name</p>
-                                <p> @context.User.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault().Value</p>
+                        <div class="nav-list-bottom">
+                            <div class="nav-item">
+                                <div class="nav-link">
+                                    <ThemeSwitch />
+                                </div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-link">
+                                    <CultureSelector />
+                                </div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-link">
+                                    <div class="nav-item-header">Logged as:</div>
+                                </div>
+                                <div class="nav-link">
+                                    <div class="nav-item nav-list-username">
+                                        <p>@context.User.Identity.Name</p>
+                                        <p> @context.User.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault().Value</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nav-item">
+                                <NavLink class="nav-link" href="/login" @onclick="Logout">
+                                    <span class="nav-list-icon nav-list-logout-icon" aria-hidden="true"></span> Logout
+                                </NavLink>
                             </div>
                         </div>
                     </Authorized>
                     <NotAuthorized>
-                        <div class="nav-item">
-                            <NavLink class="nav-link" href="/login">
-                                <span class="nav-list-icon nav-list-login-icon" aria-hidden="true"></span> Login
-                            </NavLink>
+                        <div class="nav-list-bottom">
+                            <div class="nav-item">
+                                <div class="nav-link">
+                                    <ThemeSwitch />
+                                </div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-link">
+                                    <CultureSelector />
+                                </div>
+                            </div>
+                            <div class="nav-item">
+                                <NavLink class="nav-link" href="/login">
+                                    <span class="nav-list-icon nav-list-login-icon" aria-hidden="true"></span> Login
+                                </NavLink>
+                            </div>
+                            <div class="nav-item">
+                                <NavLink class="nav-link" href="/register">
+                                    <span class="nav-list-icon nav-list-register-icon" aria-hidden="true"></span> Register
+                                </NavLink>
+                            </div>
                         </div>
-                        <div class="nav-item">
-                            <NavLink class="nav-link" href="/register">
-                                <span class="nav-list-icon nav-list-register-icon" aria-hidden="true"></span> Register
-                            </NavLink>
-                        </div>
-                        <div></div>
-                        <div></div>
-                        <ThemeSwitch />
                     </NotAuthorized>
                 </AuthorizeView>
             </div>

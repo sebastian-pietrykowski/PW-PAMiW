@@ -47,6 +47,7 @@ builder.Services.AddSingleton<ThemeService, ThemeService>();
 //builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddBlazoredLocalStorage();
 
 var host = builder.Build();
 

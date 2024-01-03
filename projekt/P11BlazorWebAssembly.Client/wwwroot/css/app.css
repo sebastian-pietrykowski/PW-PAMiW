@@ -16,6 +16,12 @@ h1:focus {
 
 p {
     color: var(--text-color);
+    margin: 0;
+}
+
+span {
+    color: var(--text-color);
+    margin: 0;
 }
 
 a, .btn-link {

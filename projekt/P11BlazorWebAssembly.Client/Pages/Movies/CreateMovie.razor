@@ -7,23 +7,21 @@
 @inject IMovieService MovieService
 @inject NavigationManager NavigationManager
 
-@using System.Globalization
-@inject IStringLocalizer<CreateMovie> Loc
-
-<p>
-    @Loc["Greeting"]
-</p>
+@inject IStringLocalizer<Strings> Loc
 
 <div class="app-page">
-    <h1 class="app-header">Create Movie</h1>
+    <h1 class="app-header">@Loc["create-movie"]</h1>
 
     @if (message != null)
     {
+        <div class="spinner-border text-secondary" role="status">
+            <span class="sr-only"></span>
+        </div>
         <p><em>@message</em></p>
     }
     else
     {
-        <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit" submitButtonText="Create"></MovieForm>
+        <MovieForm movie="movie" OnValidSubmit="HandleValidSubmit" submitButtonText="@Loc["create"]"></MovieForm>
     }    
 </div>
 

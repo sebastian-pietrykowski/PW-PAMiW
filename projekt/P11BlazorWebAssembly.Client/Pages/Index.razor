@@ -1,10 +1,12 @@
 ﻿@page "/"
 
-<PageTitle>Home page</PageTitle>
+@inject IStringLocalizer<Strings> Loc
+
+<PageTitle>@Loc["home-page"]</PageTitle>
 
 <div class="app-simple-page">
-    <h1 class="app-header">Welcome to Movie Library!</h1>
+    <h1 class="app-header">@Loc["welcome"]</h1>
     <p>
-        Check out the <NavLink href="movies">Movies</NavLink> page to see the list of movies.
+        @Loc["check-out"] <NavLink href="movies">@Loc["movies"]</NavLink> @Loc["page-list-of-movies"]
     </p>
 </div>

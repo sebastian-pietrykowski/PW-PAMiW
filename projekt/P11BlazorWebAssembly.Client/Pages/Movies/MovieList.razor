@@ -7,16 +7,21 @@
 @inject IMovieService MovieService
 @inject NavigationManager NavigationManager
 
+@inject IStringLocalizer<Strings> Loc
+
 <div class="app-page">
-    <h1 class="app-header">Full list of movies</h1>
+    <h1 class="app-header">@Loc["movie-list"]</h1>
     <div class="app-align-left app-full-content-container">
         <div class="app-button-container">
-            <a href="movies/create" class="app-secondary-button">Create a new movie</a>
+            <a href="movies/create" class="app-secondary-button">@Loc["create-new-movie"]</a>
         </div>
     </div>
     
     @if (movies == null)
     {
+        <div class="spinner-border text-secondary" role="status">
+            <span class="sr-only"></span>
+        </div>
         <p><em>@message</em></p>
     }
 
@@ -26,7 +31,7 @@
             <div class="search-container">
                 <InputText @bind-Value=searchTerm class="input"></InputText>
                 <div class="app-button-container">
-                    <button class="app-primary-button" @onclick=Search>Search</button>
+                    <button class="app-primary-button" @onclick=Search>@Loc["search"]</button>
                 </div>
             </div>
         </div>
@@ -36,12 +41,12 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Title</th>
-                                <th>Length</th>
-                                <th>Release Date</th>
-                                <th>Country of origin</th>
-                                <th>Director</th>
-                                <th>Options</th>
+                                <th>@Loc["title"]</th>
+                                <th>@Loc["length-in-minutes"]</th>
+                                <th>@Loc["release-date"]</th>
+                                <th>@Loc["country-of-origin"]</th>
+                                <th>@Loc["director"]</th>
+                                <th>@Loc["options"]</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,7 +60,7 @@
                                     <td>@movie.Director</td>
                                     <td>
                                         <div class="app-button-container">
-                                            <button class="app-secondary-button" @onclick="()=> GoToEdit(movie.Id)">Edit</button>
+                                            <button class="app-secondary-button" @onclick="()=> GoToEdit(movie.Id)">@Loc["edit"]</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -67,11 +72,11 @@
 
             <div class="app-align-center app-buttons-container">
                 <div class="app-button-container">
-                    <button class="app-primary-button" disabled="@(currentPage==1)" @onclick="PreviousPage">Previous</button>
+                    <button class="app-primary-button" disabled="@(currentPage==1)" @onclick="PreviousPage">@Loc["previous"]</button>
                 </div>
                 <span>@currentPage</span>
                 <div class="app-button-container">
-                    <button class="app-primary-button" @onclick="NextPage">Next</button>
+                    <button class="app-primary-button" @onclick="NextPage">@Loc["next"]</button>
                 </div>
             </div>
         </div>
@@ -79,9 +84,8 @@
 </div>
 
 @code {
-    @* [Inject] ThemeService ThemeService { get; set; } *@
     private List<MovieDto> movies;
-    private string message = "Loading movies...";
+    private string message;
 
     private int currentPage = 1;
     private const int pageSize = 10;
@@ -89,7 +93,9 @@
     private string searchTerm = "";
 
     protected override async Task OnInitializedAsync() {
-        await  LoadMovies();
+        message = Loc["loading-movie"];
+
+        await LoadMovies();
     }
 
     private async Task LoadMovies() {

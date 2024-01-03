@@ -1,5 +1,6 @@
 @inject ThemeService ThemeService;
 @inject NavigationManager NavigationManager
+@inject ILocalStorageService _localstorage;
 
 <button class="theme-switch @(ThemeService.IsDarkMode ? "theme-switch-dark" : "")" @onclick=switchTheme>
     <div class="theme-switch-circle">
@@ -8,8 +9,18 @@
 </button>
 
 @code {
+    protected override async Task OnInitializedAsync() {
+        var theme = await _localstorage.GetItemAsStringAsync("my-theme");
+        ThemeService.SetThemeIsDark(theme == "dark");
+    }
+
     private async Task switchTheme() {
+        if (ThemeService.IsDarkMode) {
+             await _localstorage.SetItemAsStringAsync("my-theme", "light");
+        } else {
+             await _localstorage.SetItemAsStringAsync("my-theme", "dark");
+        }
         ThemeService.SwitchTheme();
-        @* NavigationManager.NavigateTo(NavigationManager.Uri, true); *@
+        
     }
 }

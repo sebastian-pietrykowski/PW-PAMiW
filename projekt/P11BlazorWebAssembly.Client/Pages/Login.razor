@@ -9,24 +9,26 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 
+@inject IStringLocalizer<Strings> Loc
+
 <div class="app-page">
-    <h1 class="app-header">Login</h1>
+    <h1 class="app-header">@Loc["login-header"]</h1>
     <EditForm Model="userLoginDTO" OnValidSubmit="HandleLogin" class="form">
         <DataAnnotationsValidator />
         <div class="app-content-container">
             <div>
-                <label for="email" class="app-label">Email:</label>
+                <label for="email" class="app-label">@Loc["email"]:</label>
                 <InputText type="email" @bind-Value="userLoginDTO.Email" id="email" class="input"></InputText>
             </div>
             <div>
-                <label for="password" class="app-label">Password:</label>
+                <label for="password" class="app-label">@Loc["password"]:</label>
                 <InputText type="password" @bind-Value="userLoginDTO.Password" id="password" class="input"></InputText>
             </div>
             <ValidationSummary class="login-validation-summary" />
             <div></div>
-            <button class="app-primary-button" type="submit" disabled="@(!context.Validate())">Login</button>
+            <button class="app-primary-button" type="submit" disabled="@(!context.Validate())">@Loc["login-action"]</button>
             @if(!isLoginSuccess) {
-                <p class="app-error-message">Incorrect data</p>
+                <p class="app-error-message">@Loc["incorrect-data"]</p>
             }
         </div>
     </EditForm>
