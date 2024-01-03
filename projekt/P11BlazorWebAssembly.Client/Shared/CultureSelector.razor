@@ -3,18 +3,16 @@
 @inject NavigationManager Navigation
 @using P11BlazorWebAssembly.Client.Models;
 
+@inject IStringLocalizer<Strings> Loc
+
 <p>
     <label>
-        Select your locale:
+        @Loc["select-locale"]
         <select @bind="Culture" class="form-select">
             @foreach (var language in supportedLanguages)
             {
                 <option value="@language.CultureInfo">@language.Language</option>
             }
-            @* @foreach (var culture in supportedCultures)
-            {
-                <option value="@culture">@culture.DisplayName</option>
-            } *@
         </select>
 
     </label>

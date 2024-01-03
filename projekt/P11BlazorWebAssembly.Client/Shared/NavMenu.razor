@@ -6,6 +6,8 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 
+@inject IStringLocalizer<Strings> Loc
+
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <div class="navbar-title">
@@ -23,13 +25,13 @@
         <div class="nav-list-content">
             <div class="nav-item">
                 <div class="nav-link">
-                    <span class="oi nav-item-header">Overview</span>
+                    <span class="oi nav-item-header">@Loc["overview"]</span>
                 </div>
             </div>
             <div class="nav-list-options">
                 <div class="nav-item">
                     <NavLink class="nav-link" href="movies">
-                        <span class="nav-list-icon nav-list-movie-icon" aria-hidden="true"></span> Movies
+                        <span class="nav-list-icon nav-list-movie-icon" aria-hidden="true"></span> @Loc["movies"]
                     </NavLink>
                 </div>
                 <AuthorizeView>
@@ -53,18 +55,18 @@
                             </div>
                             <div class="nav-item">
                                 <div class="nav-link">
-                                    <div class="nav-item-header">Logged as:</div>
+                                    <div class="nav-item-header">@Loc["logged-as"]:</div>
                                 </div>
                                 <div class="nav-link">
                                     <div class="nav-item nav-list-username">
                                         <p>@context.User.Identity.Name</p>
-                                        <p> @context.User.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault().Value</p>
+                                        <p> @Loc["role-" + @context.User.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault().Value]</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="nav-item">
                                 <NavLink class="nav-link" href="/login" @onclick="Logout">
-                                    <span class="nav-list-icon nav-list-logout-icon" aria-hidden="true"></span> Logout
+                                    <span class="nav-list-icon nav-list-logout-icon" aria-hidden="true"></span> @Loc["logout"]
                                 </NavLink>
                             </div>
                         </div>
@@ -83,12 +85,12 @@
                             </div>
                             <div class="nav-item">
                                 <NavLink class="nav-link" href="/login">
-                                    <span class="nav-list-icon nav-list-login-icon" aria-hidden="true"></span> Login
+                                    <span class="nav-list-icon nav-list-login-icon" aria-hidden="true"></span> @Loc["login-action"]
                                 </NavLink>
                             </div>
                             <div class="nav-item">
                                 <NavLink class="nav-link" href="/register">
-                                    <span class="nav-list-icon nav-list-register-icon" aria-hidden="true"></span> Register
+                                    <span class="nav-list-icon nav-list-register-icon" aria-hidden="true"></span> @Loc["register-action"]
                                 </NavLink>
                             </div>
                         </div>

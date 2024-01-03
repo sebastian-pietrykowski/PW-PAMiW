@@ -150,14 +150,14 @@
 	<data name="edit-movie" xml:space="preserve">
     	<value>Edytuj film</value>
 	</data>
-	<data name="check-out" xml:space="preserve">
-    	<value>Wypróbuj</value>
+	<data name="check-out-page-list-of-movies-1" xml:space="preserve">
+    	<value>Wypróbuj stronę</value>
 	</data>
 	<data name="movies" xml:space="preserve">
     	<value>Filmy</value>
 	</data>
-	<data name="page-list-of-movies" xml:space="preserve">
-    	<value>stronę, aby zobaczyć listę filmów.</value>
+	<data name="check-out-page-list-of-movies-2" xml:space="preserve">
+    	<value>, aby zobaczyć listę filmów.</value>
 	</data>
 
 	<data name="title" xml:space="preserve">
@@ -193,5 +193,60 @@
 	</data>
 	<data name="incorrect-data" xml:space="preserve">
     	<value>Nieprawidłowe dane</value>
+	</data>
+
+	<data name="register-header" xml:space="preserve">
+    	<value>Rejestracja</value>
+	</data>
+	<data name="register-action" xml:space="preserve">
+    	<value>Zarejestruj się</value>
+	</data>
+	<data name="username" xml:space="preserve">
+    	<value>Nazwa użytkownika</value>
+	</data>
+	<data name="confirm-password" xml:space="preserve">
+    	<value>Potwierdź hasło</value>
+	</data>
+
+	<data name="overview" xml:space="preserve">
+    	<value>Przegląd</value>
+	</data>
+	<data name="select-locale" xml:space="preserve">
+    	<value>Wybierz swój region:</value>
+	</data>
+	<data name="logout" xml:space="preserve">
+    	<value>Wyloguj się</value>
+	</data>
+	<data name="logged-as" xml:space="preserve">
+    	<value>Zalogowany jako</value>
+	</data>
+	<data name="role-Customer" xml:space="preserve">
+    	<value>Klient</value>
+	</data>
+	<data name="role-Admin" xml:space="preserve">
+    	<value>Administrator</value>
+	</data>
+
+	<data name="not-allowed-page-title" xml:space="preserve">
+    	<value>Strona niedostępna</value>
+	</data>
+	<data name="not-allowed-header" xml:space="preserve">
+    	<value>Nie możesz zobaczyć tej strony.</value>
+	</data>
+	<data name="login-register-label-1" xml:space="preserve">
+    	<value>Proszę</value>
+	</data>
+	<data name="login-register-label-2" xml:space="preserve">
+    	<value>lub</value>
+	</data>
+	<data name="login-register-label-3" xml:space="preserve">
+    	<value>, aby założyć nowe konto.</value>
+	</data>
+
+	<data name="not-found-page-title" xml:space="preserve">
+    	<value>Nie znaleziono</value>
+	</data>
+	<data name="not-found-header" xml:space="preserve">
+    	<value>Przepraszamy, nie ma nic pod tym adresem.</value>
 	</data>
 </root>
