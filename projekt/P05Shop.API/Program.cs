@@ -26,6 +26,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddScoped<IMovieService, P05Shop.API.Services.MovieService.MovieService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+builder.Services.AddHttpClient();
 // addScoped - obiekt jest tworzony za kazdym razem dla nowego zapytania http
 // jedno zaptranie tworzy jeden obiekt 
 
@@ -49,6 +50,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
         };
     });
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddCors(options =>
 {
