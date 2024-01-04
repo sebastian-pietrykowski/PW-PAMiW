@@ -193,6 +193,12 @@
 	<data name="incorrect-data" xml:space="preserve">
     	<value>Incorrect data</value>
 	</data>
+	<data name="register-prompt" xml:space="preserve">
+    	<value>Register yourself</value>
+	</data>
+	<data name="register-prompt-description" xml:space="preserve">
+    	<value>Don't have account?</value>
+	</data>
 
 	<data name="register-header" xml:space="preserve">
     	<value>Register</value>

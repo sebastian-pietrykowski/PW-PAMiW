@@ -27,6 +27,7 @@
             <ValidationSummary class="login-validation-summary" />
             <div></div>
             <button class="app-primary-button" type="submit" disabled="@(!context.Validate())">@Loc["login-action"]</button>
+            <p>@Loc["register-prompt-description"] <NavLink href="register">@Loc["register-prompt"]</NavLink></p>
             @if(!isLoginSuccess) {
                 <p class="app-error-message">@Loc["incorrect-data"]</p>
             }

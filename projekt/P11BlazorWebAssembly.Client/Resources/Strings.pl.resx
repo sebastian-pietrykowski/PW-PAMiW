@@ -194,6 +194,12 @@
 	<data name="incorrect-data" xml:space="preserve">
     	<value>Nieprawidłowe dane</value>
 	</data>
+	<data name="register-prompt" xml:space="preserve">
+    	<value>Zarejestruj się</value>
+	</data>
+	<data name="register-prompt-description" xml:space="preserve">
+    	<value>Nie posiadasz konta?</value>
+	</data>
 
 	<data name="register-header" xml:space="preserve">
     	<value>Rejestracja</value>
