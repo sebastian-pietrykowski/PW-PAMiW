@@ -10,6 +10,7 @@
 @inject NavigationManager NavigationManager
 
 @inject IStringLocalizer<Strings> Loc
+@inject IJSRuntime JSRuntime
 
 <div class="app-page">
     <h1 class="app-header">@Loc["login-header"]</h1>
@@ -31,6 +32,7 @@
             @if(!isLoginSuccess) {
                 <p class="app-error-message">@Loc["incorrect-data"]</p>
             }
+            <button @onclick="HandleGoogleLogin" class="app-secondary-button" >@Loc["login-google-action"]</button>
         </div>
     </EditForm>
 
@@ -49,7 +51,8 @@
 
     private async Task HandleLogin()
     {
-        var result = await  AuthService.Login(userLoginDTO);
+        Console.WriteLine("Login clicked");
+        var result = await AuthService.Login(userLoginDTO);
         if (result.Success)
         {
             await LocalStorageService.SetItemAsync("authToken", result.Data);
@@ -62,5 +65,17 @@
             isLoginSuccess = false;
             @* message = result.Message; *@
         }
+    }
+
+    private async Task HandleGoogleLogin() {
+        Console.WriteLine("Google login clicked");
+        var authenticationStateProvider =
+        DotNetObjectReference.Create<AuthenticationStateProvider>(AuthenticationStateProvider);
+
+        await JSRuntime.InvokeVoidAsync("googleInitialize",
+        "315415567997-6m6ooi55g0dqv08vjst05ja30kamsrit.apps.googleusercontent.com", authenticationStateProvider);
+        await JSRuntime.InvokeVoidAsync("googlePrompt");
+
+        NavigationManager.NavigateTo("/");
     }
 }

@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using static System.Net.WebRequestMethods;
+using Microsoft.JSInterop;
+
 
 namespace P11BlazorWebAssembly.Client.Services.CustomAuthStateProvider
 {
@@ -62,6 +65,34 @@ namespace P11BlazorWebAssembly.Client.Services.CustomAuthStateProvider
                 case 3: base64 += "="; break;
             }
             return Convert.FromBase64String(base64);
+        }
+
+        [JSInvokable]
+        public async void GoogleLogin(GoogleAuthResponse googleAuthResponse)
+        {
+            await _localStorageService.SetItemAsStringAsync("googleToken", googleAuthResponse.Credential);
+
+            var identity = new ClaimsIdentity();
+            _httpClient.DefaultRequestHeaders.Authorization = null;
+            _httpClient.DefaultRequestHeaders.Remove("X-Authorization");
+
+            if (!string.IsNullOrEmpty(googleAuthResponse.Credential))
+            {
+                try
+                {
+                    identity = new ClaimsIdentity(ParseClaimsFromJwt(googleAuthResponse.Credential), "jwt");
+                    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", googleAuthResponse.Credential);
+                }
+                catch (Exception)
+                {
+                    await _localStorageService.RemoveItemAsync("googleToken");
+                    identity = new ClaimsIdentity();
+                }
+            }
+
+            var user = new ClaimsPrincipal(identity);
+            var state = new AuthenticationState(user);
+            NotifyAuthenticationStateChanged(Task.FromResult(state));
         }
     }
 }

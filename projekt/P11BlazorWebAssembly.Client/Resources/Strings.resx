@@ -190,6 +190,9 @@
 	<data name="login-action" xml:space="preserve">
     	<value>Login</value>
 	</data>
+	<data name="login-google-action" xml:space="preserve">
+    	<value>Login with Google</value>
+	</data>
 	<data name="incorrect-data" xml:space="preserve">
     	<value>Incorrect data</value>
 	</data>

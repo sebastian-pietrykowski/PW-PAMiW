@@ -191,6 +191,9 @@
 	<data name="login-action" xml:space="preserve">
     	<value>Zaloguj się</value>
 	</data>
+	<data name="login-google-action" xml:space="preserve">
+    	<value>Zaloguj się używając Google</value>
+	</data>
 	<data name="incorrect-data" xml:space="preserve">
     	<value>Nieprawidłowe dane</value>
 	</data>
