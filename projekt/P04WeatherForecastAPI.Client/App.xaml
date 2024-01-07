@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
              Startup="OnStartup" ><!--StartupUri="MainWindow.xaml"-->
     <Application.Resources>
-         
+         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

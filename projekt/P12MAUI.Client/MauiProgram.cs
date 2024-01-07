@@ -53,7 +53,7 @@ namespace P12MAUI.Client
                 BaseAPIUrl = "http://localhost:5093",
                 BaseMovieEndpoint = new BaseMovieEndpoint()
                 {
-                    Base_url = "api/Movie",
+                    Base_url = "api/Movie/",
                     GetAllMoviesEndpoint = "",
                 },
             };

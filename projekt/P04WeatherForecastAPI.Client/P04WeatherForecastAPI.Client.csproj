@@ -47,6 +47,19 @@
 
   <ItemGroup>
     <Resource Include="Images\rain.jpg" />
+    <Resource Include="Images\login-light.png" />
+    <Resource Include="Images\login-dark.png" />
+    <Resource Include="Images\logo-icon.png" />
+    <Resource Include="Images\logo-light.png" />
+    <Resource Include="Images\logo-dark.png" />
+    <Resource Include="Images\logout-light.png" />
+    <Resource Include="Images\logout-dark.png" />
+    <Resource Include="Images\moon.png" />
+    <Resource Include="Images\movie-light.png" />
+    <Resource Include="Images\movie-dark.png" />
+    <Resource Include="Images\register-light.png" />
+    <Resource Include="Images\register-dark.png" />
+    <Resource Include="Images\sun.png" />
   </ItemGroup>
 
 </Project>

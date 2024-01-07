@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
         xmlns:converters="clr-namespace:P04WeatherForecastAPI.Client.Converters"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:uc="clr-namespace:P04WeatherForecastAPI.Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="420" Width="400">
+        Title="MainWindow" Height="520" Width="400">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVisConv" ></BooleanToVisibilityConverter>
         <converters:TemperatureToDisplayConverter x:Key="tmpToDispConv"></converters:TemperatureToDisplayConverter>
@@ -22,19 +24,20 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="DarkRed"/>
         </Style>
+
+        
     </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="250" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.Column="0" Grid.Row="0" Margin="10">
+        <!-- <DockPanel Grid.Column="0" Grid.Row="0" Margin="10">
             <Button DockPanel.Dock="Top" Content="Login" Command="{Binding OpenLoginWindowCommand}" Style="{StaticResource mainButtonStyle}" ></Button>
             <Button DockPanel.Dock="Top" Content="Logout" Command="{Binding LogoutCommand}" Style="{StaticResource mainButtonStyle}" ></Button>
             <Button DockPanel.Dock="Top" Content="Manage Favorite Cities" Command="{Binding OpenFavotireCitiesCommand}" Style="{StaticResource mainButtonStyle}" ></Button>
@@ -43,7 +46,9 @@
             <TextBox DockPanel.Dock="Top" x:Name="txtCity"></TextBox>
             <Button DockPanel.Dock="Top" x:Name="btnSearch" Content="Search" Command="{Binding LoadCitiesCommand}" CommandParameter="{Binding Text, ElementName=txtCity}" Style="{StaticResource mainButtonStyle}" ></Button>
             <ListBox Height="200"   x:Name="lbData" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectedCity}" DisplayMemberPath="LocalizedName" Margin="0,10,0,0"></ListBox>
-        </DockPanel>
+        </DockPanel> -->
+
+        <uc:Sidebar Grid.Column="0" Grid.Row="0"/>
         
         <StackPanel Grid.Column="1" Grid.Row="0" Margin="10">
             <Label HorizontalAlignment="Center" Content="Temperature for city:" Style="{StaticResource mainLabelStyle}"></Label>
