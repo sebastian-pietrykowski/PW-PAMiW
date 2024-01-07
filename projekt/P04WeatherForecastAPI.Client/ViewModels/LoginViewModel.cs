@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows;
 
 namespace P04WeatherForecastAPI.Client.ViewModels
 {
@@ -16,6 +17,9 @@ namespace P04WeatherForecastAPI.Client.ViewModels
     {
         private readonly IAuthService _authService;
         public static string Token { get; set; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
+        private readonly Window Window;
+
 
         public LoginViewModel(IAuthService authService)
         {
@@ -26,6 +30,20 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         [ObservableProperty]
         private UserLoginDTO userLoginDTO;
 
+    
+        public bool DoShowMessage {
+            get
+            {
+                return !string.IsNullOrEmpty(Message);
+            }
+        }
+
+        public bool IsLoggedIn {
+            get
+            {
+                return !string.IsNullOrEmpty(Token);
+            }
+        }
          
         public async Task Login(string password)
         {
@@ -33,12 +51,17 @@ namespace P04WeatherForecastAPI.Client.ViewModels
             var response = await _authService.Login(UserLoginDTO);
             if (response.Success)
             {
-                System.Windows.MessageBox.Show("Success");
                 Token = response.Data;
+                OnPropertyChanged(nameof(Token));
+                OnPropertyChanged(nameof(IsLoggedIn));
+
+                App.Current.Windows[2].Close();
             }
             else
             {
-                System.Windows.MessageBox.Show("Failure");
+                Message = "Incorrect data";
+                OnPropertyChanged(nameof(Message));
+                OnPropertyChanged(nameof(DoShowMessage));
             }
             
         }
@@ -46,18 +69,8 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         public async Task Logout()
         {
             Token = null;
-            
+            OnPropertyChanged(nameof(Token));
+            OnPropertyChanged(nameof(IsLoggedIn));
         }
-
-        [RelayCommand]
-        public async Task MouseEnter()
-        {
-             
-        }
-
-
-
-
     }
-
 }

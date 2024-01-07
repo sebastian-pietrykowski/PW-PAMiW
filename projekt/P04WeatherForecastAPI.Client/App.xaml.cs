@@ -4,6 +4,7 @@ using P04WeatherForecastAPI.Client.MessageBox;
 using P04WeatherForecastAPI.Client.ViewModels;
 using P04WeatherForecastAPI.Client.Services.WeatherServices;
 using P04WeatherForecastAPI.Client.Services.SpeechService;
+// using P04WeatherForecastAPI.Client.Services.ThemeService;
 using P06Shop.Shared.Configuration;
 using P06Shop.Shared.MessageBox;
 using P06Shop.Shared.Services.AuthService;
@@ -17,6 +18,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Extensions.Options;
+using P04Library.Client;
 
 namespace P04WeatherForecastAPI.Client
 {
@@ -83,6 +85,9 @@ namespace P04WeatherForecastAPI.Client
             services.AddSingleton<LoginViewModel>();
             services.AddTransient<LoginView>();
 
+            services.AddSingleton<SidebarViewModel>();
+
+
             // services.AddSingleton<BaseViewModel,MainViewModelV3>();
         }
 
@@ -112,6 +117,8 @@ namespace P04WeatherForecastAPI.Client
 
         private void OnStartup(object sender, StartupEventArgs e)
         {
+            AppUserSettings.LoadSettings();
+
             var mainWindow = _serviceProvider.GetService<MainWindow>();
             mainWindow.Show();
         }

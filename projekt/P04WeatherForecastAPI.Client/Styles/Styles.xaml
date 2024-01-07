@@ -7,4 +7,36 @@
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
+    <Style x:Key="header" TargetType="Label">
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="Foreground" Value="#3F3F3F"/>
+    </Style>
+
+    <Style x:Key="label" TargetType="Label">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="#5F5F5F"/>
+    </Style>
+    <Style x:Key="darkLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="600"/>
+        <Setter Property="Foreground" Value="#3F3F3F"/>
+    </Style>
+
+    <Style x:Key="errorLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="#F13E3E"/>
+    </Style>
+
+    <Style x:Key="input" TargetType="TextBox">
+        <Setter Property="Padding" Value="16,12,16,12"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="#5F5F5F"/>
+    </Style>
+
+    <Style x:Key="inputPassword" TargetType="PasswordBox">
+        <Setter Property="Padding" Value="16,12,16,12"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="#5F5F5F"/>
+    </Style>
+
 </ResourceDictionary>

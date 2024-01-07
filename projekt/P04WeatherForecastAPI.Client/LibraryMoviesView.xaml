@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
         mc:Ignorable="d"
-        Title="LibraryMoviesWindow" Height="450" Width="800">
+        Title="LibraryMoviesWindow" Height="720" Width="1280">
 
     <!-- <ListView ItemsSource="{Binding Products}">
         <ListView.ItemTemplate>
@@ -18,7 +18,7 @@
         </ListView.ItemTemplate>
     </ListView> -->
 
-     <StackPanel>
+     <!-- <StackPanel>
         <Button Grid.Row="3" 
         Command="{Binding NewCommand}" 
           Content="New Movie" >
@@ -58,14 +58,11 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <!--Pierwszy wiersz-->
                             <StackPanel Grid.Row="0" Orientation="Horizontal">
                                 <Label Content="{Binding Id}" FontWeight="Bold" Margin="0 0 10 0"></Label>
                                 <Label Content="{Binding Title}" FontSize="16" FontWeight="Bold" Foreground="Navy"></Label>
                             </StackPanel>
-                            <!--Drugi wiersz-->
                             <TextBlock Grid.Row="1" Text="{Binding Genre}" TextWrapping="Wrap" FontStyle="Italic" Foreground="DarkGray"></TextBlock>
-                            <!--Trzeci wiersz-->
                             <StackPanel Grid.Row="2" Orientation="Horizontal">
                                 <TextBlock Foreground="DarkGreen" Margin="0 0 10 0">
                             <Run Text="LengthInMinutes: "></Run>
@@ -117,5 +114,120 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackPanel>
+    </StackPanel> -->
+
+    <Border Padding="24,20,24,20" Background="#F9F9FB">
+        <StackPanel Orientation="Vertical">
+            <Label HorizontalAlignment="Center" Content="Full list of movies" Margin="0,0,0,20" Style="{StaticResource header}"/>
+
+            <Border CornerRadius="12" Padding="24,20,24,20" Margin="0,0,0,20" Background="#FFF">
+                <StackPanel>
+                    <Button HorizontalAlignment="Left" Content="Create a new movie" Command="{Binding NewCommand}" Style="{StaticResource primaryButton}"> </Button>
+                </StackPanel>
+            </Border>
+
+            <Border CornerRadius="12" Padding="24,20,24,20" Margin="0,0,0,20" Background="#FFF">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="500"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border BorderBrush="Black" BorderThickness="0,0,0,1">
+                        <Grid Grid.Row="0" Height="70">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="135" />
+                                <ColumnDefinition Width="230" />
+                                <ColumnDefinition Width="250" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Padding="8,10,8,10" Style="{StaticResource darkLabel}">
+                                <Label.Content>
+                                    <AccessText TextWrapping="Wrap" Text="TITLE"/>
+                                </Label.Content>
+                            </Label>
+                            <Label Grid.Column="1" Padding="8,10,8,10" Style="{StaticResource darkLabel}">
+                                <Label.Content>
+                                    <AccessText TextWrapping="Wrap" Text="LENGTH IN MIN"/>
+                                </Label.Content>
+                            </Label>
+                            <Label Grid.Column="2" Padding="8,10,8,10" Style="{StaticResource darkLabel}">
+                                <Label.Content>
+                                    <AccessText TextWrapping="Wrap" Text="RELEASE DATE"/>
+                                </Label.Content>
+                            </Label>
+                            <Label Grid.Column="3" Padding="8,10,8,10" Style="{StaticResource darkLabel}">
+                                <Label.Content>
+                                    <AccessText TextWrapping="Wrap" Text="COUNTRY OF ORIGIN"/>
+                                </Label.Content>
+                            </Label>
+                            <Label Grid.Column="4" Padding="8,10,8,10" Style="{StaticResource darkLabel}">
+                                <Label.Content>
+                                    <AccessText TextWrapping="Wrap" Text="DIRECTOR"/>
+                                </Label.Content>
+                            </Label>
+                            <Label Grid.Column="5" Padding="8,10,8,10" Style="{StaticResource darkLabel}">
+                                <Label.Content>
+                                    <AccessText TextWrapping="Wrap" Text="OPTIONS"/>
+                                </Label.Content>
+                            </Label>
+                        </Grid>
+                    </Border>
+                    <ListView Grid.Row="1" ItemsSource="{Binding Movies}"
+                            VerticalContentAlignment="Top"  
+                            ScrollViewer.VerticalScrollBarVisibility="Visible"
+                            ScrollViewer.CanContentScroll="True" BorderThickness="0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#DEE2E6" BorderThickness="0,0,0,1">
+                                    <Grid Height="70">
+                                        <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="135" />
+                                        <ColumnDefinition Width="230" />
+                                        <ColumnDefinition Width="250" />
+                                        <ColumnDefinition Width="100" />
+                                    </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Padding="8,10,8,10" Style="{StaticResource label}">
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" Text="{Binding Title}"/>
+                                            </Label.Content>
+                                        </Label>
+                                        <Label Grid.Column="1" Padding="8,10,8,10" Style="{StaticResource label}">
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" Text="{Binding LengthInMinutes}"/>
+                                            </Label.Content>
+                                        </Label>
+                                        <Label Grid.Column="2" Padding="8,10,8,10" Style="{StaticResource label}">
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" Text="{Binding ReleaseDate, StringFormat='dd MM yyyy'}"/>
+                                            </Label.Content>
+                                        </Label>
+                                        <Label Grid.Column="3" Padding="8,10,8,10" Style="{StaticResource label}">
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" Text="{Binding CountryOfOrigin}"/>
+                                            </Label.Content>
+                                        </Label>
+                                        <Label Grid.Column="4" Padding="8,10,8,10" Style="{StaticResource label}">
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" Text="{Binding Director}"/>
+                                            </Label.Content>
+                                        </Label>
+
+                                        <Button Grid.Column="5"
+                                                Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                CommandParameter="{Binding}" Content="Edit" Margin="8,10,8,10" Style="{StaticResource secondaryButton}">
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </Border>
 </Window>

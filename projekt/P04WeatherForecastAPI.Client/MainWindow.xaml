@@ -8,7 +8,7 @@
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:uc="clr-namespace:P04WeatherForecastAPI.Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="520" Width="400">
+        Title="Movie Library" Height="520" Width="400">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVisConv" ></BooleanToVisibilityConverter>
         <converters:TemperatureToDisplayConverter x:Key="tmpToDispConv"></converters:TemperatureToDisplayConverter>
@@ -47,15 +47,83 @@
             <Button DockPanel.Dock="Top" x:Name="btnSearch" Content="Search" Command="{Binding LoadCitiesCommand}" CommandParameter="{Binding Text, ElementName=txtCity}" Style="{StaticResource mainButtonStyle}" ></Button>
             <ListBox Height="200"   x:Name="lbData" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectedCity}" DisplayMemberPath="LocalizedName" Margin="0,10,0,0"></ListBox>
         </DockPanel> -->
-
-        <uc:Sidebar Grid.Column="0" Grid.Row="0"/>
+        <Border Grid.Column="0" Grid.Row="0" Background="White">
+            <Border.Effect>
+                <DropShadowEffect Color="#F8F8F9" Direction="0" BlurRadius="82" ShadowDepth="82"/>
+            </Border.Effect>
         
-        <StackPanel Grid.Column="1" Grid.Row="0" Margin="10">
+            <Grid Grid.Column="0" Grid.Row="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="0" Grid.Row="0" Padding="16,8,0,8">
+                    <StackPanel Orientation="Horizontal">
+                        <Image VerticalAlignment="Center" Height="40" Source="/Images/logo-light.png" Margin="12,0,9,0"/>
+                        <Button VerticalAlignment="Center" FontSize="16" FontWeight="800" Foreground="#702DFF" Padding="0,5,0,5" Style="{StaticResource linkButton}">
+                            MOVIE LIBRARY
+                        </Button>
+                    </StackPanel>
+                </Border>
+                
+                <Border Grid.Column="0" Grid.Row="1" Padding="32">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0">
+                            <TextBlock FontSize="16" FontWeight="600" Foreground="#3F3F3F" Padding="8" Margin="0,0,0,10">
+                                OVERVIEW
+                            </TextBlock>
+                            <Button VerticalAlignment="Center" FontSize="16" Foreground="#702DFF" HorizontalContentAlignment="Left" Padding="8" Style="{StaticResource linkButton}" Command="{Binding OpenMoviesLibraryWindowCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image VerticalAlignment="Center" Height="16" Source="/Images/movie-light.png" Margin="0,0,12,0"/>
+                                    <TextBlock>Movies</TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
+                            <!-- <Button x:Name="btnSwitchTheme" Content="Switch theme" Command="{Binding SwitchThemeCommand}" Style="{StaticResource myButton}" ></Button> -->
+
+                            <Button VerticalAlignment="Center" FontSize="16" Foreground="#702DFF" HorizontalContentAlignment="Left" Padding="8" Margin="0,8,0,0" Style="{StaticResource linkButton}" Command="{Binding OpenLoginWindowCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image VerticalAlignment="Center" Height="16" Source="/Images/login-light.png" Margin="0,0,12,0"/>
+                                    <TextBlock>Login</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button VerticalAlignment="Center" FontSize="16" Foreground="#702DFF" HorizontalContentAlignment="Left" Padding="8" Margin="0,8,0,0" Style="{StaticResource linkButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image VerticalAlignment="Center" Height="16" Source="/Images/register-light.png" Margin="0,0,12,0"/>
+                                    <TextBlock>Register</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button VerticalAlignment="Center" FontSize="16" Foreground="#702DFF" HorizontalContentAlignment="Left" Padding="8" Margin="0,8,0,0" Style="{StaticResource linkButton}" Command="{Binding LogoutCommand}" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Image VerticalAlignment="Center" Height="16" Source="/Images/logout-light.png" Margin="0,0,12,0"/>
+                                    <TextBlock>Logout</TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Frame Grid.Column="1" Grid.Row="0" x:Name="mainFrame" />
+        
+        <!-- <StackPanel Grid.Column="1" Grid.Row="0" Margin="10">
             <Label HorizontalAlignment="Center" Content="Temperature for city:" Style="{StaticResource mainLabelStyle}"></Label>
             <Label x:Name="lblCityName" Content="{Binding SelectedCity.LocalizedName}" Style="{StaticResource mainLabelStyle}"></Label>
             <Label Content="is:" Style="{StaticResource mainLabelStyle}"></Label>
             <Label x:Name="lblTemperatureValue" Content="{Binding WeatherView.CurrentTemperature, Converter={StaticResource tmpToDispConv}}" Style="{StaticResource mainLabelStyle}"></Label>
             <Image Visibility="{Binding WeatherView.HasPrecipitation, Converter={StaticResource boolToVisConv}}" Height="100" Source="/Images/rain.jpg" />
-        </StackPanel>
+        </StackPanel> -->
     </Grid>
 </Window>

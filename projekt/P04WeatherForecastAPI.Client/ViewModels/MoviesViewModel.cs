@@ -46,11 +46,11 @@ namespace P04WeatherForecastAPI.Client.ViewModels
             var newMovie = new Movie()
             {
                 Title = selectedMovie.Title,
-                Genre = selectedMovie.Genre,
                 LengthInMinutes = selectedMovie.LengthInMinutes,
                 ReleaseDate = selectedMovie.ReleaseDate,
                 CountryOfOrigin = selectedMovie.CountryOfOrigin,
                 Director = selectedMovie.Director,
+                Description = selectedMovie.Description,
             };
 
             var result =  await _movieService.CreateMovieAsync(newMovie);
@@ -66,11 +66,11 @@ namespace P04WeatherForecastAPI.Client.ViewModels
             {
                 Id = selectedMovie.Id,
                 Title = selectedMovie.Title,
-                Genre = selectedMovie.Genre,
                 LengthInMinutes = selectedMovie.LengthInMinutes,
                 ReleaseDate = selectedMovie.ReleaseDate,
                 CountryOfOrigin = selectedMovie.CountryOfOrigin,
                 Director = selectedMovie.Director,
+                Description = selectedMovie.Description,
             };
 
             await _movieService.UpdateMovieAsync(movieToUpdate);
@@ -104,6 +104,7 @@ namespace P04WeatherForecastAPI.Client.ViewModels
                 UpdateMovie();
             }
 
+            App.Current.Windows[3].Close();
         }
 
         [RelayCommand]
@@ -118,6 +119,13 @@ namespace P04WeatherForecastAPI.Client.ViewModels
             _movieDetailsView.Show();
             _movieDetailsView.DataContext = this;
             SelectedMovie = new Movie(); 
+        }
+
+        public bool IsThereError {
+            get
+            {
+                return false;
+            }
         }
 
 

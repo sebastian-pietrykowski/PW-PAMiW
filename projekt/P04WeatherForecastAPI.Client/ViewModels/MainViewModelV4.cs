@@ -6,6 +6,9 @@ using P04WeatherForecastAPI.Client.Models;
 using P04WeatherForecastAPI.Client.Services.WeatherServices;
 using System;
 using System.Collections.ObjectModel;
+using P04Library.Client;
+
+using System.Reflection;
 
 namespace P04WeatherForecastAPI.Client.ViewModels
 {
@@ -136,6 +139,31 @@ namespace P04WeatherForecastAPI.Client.ViewModels
             LoginViewModel loginViewModel = _serviceProvider.GetService<LoginViewModel>();
             loginViewModel.Logout();
             System.Windows.MessageBox.Show("Logged out");
+        }
+
+        [RelayCommand]
+        public void SwitchTheme()
+        {
+            AppUserSettings.SwitchTheme();
+            RefreshAllProperties();
+        }
+
+        public void RefreshAllProperties()
+        {
+            OnPropertyChanged();
+            var properties = GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            foreach (var property in properties)
+            {
+                OnPropertyChanged(property.Name);
+            }
+        }
+
+        public bool IsLoggedIn {
+            get
+            {
+                LoginViewModel loginViewModel = _serviceProvider.GetService<LoginViewModel>();
+                return loginViewModel.IsLoggedIn;
+            }
         }
     }
 }

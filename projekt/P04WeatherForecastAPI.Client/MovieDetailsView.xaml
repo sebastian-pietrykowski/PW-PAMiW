@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
         mc:Ignorable="d"
-        Title="MovieDetailsView" Height="250" Width="300" Closing="Window_Closing">
-    <StackPanel>
+        Title="MovieDetailsView" Height="720" Width="500" Closing="Window_Closing">
+    <!-- <StackPanel>
         <Grid DataContext="{Binding SelectedMovie}"  Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -97,11 +97,40 @@
                 </Button.Style>
             </Button>
         </StackPanel>
-    </StackPanel>
+    </StackPanel> -->
    
+    <ScrollViewer>
+        <Border DataContext="{Binding SelectedMovie}" Margin="24,20,24,20">
+            <StackPanel Orientation="Vertical">
+                <Label HorizontalAlignment="Center" Content="Movie details" Margin="0,0,0,40" Style="{StaticResource header}"/>
 
-   
-    
+                <Label Content="Title:" Margin="0,0,0,3" Style="{StaticResource label}"/>
+                <TextBox Margin="0,0,0,16" Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource input}"/>
 
-    
+                <Label Content="Lenght in min:" Margin="0,0,0,3" Style="{StaticResource label}"/>
+                <TextBox Margin="0,0,0,16" Text="{Binding LengthInMinutes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource input}"/>
+
+                <Label Content="Release date:" Margin="0,0,0,3" Style="{StaticResource label}"/>
+                <TextBox Margin="0,0,0,16" Text="{Binding ReleaseDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource input}"/>
+
+                <Label Content="Country of origin:" Margin="0,0,0,3" Style="{StaticResource label}"/>
+                <TextBox Margin="0,0,0,16" Text="{Binding CountryOfOrigin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource input}"/>
+
+                <Label Content="Director:" Margin="0,0,0,3" Style="{StaticResource label}"/>
+                <TextBox Margin="0,0,0,16" Text="{Binding Director, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource input}"/>
+
+                <Label Content="Description:" Margin="0,0,0,3" Style="{StaticResource label}"/>
+                <TextBox Margin="0,0,0,16" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource input}"/>
+
+
+                <!-- <Label Content="Error" Visibility="{Binding IsThereError, Converter={StaticResource boolToVisConv}}" Style="{StaticResource errorLabel}"></Label> -->
+
+                <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="0,16,0,0" Style="{StaticResource warnButton}">
+                </Button>
+
+                <Button Content="Save" Command="{Binding SaveCommand}" Margin="0,16,0,0" Style="{StaticResource primaryButton}">
+                </Button>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
 </Window>

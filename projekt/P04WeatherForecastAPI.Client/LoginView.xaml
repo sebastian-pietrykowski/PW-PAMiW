@@ -5,32 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:converters="clr-namespace:P04WeatherForecastAPI.Client.Converters"
         mc:Ignorable="d"
-        Title="LoginView" Height="150" Width="200">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        Title="LoginView" Height="500" Width="400">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVisConv" ></BooleanToVisibilityConverter>
+    </Window.Resources>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+    <Border Margin="24,20,24,20">
+        <StackPanel Orientation="Vertical">
+            <Label HorizontalAlignment="Center" Content="Login" Margin="0,0,0,40" Style="{StaticResource header}"/>
 
-        <Label Content="Email:" Grid.Row="0" Grid.Column="0" />
-        <TextBox x:Name="EmailTextBox" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding UserLoginDTO.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Email:" Margin="0,0,0,3" Style="{StaticResource label}"/>
+            <TextBox x:Name="EmailTextBox" Margin="0,0,0,16" Text="{Binding UserLoginDTO.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource input}"/>
 
-        <Label Content="Password:" Grid.Row="1" Grid.Column="0" />
-        <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" Margin="5" PasswordChar="*" />
+            <Label Content="Password:" Margin="0,0,0,3" Style="{StaticResource label}"/>
+            <PasswordBox x:Name="PasswordBox" Margin="0,0,0,16" PasswordChar="*" Style="{StaticResource inputPassword}"/>
+            
+            <Label Content="{Binding Message}" Visibility="{Binding DoShowMessage, Converter={StaticResource boolToVisConv}}" Style="{StaticResource errorLabel}"></Label>
 
-        <Button   Click="Login_Button_Click" Content="Login" Grid.Row="2" Grid.Column="1" Margin="5"   >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseEnter">
-                    <i:InvokeCommandAction Command="{Binding MouseEnterCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </Button>
-    </Grid>
+            <Button Click="Login_Button_Click" Content="Login" Margin="0,32,0,0" Style="{StaticResource primaryButton}">
+            </Button>
+        </StackPanel>
+    </Border>
 </Window>
