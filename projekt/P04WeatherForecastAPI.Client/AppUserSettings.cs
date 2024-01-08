@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using P04Library.Client;
 using P04WeatherForecastAPI.Client;
 
 using CommunityToolkit.Mvvm.Input;

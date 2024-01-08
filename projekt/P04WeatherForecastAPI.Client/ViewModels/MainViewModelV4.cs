@@ -137,8 +137,11 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         public void Logout()
         {
             LoginViewModel loginViewModel = _serviceProvider.GetService<LoginViewModel>();
-            loginViewModel.Logout();
-            System.Windows.MessageBox.Show("Logged out");
+            if (loginViewModel.IsLoggedIn) {
+                loginViewModel.Logout();
+                System.Windows.MessageBox.Show("Logged out");
+
+            }
         }
 
         [RelayCommand]

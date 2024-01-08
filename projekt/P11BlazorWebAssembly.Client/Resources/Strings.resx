@@ -210,7 +210,7 @@
     	<value>Register</value>
 	</data>
 	<data name="username" xml:space="preserve">
-    	<value>NUsername</value>
+    	<value>Username</value>
 	</data>
 	<data name="confirm-password" xml:space="preserve">
     	<value>Confirm password</value>

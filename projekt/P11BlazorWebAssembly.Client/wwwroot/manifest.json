@@ -1,6 +1,6 @@
 {
-  "name": "P11BlazorWebAssembly.Client",
-  "short_name": "P11BlazorWebAssembly.Client",
+  "name": "Movie Library",
+  "short_name": "Movie Library",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
